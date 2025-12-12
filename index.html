@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iglesia Adventista del Séptimo Día - Limache</title>
+    <!-- Tailwind CSS para diseño moderno y rápido -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Iconos de FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Fuentes de Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        adventist: {
+                            blue: '#00305e', // Azul oficial aproximado
+                            gold: '#fec325',
+                            light: '#f4f4f4'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Open Sans', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 48, 94, 0.7), rgba(0, 48, 94, 0.7)), url('https://images.unsplash.com/photo-1438232992991-995b7058bbb3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .scroll-smooth {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-700 bg-gray-50 scroll-smooth">
+
+    <!-- BARRA DE NAVEGACIÓN -->
+    <nav class="bg-adventist-blue text-white shadow-lg fixed w-full z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Logo / Nombre -->
+            <a href="#" class="flex items-center space-x-3">
+                <!-- Icono de Biblia simulando logo -->
+                <i class="fas fa-book-bible text-3xl text-adventist-gold"></i>
+                <div class="flex flex-col">
+                    <span class="font-heading font-bold text-lg leading-tight">IGLESIA ADVENTISTA</span>
+                    <span class="text-xs tracking-widest text-gray-300">DE LIMACHE</span>
+                </div>
+            </a>
+            
+            <!-- Menú Escritorio -->
+            <div class="hidden md:flex space-x-8 font-semibold text-sm uppercase tracking-wide">
+                <a href="#inicio" class="hover:text-adventist-gold transition duration-300">Inicio</a>
+                <a href="#nosotros" class="hover:text-adventist-gold transition duration-300">Nosotros</a>
+                <a href="#horarios" class="hover:text-adventist-gold transition duration-300">Horarios</a>
+                <a href="#ministerios" class="hover:text-adventist-gold transition duration-300">Ministerios</a>
+                <a href="#contacto" class="hover:text-adventist-gold transition duration-300">Contacto</a>
+            </div>
+
+            <!-- Botón Móvil (Solo visual para demo) -->
+            <div class="md:hidden">
+                <button class="text-white focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- SECCIÓN HERO (PORTADA) -->
+    <header id="inicio" class="hero-bg h-screen flex items-center justify-center text-center px-4">
+        <div class="max-w-4xl text-white animate-fade-in-up">
+            <h2 class="text-xl md:text-2xl font-light mb-4 text-adventist-gold tracking-widest uppercase">Bienvenido a casa</h2>
+            <h1 class="font-heading text-4xl md:text-6xl font-bold mb-6 leading-tight">
+                Una familia de esperanza en el corazón de Limache
+            </h1>
+            <p class="text-lg md:text-xl mb-10 text-gray-200 max-w-2xl mx-auto">
+                "Lámpara es a mis pies tu palabra, y lumbrera a mi camino." - Salmos 119:105
+            </p>
+            <div class="flex flex-col md:flex-row justify-center gap-4">
+                <a href="#horarios" class="bg-adventist-gold text-adventist-blue px-8 py-3 rounded-full font-bold hover:bg-white hover:text-adventist-blue transition duration-300 shadow-lg">
+                    Ver Horarios de Culto
+                </a>
+                <a href="#contacto" class="border-2 border-white text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-adventist-blue transition duration-300">
+                    Contáctanos
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- CRÉDITOS DEL CREADOR (Solicitado explícitamente) -->
+    <div class="bg-gray-800 text-gray-400 py-2 text-center text-xs uppercase tracking-widest">
+        Sitio Web Diseñado y Desarrollado por <span class="text-white font-bold">Mauricio Galaz</span>
+    </div>
+
+    <!-- SECCIÓN NOSOTROS -->
+    <section id="nosotros" class="py-20 bg-white">
+        <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+            <div class="relative">
+                <div class="absolute -top-4 -left-4 w-24 h-24 bg-adventist-gold rounded-full opacity-20"></div>
+                <img src="imagenes/comunidad.jpg"  alt="Comunidad Limache" class="rounded-lg shadow-2xl relative z-10 w-full object-cover h-80">
+            </div>
+            <div>
+                <h3 class="text-adventist-blue font-heading text-3xl font-bold mb-6 relative inline-block">
+                    Nuestra Misión
+                    <span class="absolute bottom-0 left-0 w-1/2 h-1 bg-adventist-gold"></span>
+                </h3>
+                <p class="text-gray-600 mb-6 leading-relaxed">
+                    Somos una comunidad cristiana en Limache comprometida con compartir el evangelio eterno en el contexto del mensaje de los tres ángeles de Apocalipsis 14:6-12, invitando a todos a aceptar a Jesucristo como su Salvador personal.
+                </p>
+                <p class="text-gray-600 mb-8 leading-relaxed">
+                    Creemos en la Biblia como nuestra única regla de fe y práctica, y esperamos con gozo la segunda venida de Cristo. Aquí encontrarás un lugar para crecer, servir y adorar.
+                </p>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="flex items-center space-x-3">
+                        <i class="fas fa-check-circle text-adventist-blue"></i>
+                        <span>Estudio Bíblico</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <i class="fas fa-check-circle text-adventist-blue"></i>
+                        <span>Vida Saludable</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <i class="fas fa-check-circle text-adventist-blue"></i>
+                        <span>Educación Cristiana</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <i class="fas fa-check-circle text-adventist-blue"></i>
+                        <span>Servicio a la Comunidad</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN HORARIOS -->
+    <section id="horarios" class="py-20 bg-adventist-light">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-heading font-bold text-adventist-blue mb-4">Nuestros Servicios</h2>
+                <div class="w-24 h-1 bg-adventist-gold mx-auto"></div>
+                <p class="mt-4 text-gray-600">Te invitamos a adorar con nosotros cada semana.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 border-t-4 border-adventist-blue transform hover:-translate-y-2">
+                    <div class="text-adventist-gold text-4xl mb-4 text-center">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-2">Sábado (Mañana)</h3>
+                    <div class="text-center text-gray-600">
+                        <p class="font-bold text-adventist-blue">09:30 AM</p>
+                        <p class="mb-4">Escuela Sabática</p>
+                        <hr class="my-3">
+                        <p class="font-bold text-adventist-blue">11:00 AM</p>
+                        <p>Culto de Adoración</p>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 border-t-4 border-adventist-gold transform hover:-translate-y-2">
+                    <div class="text-adventist-blue text-4xl mb-4 text-center">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-2">Sábado (Tarde)</h3>
+                    <div class="text-center text-gray-600">
+                        <p class="font-bold text-adventist-blue">17:30 PM</p>
+                        <p class="mb-4">Oracion Intercesora</p>
+                        <hr class="my-3">
+                        <p class="font-bold text-adventist-blue">19:00 PM</p>
+                        <p>Culto de Jóvenes y Despedida de Sábado</p>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 border-t-4 border-adventist-blue transform hover:-translate-y-2">
+                    <div class="text-adventist-gold text-4xl mb-4 text-center">
+                        <i class="fas fa-praying-hands"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-2">Miércoles</h3>
+                    <div class="text-center text-gray-600">
+                        <p class="font-bold text-adventist-blue">19:00 PM</p>
+                        <p class="mb-4">Culto de Oración y Testimonios</p>
+                        <hr class="my-3">
+                        <p class="text-sm italic">"Orad sin cesar."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN MINISTERIOS -->
+    <section id="ministerios" class="py-20 bg-adventist-blue text-white relative overflow-hidden">
+        <!-- Decoración de fondo -->
+        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 rounded-full bg-white opacity-5"></div>
+        <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-64 h-64 rounded-full bg-adventist-gold opacity-10"></div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <h2 class="text-3xl font-heading font-bold text-center mb-12">Nuestros Ministerios</h2>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <div class="p-6 border border-gray-600 rounded-lg hover:bg-white hover:text-adventist-blue transition duration-300 group cursor-pointer">
+                    <i class="fas fa-compass text-4xl mb-4 text-adventist-gold group-hover:text-adventist-blue"></i>
+                    <h4 class="font-bold">Jóvenes</h4>
+                </div>
+                <div class="p-6 border border-gray-600 rounded-lg hover:bg-white hover:text-adventist-blue transition duration-300 group cursor-pointer">
+                    <i class="fas fa-dove text-4xl mb-4 text-adventist-gold group-hover:text-adventist-blue"></i>
+                    <h4 class="font-bold">Aventureros</h4>
+                </div>
+                <div class="p-6 border border-gray-600 rounded-lg hover:bg-white hover:text-adventist-blue transition duration-300 group cursor-pointer">
+                    <i class="fas fa-hands-helping text-4xl mb-4 text-adventist-gold group-hover:text-adventist-blue"></i>
+                    <h4 class="font-bold">ASA (Acción Solidaria)</h4>
+                </div>
+                <div class="p-6 border border-gray-600 rounded-lg hover:bg-white hover:text-adventist-blue transition duration-300 group cursor-pointer">
+                    <i class="fas fa-female text-4xl mb-4 text-adventist-gold group-hover:text-adventist-blue"></i>
+                    <h4 class="font-bold">Ministerio de la Mujer</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN CONTACTO -->
+    <section id="contacto" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Info Contacto -->
+                <div>
+                    <h3 class="text-2xl font-heading font-bold text-adventist-blue mb-6">Visítanos</h3>
+                    <p class="text-gray-600 mb-8">
+                        Estamos ubicados en la hermosa ciudad de Limache, sector San Francisco de Limache. Si tienes preguntas, necesitas oración o quieres estudiar la Biblia, estamos aquí para ti.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-4">
+                            <div class="bg-adventist-light p-3 rounded-full text-adventist-blue">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Dirección</h4>
+                                <p class="text-gray-600">Calle Carrera 131, Limache, Valparaíso</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="bg-adventist-light p-3 rounded-full text-adventist-blue">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Email</h4>
+                                <p class="text-gray-600">contacto@iasdSFlimache.cl</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="bg-adventist-light p-3 rounded-full text-adventist-blue">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Teléfono Contacto</h4>
+                                <p class="text-gray-600">+56 9 90724209</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mapa Real Google Maps con título encima -->
+<div class="bg-gray-200 rounded-xl overflow-hidden h-80 relative shadow-inner">
+
+    <!-- Título encima del mapa -->
+    <div class="absolute top-2 left-1/2 transform -translate-x-1/2 
+                bg-white bg-opacity-80 px-4 py-1 rounded-lg shadow text-gray-700 
+                font-semibold text-sm z-10">
+        Mapa de Ubicación — Calle Carrera 131, Limache
+    </div>
+
+    <!-- Mapa -->
+    <iframe
+        width="100%"
+        height="100%"
+        style="border:0;"
+        loading="lazy"
+        allowfullscreen
+        referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3331.200805124793!2d-71.27594412520434!3d-33.00964757368485!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9689de7fe3c5e0ef%3A0x46e7e0f72cbb69c0!2sCarrera%20131%2C%20Limache%2C%20Valpara%C3%ADso!5e0!3m2!1ses!2scl!4v1734040899999">
+    </iframe>
+
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-white py-10 border-t border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0 text-center md:text-left">
+                    <h4 class="font-heading font-bold text-lg text-adventist-gold mb-2">IASD Limache</h4>
+                    <p class="text-gray-500 text-sm">Esperando la bienaventurada esperanza.</p>
+                </div>
+                
+                <div class="flex space-x-6 mb-6 md:mb-0">
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-facebook-f fa-lg"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-instagram fa-lg"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-youtube fa-lg"></i></a>
+                </div>
+            </div>
+            
+            <hr class="border-gray-800 my-8">
+            
+            <div class="flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+                <p>&copy; 2024 Iglesia Adventista del Séptimo Día. Todos los derechos reservados.</p>
+                <!-- Firma del Creador en el Footer también -->
+                <p class="mt-2 md:mt-0">
+                    Desarrollado con <i class="fas fa-heart text-red-500"></i> por 
+                    <a href="#" class="text-adventist-gold hover:underline font-bold">Mauricio Galaz</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
