@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     
     <script>
+        // Configuración de colores y fuentes personalizados para Tailwind
         tailwind.config = {
             theme: {
                 extend: {
@@ -28,15 +29,16 @@
         }
     </script>
     <style>
+        /* Estilos CSS para el fondo HERO (portada) */
         .hero-bg {
-            /* Asumo que 'imagenes/ig.jpg' existe */
+            /* Se asume que 'imagenes/ig.jpg' es la imagen de fondo */
             background-image: linear-gradient(rgba(0, 48, 94, 0.7), rgba(0, 48, 94, 0.7)), url('imagenes/ig.jpg');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
+            background-attachment: fixed; /* Efecto Parallax sutil */
         }
         .scroll-smooth {
-            scroll-behavior: smooth;
+            scroll-behavior: smooth; /* Para la navegación anclada */
         }
     </style>
 </head>
@@ -79,7 +81,7 @@
 </nav>
 
 <header id="inicio" class="hero-bg h-screen flex items-center justify-center text-center px-4">
-    <div class="max-w-4xl text-white animate-fade-in-up">
+    <div class="max-w-4xl text-white">
         <h2 class="text-xl md:text-2xl font-light mb-4 text-adventist-gold tracking-widest uppercase">Bienvenido a casa</h2>
         <h1 class="font-heading text-4xl md:text-6xl font-bold mb-6 leading-tight">
             Una familia de esperanza en el corazón de Limache
@@ -104,19 +106,19 @@
 
 <section id="nosotros" class="py-20 bg-white">
     <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
-        <div class="relative">
+        <div class="relative order-2 md:order-1">
             <div class="absolute -top-4 -left-4 w-24 h-24 bg-adventist-gold rounded-full opacity-20"></div>
             <img src="imagenes/comunidad.jpg"  alt="Comunidad Limache" class="rounded-lg shadow-2xl relative z-10 w-full object-cover h-80">
         </div>
-        <div>
+        <div class="order-1 md:order-2">
             <h3 class="text-adventist-blue font-heading text-3xl font-bold mb-6 relative inline-block">
                 Nuestra Misión
                 <span class="absolute bottom-0 left-0 w-1/2 h-1 bg-adventist-gold"></span>
             </h3>
-            <p class="text-gray-600 mb-6 leading-relaxed">
+            <p class="text-gray-600 mb-6 leading-relaxed text-justify">
                 Somos una comunidad cristiana Adventista de Limache comprometida para compartir el evangelio eterno en el contexto del mensaje de los tres ángeles de Apocalipsis 14:6-12, invitando a todos a aceptar a Jesucristo como su Salvador personal.
             </p>
-            <p class="text-gray-600 mb-8 leading-relaxed">
+            <p class="text-gray-600 mb-8 leading-relaxed text-justify">
                 Creemos en la Biblia como nuestra única regla de fe y práctica, y esperamos con gozo la segunda venida de Cristo. Aquí encontrarás un lugar para crecer, servir y adorar.
             </p>
             
@@ -228,7 +230,7 @@
         <div class="grid md:grid-cols-2 gap-12">
             <div>
                 <h3 class="text-2xl font-heading font-bold text-adventist-blue mb-6">Visítanos</h3>
-                <p class="text-gray-600 mb-8">
+                <p class="text-gray-600 mb-8 text-justify">
                     Estamos ubicados en la hermosa ciudad de Limache, sector San Francisco de Limache. Si tienes preguntas, necesitas oración o quieres estudiar la Biblia, estamos aquí para ti.
                 </p>
                 
@@ -288,7 +290,7 @@
         <div class="flex flex-col md:flex-row justify-between items-center">
             <div class="mb-6 md:mb-0 text-center md:text-left">
                 <h4 class="font-heading font-bold text-lg text-adventist-gold mb-2">IASD Limache</h4>
-                <p class="text-gray-500 text-sm">"He aquí yo vengo pronto, y mi galardón conmigo, para recompensar a cada uno según sea su obra. Apocalipsis 22:12" .</p>
+                <p class="text-gray-500 text-sm">"He aquí yo vengo pronto, y mi galardón conmigo, para recompensar a cada uno según sea su obra". Apocalipsis 22:12</p>
             </div>
             
             <div class="flex space-x-6 mb-6 md:mb-0">
@@ -312,23 +314,20 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        // 1. Obtener los elementos por su ID
         const menuButton = document.getElementById('menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
 
-        // 2. Función para alternar la clase 'hidden'
         const toggleMenu = () => {
             mobileMenu.classList.toggle('hidden');
         };
 
-        // 3. Escucha el evento click en el botón de hamburguesa
+        // Escucha el click del botón de hamburguesa
         menuButton.addEventListener('click', toggleMenu);
 
-        // 4. Opcional: Cerrar el menú si se hace clic en un enlace (para mejor experiencia móvil)
+        // Cierra el menú móvil si se hace clic en un enlace interno
         const mobileLinks = mobileMenu.querySelectorAll('a');
         mobileLinks.forEach(link => {
             link.addEventListener('click', () => {
-                // Solo si el menú está visible, lo ocultamos
                 if (!mobileMenu.classList.contains('hidden')) {
                     toggleMenu();
                 }
