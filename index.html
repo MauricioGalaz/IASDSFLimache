@@ -32,7 +32,7 @@
     </script>
     <style>
         .hero-bg {
-            background-image: linear-gradient(rgba(0, 48, 94, 0.7), rgba(0, 48, 94, 0.7)), url('https://images.unsplash.com/photo-1438232992991-995b7058bbb3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-image: linear-gradient(rgba(0, 48, 94, 0.7), rgba(0, 48, 94, 0.7)), url('imagenes/ig.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -44,36 +44,32 @@
 </head>
 <body class="font-sans text-gray-700 bg-gray-50 scroll-smooth">
 
-    <!-- BARRA DE NAVEGACIÓN -->
-    <nav class="bg-adventist-blue text-white shadow-lg fixed w-full z-50">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <!-- Logo / Nombre -->
-            <a href="#" class="flex items-center space-x-3">
-                <!-- Icono de Biblia simulando logo -->
-                <i class="fas fa-book-bible text-3xl text-adventist-gold"></i>
-                <div class="flex flex-col">
-                    <span class="font-heading font-bold text-lg leading-tight">IGLESIA ADVENTISTA</span>
-                    <span class="text-xs tracking-widest text-gray-300">DE LIMACHE</span>
-                </div>
-            </a>
-            
-            <!-- Menú Escritorio -->
-            <div class="hidden md:flex space-x-8 font-semibold text-sm uppercase tracking-wide">
-                <a href="#inicio" class="hover:text-adventist-gold transition duration-300">Inicio</a>
-                <a href="#nosotros" class="hover:text-adventist-gold transition duration-300">Nosotros</a>
-                <a href="#horarios" class="hover:text-adventist-gold transition duration-300">Horarios</a>
-                <a href="#ministerios" class="hover:text-adventist-gold transition duration-300">Ministerios</a>
-                <a href="#contacto" class="hover:text-adventist-gold transition duration-300">Contacto</a>
+<nav class="bg-adventist-blue text-white shadow-lg fixed w-full z-50">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+        <a href="#" class="flex items-center space-x-3">
+            <img src="imagenes/logo.jpg" alt="Logo IASD Limache" class="h-10 w-auto rounded-full">
+            <div class="flex flex-col">
+                <span class="font-heading font-bold text-lg leading-tight">IGLESIA ADVENTISTA</span>
+                
+                <span class="font-heading font-bold text-lg leading-tight">DE LIMACHE</span>
             </div>
-
-            <!-- Botón Móvil (Solo visual para demo) -->
-            <div class="md:hidden">
-                <button class="text-white focus:outline-none">
-                    <i class="fas fa-bars text-2xl"></i>
-                </button>
-            </div>
+        </a>
+        
+        <div class="hidden md:flex space-x-8 font-semibold text-sm uppercase tracking-wide">
+            <a href="#inicio" class="hover:text-adventist-gold transition duration-300">Inicio</a>
+            <a href="#nosotros" class="hover:text-adventist-gold transition duration-300">Nosotros</a>
+            <a href="#horarios" class="hover:text-adventist-gold transition duration-300">Horarios</a>
+            <a href="#ministerios" class="hover:text-adventist-gold transition duration-300">Ministerios</a>
+            <a href="#contacto" class="hover:text-adventist-gold transition duration-300">Contacto</a>
         </div>
-    </nav>
+
+        <div class="md:hidden">
+            <button class="text-white focus:outline-none">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+    </div>
+</nav>
 
     <!-- SECCIÓN HERO (PORTADA) -->
     <header id="inicio" class="hero-bg h-screen flex items-center justify-center text-center px-4">
