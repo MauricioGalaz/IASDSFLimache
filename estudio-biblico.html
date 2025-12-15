@@ -143,51 +143,25 @@
         <h2 class="text-3xl font-heading font-bold text-center text-adventist-blue mb-8">
             Solicitar Estudio Bíblico
         </h2>
-
-        <form
-            name="estudio-biblico"
-            method="POST"
-            data-netlify="true"
-            action="/whatsapp.html"
-            class="bg-gray-100 p-8 rounded-xl shadow-lg space-y-4"
+<form
+    name="estudio-biblico"
+    method="POST"
+    data-netlify="true"
+    action="/whatsapp.html"
+    class="bg-gray-100 p-8 rounded-xl shadow-lg space-y-4"
 >
+    <input type="hidden" name="form-name" value="estudio-biblico">
 
-            <input type="hidden" name="form-name" value="estudio-biblico">
+    <input type="text" name="Nombre" required placeholder="Nombre completo" class="w-full p-3 border rounded">
+    <input type="email" name="Email" required placeholder="Correo electrónico" class="w-full p-3 border rounded">
+    <input type="tel" name="Telefono" required placeholder="Teléfono / WhatsApp" class="w-full p-3 border rounded">
+    <textarea name="Mensaje" rows="4" placeholder="Mensaje o consulta" class="w-full p-3 border rounded"></textarea>
 
-            <!-- CONFIGURACIÓN -->
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_disable" value="true">
-            <input type="hidden" name="_template" value="table">
-            <input type="hidden" name="_subject"
-    value="📖 Nueva Solicitud de Estudio Bíblico – IASD San Francisco de Limache">
+    <button type="submit" class="w-full bg-adventist-blue text-white py-3 rounded-full font-bold">
+    Enviar Solicitud
+    </button>
+</form>
 
-            <input type="hidden" name="_autoresponse"
-value="🙏 Gracias por escribirnos.
-
-Hemos recibido tu solicitud de Estudio Bíblico con la Iglesia Adventista del Séptimo Día San Francisco de Limache.
-
-Muy pronto un miembro de nuestra comunidad se comunicará contigo para coordinar el estudio.
-
-📖 «Conocerán la verdad, y la verdad los hará libres.» Juan 8:32
-
-Que Dios te bendiga.
-IASD San Francisco de Limache">
-
-            <!-- REDIRECCIÓN -->
-            <input type="hidden" name="_next" value="whatsapp.html">
-
-            <!-- CAMPOS -->
-            <input type="text" name="Nombre" placeholder="Nombre completo" required class="w-full p-3 rounded border">
-            <input type="email" name="Email" placeholder="Correo electrónico" required class="w-full p-3 rounded border">
-            <input type="tel" name="Teléfono" placeholder="Teléfono / WhatsApp" required class="w-full p-3 rounded border">
-            <textarea name="Mensaje" rows="4" placeholder="Mensaje o consulta" class="w-full p-3 rounded border"></textarea>
-
-            <button type="submit"
-                class="w-full bg-adventist-blue text-white py-3 rounded-full font-bold hover:bg-adventist-gold hover:text-adventist-blue transition">
-                Enviar Solicitud
-            </button>
-
-        </form>
     </div>
 </section>
 
