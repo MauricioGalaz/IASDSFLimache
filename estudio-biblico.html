@@ -143,24 +143,54 @@
         <h2 class="text-3xl font-heading font-bold text-center text-adventist-blue mb-8">
             Solicitar Estudio Bíblico
         </h2>
-<form
-    name="estudio-biblico"
-    method="POST"
-    data-netlify="true"
-    action="/whatsapp.html"
-    class="bg-gray-100 p-8 rounded-xl shadow-lg space-y-4"
->
-    <input type="hidden" name="form-name" value="estudio-biblico">
+    <form
+      action="https://formsubmit.co/iasdsanfranciscodelimache@gmail.com"
+      method="POST"
+      class="bg-white p-8 rounded-xl shadow-lg space-y-4"
+    >
 
-    <input type="text" name="Nombre" required placeholder="Nombre completo" class="w-full p-3 border rounded">
-    <input type="email" name="Email" required placeholder="Correo electrónico" class="w-full p-3 border rounded">
-    <input type="tel" name="Telefono" required placeholder="Teléfono / WhatsApp" class="w-full p-3 border rounded">
-    <textarea name="Mensaje" rows="4" placeholder="Mensaje o consulta" class="w-full p-3 border rounded"></textarea>
+      <!-- CONFIGURACIÓN FORMSUBMIT -->
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_disable" value="true">
 
-    <button type="submit" class="w-full bg-adventist-blue text-white py-3 rounded-full font-bold">
-    Enviar Solicitud
-    </button>
-</form>
+      <input type="hidden" name="_subject"
+        value="📖 Nueva Solicitud de Estudio Bíblico – IASD San Francisco de Limache">
+
+      <!-- RESPUESTA AUTOMÁTICA AL USUARIO -->
+      <input type="hidden" name="_autoresponse"
+        value="🙏 Gracias por contactarte con la Iglesia Adventista del Séptimo Día San Francisco de Limache.
+
+Hemos recibido tu solicitud de Estudio Bíblico.
+Muy pronto un miembro de nuestra comunidad se comunicará contigo.
+
+📖 «Conocerán la verdad, y la verdad los hará libres.» Juan 8:32
+
+Que Dios te bendiga.
+IASD San Francisco de Limache">
+
+        <!-- REDIRECCIÓN -->
+        <input type="hidden" name="_next" value="confirmacion.html">
+
+        <!-- CAMPOS -->
+        <input type="text" name="Nombre" placeholder="Nombre completo"
+        required class="w-full p-3 border rounded">
+
+        <input type="email" name="Email" placeholder="Correo electrónico"
+        required class="w-full p-3 border rounded">
+
+        <input type="tel" name="Telefono" placeholder="Teléfono / WhatsApp"
+        required class="w-full p-3 border rounded">
+
+        <textarea name="Mensaje" rows="4" placeholder="Mensaje o consulta"
+        class="w-full p-3 border rounded"></textarea>
+
+        <button type="submit"
+        class="w-full bg-blue-900 text-white py-3 rounded-full font-bold hover:bg-yellow-400 hover:text-blue-900 transition">
+        Enviar Solicitud
+        </button>
+
+    </form>
 
     </div>
 </section>
