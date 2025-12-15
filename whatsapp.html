@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Redirigiendo a WhatsApp...</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+<script>
+    // NÚMERO OFICIAL DE LA IGLESIA (FORMATO CHILE)
+    const numeroIglesia = "56990724209"; // ← CAMBIAR AQUÍ
+
+    // MENSAJE AUTOMÁTICO
+    const mensaje = encodeURIComponent(
+        "Hola, acabo de enviar una solicitud para estudiar la Biblia 📖.\n\n" +
+        "Me gustaría recibir más información. ¡Muchas gracias! 🙏"
+    );
+
+    // REDIRECCIÓN
+    window.location.href = `https://wa.me/${numeroIglesia}?text=${mensaje}`;
+</script>
+
+<p style="text-align:center; font-family:sans-serif; margin-top:50px;">
+    Redirigiéndote a WhatsApp...
+</p>
+
+</body>
+</html>

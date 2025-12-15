@@ -1,21 +1,33 @@
 <!DOCTYPE html>
 <html lang="es">
+<style>
+.fade-up {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.9s ease-out;
+}
+.fade-up.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+</style>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iglesia Adventista del Séptimo Día - Limache</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     
     <script>
-        // Configuración de colores y fuentes personalizados para Tailwind
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
                         adventist: {
-                            blue: '#00305e', // Azul oficial aproximado
+                            blue: '#00305e',
                             gold: '#fec325',
                             light: '#f4f4f4'
                         }
@@ -28,75 +40,93 @@
             }
         }
     </script>
+
     <style>
-        /* Estilos CSS para el fondo HERO (portada) */
         .hero-bg {
-            /* Se asume que 'imagenes/ig.jpg' es la imagen de fondo */
             background-image: linear-gradient(rgba(0, 48, 94, 0.7), rgba(0, 48, 94, 0.7)), url('imagenes/ig.jpg');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed; /* Efecto Parallax sutil */
+            background-attachment: fixed;
         }
         .scroll-smooth {
-            scroll-behavior: smooth; /* Para la navegación anclada */
+            scroll-behavior: smooth;
         }
     </style>
 </head>
+
 <body class="font-sans text-gray-700 bg-gray-50 scroll-smooth">
 
+<!-- NAV -->
 <nav class="bg-adventist-blue text-white shadow-lg fixed w-full z-50">
-    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-    <a href="#" class="flex items-center space-x-3">
-        <img src="imagenes/logo.jpg" alt="Logo IASD Limache" class="h-10 w-auto rounded-full">
-        <div class="flex flex-col">
-            <span class="font-heading font-bold text-sm leading-tight">IGLESIA ADVENTISTA</span>
-            <span class="font-heading font-bold text-xs leading-tight">SAN FRANCISCO DE LIMACHE</span>
-        </div>
-    </a>
-        
-        <div class="hidden md:flex space-x-8 font-semibold text-sm uppercase tracking-wide">
-            <a href="#inicio" class="hover:text-adventist-gold transition duration-300">Inicio</a>
-            <a href="#nosotros" class="hover:text-adventist-gold transition duration-300">Nosotros</a>
-            <a href="#horarios" class="hover:text-adventist-gold transition duration-300">Horarios</a>
-            <a href="#ministerios" class="hover:text-adventist-gold transition duration-300">Ministerios</a>
-            <a href="#contacto" class="hover:text-adventist-gold transition duration-300">Contacto</a>
-            <a href="avisos.html" class="hover:text-adventist-gold transition duration-300">Avisos</a>
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+
+        <!-- LOGO -->
+        <a href="index.html" class="flex items-center space-x-3">
+            <img src="imagenes/logo.jpg" class="h-9 rounded-full">
+            <span class="font-heading font-bold text-xs leading-tight">
+                IASD<br>San Francisco de Limache
+            </span>
+        </a>
+
+        <!-- MENU DESKTOP -->
+        <div class="hidden md:flex items-center space-x-6 font-semibold text-xs uppercase tracking-wide">
+            <a href="index.html#inicio" class="hover:text-adventist-gold">Inicio</a>
+            <a href="index.html#nosotros" class="hover:text-adventist-gold">Nosotros</a>
+            <a href="index.html#horarios" class="hover:text-adventist-gold">Horarios</a>
+            <a href="index.html#ministerios" class="hover:text-adventist-gold">Ministerios</a>
+            <a href="estudio-biblico.html" class="hover:text-adventist-gold">Estudio Bíblico</a>
+            <a href="avisos.html" class="hover:text-adventist-gold">Avisos</a>
+            <a href="index.html#contacto" class="hover:text-adventist-gold">Contacto</a>
         </div>
 
+        <!-- BOTÓN MÓVIL -->
         <div class="md:hidden">
-            <button id="menu-button" class="text-white focus:outline-none p-2">
-                <i class="fas fa-bars text-2xl"></i>
+            <button id="menu-button">
+                <i class="fas fa-bars text-xl"></i>
             </button>
         </div>
     </div>
-    
-    <div id="mobile-menu" class="hidden md:hidden">
-        <div class="flex flex-col space-y-2 p-4 font-semibold uppercase tracking-wide bg-adventist-blue/90 border-t border-gray-700">
-            <a href="#inicio" class="block py-2 px-3 hover:bg-adventist-gold hover:text-adventist-blue transition duration-300 rounded-md">Inicio</a>
-            <a href="#nosotros" class="block py-2 px-3 hover:bg-adventist-gold hover:text-adventist-blue transition duration-300 rounded-md">Nosotros</a>
-            <a href="#horarios" class="block py-2 px-3 hover:bg-adventist-gold hover:text-adventist-blue transition duration-300 rounded-md">Horarios</a>
-            <a href="#ministerios" class="block py-2 px-3 hover:bg-adventist-gold hover:text-adventist-blue transition duration-300 rounded-md">Ministerios</a>
-            <a href="#contacto" class="block py-2 px-3 hover:bg-adventist-gold hover:text-adventist-blue transition duration-300 rounded-md">Contacto</a>
-            <a href="avisos.html" class="block py-2 px-3 hover:bg-adventist-gold hover:text-adventist-blue transition duration-300 rounded-md">Avisos</a>
+
+    <!-- MENU MÓVIL -->
+    <div id="mobile-menu" class="hidden md:hidden bg-adventist-blue/95 border-t border-gray-700">
+        <div class="flex flex-col px-4 py-3 space-y-2 text-xs font-semibold uppercase">
+            <a href="index.html#inicio" class="py-2 hover:text-adventist-gold">Inicio</a>
+            <a href="index.html#nosotros" class="py-2 hover:text-adventist-gold">Nosotros</a>
+            <a href="index.html#horarios" class="py-2 hover:text-adventist-gold">Horarios</a>
+            <a href="index.html#ministerios" class="py-2 hover:text-adventist-gold">Ministerios</a>
+            <a href="estudio-biblico.html" class="py-2 hover:text-adventist-gold">Estudio Bíblico</a>
+            <a href="avisos.html" class="py-2 hover:text-adventist-gold">Avisos</a>
+            <a href="index.html#contacto" class="py-2 hover:text-adventist-gold">Contacto</a>
         </div>
     </div>
 </nav>
 
+<!-- HERO -->
 <header id="inicio" class="hero-bg h-screen flex items-center justify-center text-center px-4">
     <div class="max-w-4xl text-white">
-        <h2 class="text-xl md:text-2xl font-light mb-4 text-adventist-gold tracking-widest uppercase">Bienvenido a casa</h2>
-        <h1 class="font-heading text-4xl md:text-6xl font-bold mb-6 leading-tight">
-            Una familia de esperanza en el corazón de Limache
+        <h2 class="text-xl mb-4 text-adventist-gold uppercase tracking-widest">Bienvenido a casa</h2>
+        <h1 class="font-heading text-4xl md:text-6xl font-bold mb-6">
+            Una familia de esperanza en Limache
         </h1>
-        <p class="text-lg md:text-xl mb-10 text-gray-200 max-w-2xl mx-auto">
-            "Lámpara es a mis pies tu palabra, y lumbrera a mi camino."<br>  Salmos 119:105
+        <p class="text-lg mb-10 text-gray-200">
+            "Lámpara es a mis pies tu palabra, y lumbrera a mi camino."<br>Salmos 119:105
         </p>
+
         <div class="flex flex-col md:flex-row justify-center gap-4">
-            <a href="#horarios" class="bg-adventist-gold text-adventist-blue px-8 py-3 rounded-full font-bold hover:bg-white hover:text-adventist-blue transition duration-300 shadow-lg">
-                Ver Horarios de Culto
+            <a href="#horarios"
+            class="bg-adventist-gold text-adventist-blue px-8 py-3 rounded-full font-bold">
+            Ver Horarios
             </a>
-            <a href="#contacto" class="border-2 border-white text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-adventist-blue transition duration-300">
-                Contáctanos
+
+            <a href="#contacto"
+            class="border-2 border-white px-8 py-3 rounded-full font-bold">
+            Contáctanos
+            </a>
+
+            <!-- AGREGADO -->
+            <a href="estudio-biblico.html"
+            class="border-2 border-adventist-gold text-adventist-gold px-8 py-3 rounded-full font-bold hover:bg-adventist-gold hover:text-adventist-blue">
+            📖 Estudiar la Biblia
             </a>
         </div>
     </div>
@@ -105,6 +135,7 @@
 <div class="bg-gray-800 text-gray-400 py-2 text-center text-xs uppercase tracking-widest">
     Sitio Web Diseñado y Desarrollado por <span class="text-white font-bold">MGE</span>
 </div>
+
 
 <section id="nosotros" class="py-20 bg-white">
     <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
@@ -212,8 +243,8 @@
                 <h4 class="font-bold">Jóvenes</h4>
             </div>
             <div class="p-6 border border-gray-600 rounded-lg hover:bg-white hover:text-adventist-blue transition duration-300 group cursor-pointer">
-            <img src="imagenes/avent.jpg" alt="Logo Aventureros" class="w-16 h-16 mx-auto mb-4 rounded-full object-cover">
-            <h4 class="font-bold">Aventureros</h4>
+                <img src="imagenes/avent.jpg" alt="Logo Aventureros" class="w-16 h-16 mx-auto mb-4 rounded-full object-cover">
+                <h4 class="font-bold">Aventureros</h4>
             </div>
             <div class="p-6 border border-gray-600 rounded-lg hover:bg-white hover:text-adventist-blue transition duration-300 group cursor-pointer">
                 <img src="imagenes/asa.jpg" alt="Logo Asa" class="w-16 h-16 mx-auto mb-4 rounded-full object-cover">
@@ -222,6 +253,22 @@
             <div class="p-6 border border-gray-600 rounded-lg hover:bg-white hover:text-adventist-blue transition duration-300 group cursor-pointer">
                 <img src="imagenes/mujer.jpg" alt="Logo min mujer" class="w-16 h-16 mx-auto mb-4 rounded-full object-cover">
                 <h4 class="font-bold">Ministerio de la Mujer</h4>
+            </div>
+            <div class="p-6 border border-gray-600 rounded-lg hover:bg-white hover:text-adventist-blue transition duration-300 group cursor-pointer">
+                <img src="imagenes/salud.jpg" alt="Logo ja" class="w-16 h-16 mx-auto mb-4 rounded-full object-cover">
+                <h4 class="font-bold">Ministerio de Salud</h4>
+            </div>
+            <div class="p-6 border border-gray-600 rounded-lg hover:bg-white hover:text-adventist-blue transition duration-300 group cursor-pointer">
+                <img src="imagenes/personal.jpg" alt="Logo Aventureros" class="w-16 h-16 mx-auto mb-4 rounded-full object-cover">
+                <h4 class="font-bold">Ministerio Personal</h4>
+            </div>
+            <div class="p-6 border border-gray-600 rounded-lg hover:bg-white hover:text-adventist-blue transition duration-300 group cursor-pointer">
+                <img src="imagenes/publicaciones.jpg" alt="Logo Asa" class="w-16 h-16 mx-auto mb-4 rounded-full object-cover">
+                <h4 class="font-bold">Ministerio de Publicaciones</h4>
+            </div>
+            <div class="p-6 border border-gray-600 rounded-lg hover:bg-white hover:text-adventist-blue transition duration-300 group cursor-pointer">
+                <img src="imagenes/sabatica.jpg" alt="Logo min mujer" class="w-16 h-16 mx-auto mb-4 rounded-full object-cover">
+                <h4 class="font-bold">Escuela Sabática</h4>
             </div>
         </div>
     </div>
@@ -252,7 +299,7 @@
                         </div>
                         <div>
                             <h4 class="font-bold text-gray-800">Email</h4>
-                            <p class="text-gray-600">contacto@iasdSFlimache.cl</p>
+                            <p class="text-gray-600">iasdsanfranciscodelimache@gmail.com</p>
                         </div>
                     </div>
                     <div class="flex items-start space-x-4">
@@ -287,7 +334,7 @@
     </div>
 </section>
 
-<footer class="bg-gray-900 text-white py-10 border-t border-gray-800">
+<footer class="bg-gray-900 text-white py-6 text-center text-sm">
     <div class="container mx-auto px-6">
         <div class="flex flex-col md:flex-row justify-between items-center">
             <div class="mb-6 md:mb-0 text-center md:text-left">
@@ -304,14 +351,13 @@
         
         <hr class="border-gray-800 my-8">
         
-        <div class="flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
-            <p>© 2025 Iglesia Adventista del Séptimo Día. Todos los derechos reservados.</p>
-            <p class="mt-2 md:mt-0">
+        
+    © 2025 Iglesia Adventista del Séptimo Día – Limache
+    <p class="mt-2 md:mt-0">
                 Desarrollado con <i class="fas fa-heart text-red-500"></i> por 
                 <a href="#" class="text-adventist-gold hover:underline font-bold">MGE</a>
-            </p>
-        </div>
-    </div>
+    </p>
+</footer>
 </footer>
 
 <script>
