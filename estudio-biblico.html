@@ -143,41 +143,25 @@
         <h2 class="text-3xl font-heading font-bold text-center text-adventist-blue mb-8">
             Solicitar Estudio Bíblico
         </h2>
-    <form
-    action="https://formsubmit.co/iasdsanfranciscodelimache@gmail.com"
-    method="POST"
-    data-netlify="false"
-    netlify-ignore="true"
-    accept-charset="UTF-8"
-    class="bg-gray-100 p-8 rounded-xl shadow-lg space-y-4"
->
+    <form id="estudioBiblicoForm"
+      class="bg-gray-100 p-8 rounded-xl shadow-lg space-y-4">
 
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_disable" value="true">
-    <input type="hidden" name="_template" value="table">
+  <input type="text" name="Nombre" placeholder="Nombre completo" required
+         class="w-full p-3 border rounded">
 
-    <input type="hidden" name="_subject"
-    value="📖 Nueva Solicitud de Estudio Bíblico – IASD San Francisco de Limache">
+  <input type="email" name="Email" placeholder="Correo electrónico" required
+         class="w-full p-3 border rounded">
 
-    <input type="hidden" name="_autoresponse"
-    value="🙏 Gracias por escribirnos.
+  <input type="tel" name="Telefono" placeholder="Teléfono / WhatsApp" required
+         class="w-full p-3 border rounded">
 
-Hemos recibido tu solicitud de Estudio Bíblico.
-Muy pronto nos comunicaremos contigo.
+  <textarea name="Mensaje" rows="4" placeholder="Mensaje o consulta"
+            class="w-full p-3 border rounded"></textarea>
 
-IASD San Francisco de Limache">
-
-    <input type="hidden" name="_next" value="confirmacion.html">
-
-    <input type="text" name="Nombre" placeholder="Nombre completo" required class="w-full p-3 border rounded">
-    <input type="email" name="Email" placeholder="Correo electrónico" required class="w-full p-3 border rounded">
-    <input type="tel" name="Telefono" placeholder="Teléfono / WhatsApp" required class="w-full p-3 border rounded">
-    <textarea name="Mensaje" rows="4" placeholder="Mensaje o consulta" class="w-full p-3 border rounded"></textarea>
-
-    <button type="submit"
+  <button type="submit"
     class="w-full bg-adventist-blue text-white py-3 rounded-full font-bold hover:bg-adventist-gold hover:text-adventist-blue transition">
     Enviar Solicitud
-    </button>
+  </button>
 
 </form>
 
@@ -246,6 +230,40 @@ const observer = new IntersectionObserver(entries => {
 }, { threshold: 0.2 });
 
 faders.forEach(f => observer.observe(f));
+</script>
+<script>
+document.getElementById("estudioBiblicoForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const formData = new FormData(this);
+
+  // CONFIGURACIÓN FORMSUBMIT
+    formData.append("_captcha", "false");
+    formData.append("_disable", "true");
+    formData.append("_template", "table");
+    formData.append("_subject", "📖 Nueva Solicitud de Estudio Bíblico – IASD San Francisco de Limache");
+    formData.append("_autoresponse",
+`🙏 Gracias por escribirnos.
+
+Hemos recibido tu solicitud de Estudio Bíblico.
+Muy pronto nos comunicaremos contigo.
+
+IASD San Francisco de Limache`);
+
+    fetch("https://formsubmit.co/ajax/iasdsanfranciscodelimache@gmail.com", {
+    method: "POST",
+    headers: { "Accept": "application/json" },
+    body: formData
+    })
+    .then(res => res.json())
+    .then(() => {
+    const tel = formData.get("Telefono").replace(/\D/g, "");
+    window.location.href = `confirmacion.html?tel=${tel}`;
+    })
+    .catch(() => {
+        alert("Ocurrió un error. Intente nuevamente.");
+    });
+});
 </script>
 
 </body>
