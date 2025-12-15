@@ -135,6 +135,71 @@
         </div>
     </div>
 </section>
+<!-- ================= CURSO BÍBLICO ================= -->
+<section class="py-20 bg-adventist-light">
+    <div class="container mx-auto px-6 max-w-5xl text-center fade-up">
+
+        <h2 class="text-4xl font-heading font-bold text-adventist-blue mb-6">
+            📘 Curso Bíblico: <span class="text-adventist-gold">La Fe de Jesús</span>
+        </h2>
+
+        <p class="text-gray-700 text-lg max-w-3xl mx-auto mb-10">
+            Un curso bíblico gratuito que te ayudará a conocer a Jesús,
+            fortalecer tu fe y comprender las verdades bíblicas de forma clara,
+            práctica y esperanzadora.
+        </p>
+
+        <!-- BLOQUES -->
+        <div class="grid md:grid-cols-3 gap-8 mb-12">
+
+            <div class="bg-white p-6 rounded-xl shadow">
+                <i class="fas fa-book-bible text-3xl text-adventist-gold mb-4"></i>
+                <h3 class="font-bold text-lg mb-2">100% Bíblico</h3>
+                <p class="text-sm text-gray-600">
+                    Basado completamente en la Palabra de Dios.
+                </p>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow">
+                <i class="fas fa-heart text-3xl text-adventist-gold mb-4"></i>
+                <h3 class="font-bold text-lg mb-2">Cristocéntrico</h3>
+                <p class="text-sm text-gray-600">
+                    Enfocado en la vida, enseñanza y amor de Jesús.
+                </p>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow">
+                <i class="fas fa-users text-3xl text-adventist-gold mb-4"></i>
+                <h3 class="font-bold text-lg mb-2">Acompañado</h3>
+                <p class="text-sm text-gray-600">
+                    Con apoyo personal de nuestra iglesia.
+                </p>
+            </div>
+
+        </div>
+
+        <!-- BOTONES -->
+        <div class="flex flex-col sm:flex-row justify-center gap-6">
+            <a href="#formulario"
+        class="bg-adventist-blue text-white px-8 py-4 rounded-full font-bold shadow-lg
+        hover:bg-adventist-gold hover:text-adventist-blue transition">
+                ✍️ Inscribirme al Curso
+            </a>
+
+            <a href="https://wa.me/56990724209"
+        class="bg-green-600 text-white px-8 py-4 rounded-full font-bold shadow-lg
+        hover:bg-green-700 transition">
+                📲 Consultar por WhatsApp
+            </a>
+        </div>
+
+        <p class="mt-10 text-sm italic text-gray-600">
+            “Justificados, pues, por la fe, tenemos paz para con Dios por medio de nuestro Señor Jesucristo.”
+            <br>Romanos 5:1
+        </p>
+
+    </div>
+</section>
 
 
 <!-- ================= FORMULARIO ================= -->
@@ -147,6 +212,22 @@
 
     <input type="text" name="Nombre" placeholder="Nombre completo" required class="w-full p-3 border rounded">
 
+    <input type="hidden" name="_autoresponse"
+value="🙏 Gracias por inscribirte en el curso bíblico *La Fe de Jesús*.
+
+Hemos recibido tu solicitud correctamente.
+Muy pronto nos comunicaremos contigo para acompañarte en este hermoso estudio de la Biblia.
+
+📖 «El justo por la fe vivirá.» Romanos 1:17
+
+Que Dios te bendiga.
+Iglesia Adventista del Séptimo Día
+San Francisco de Limache">
+
+    <!-- REDIRECCIÓN -->
+    <input type="hidden" name="_next" value="confirmacion.html">
+    
+    <input type="hidden" name="Curso" value="La Fe de Jesús">
     <!-- ⚠️ CLAVE: email en minúscula -->
     <input type="email" name="email" placeholder="Correo electrónico" required class="w-full p-3 border rounded">
 
