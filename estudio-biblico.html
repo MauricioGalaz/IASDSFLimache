@@ -282,123 +282,69 @@ San Francisco de Limache">
 <body class="bg-gray-50 font-sans">
 
 <section id="curso-fe-de-jesus" class="py-20 bg-adventist-light">
-    <div class="container mx-auto px-6 max-w-5xl fade-up">
-        <h2 class="text-4xl font-bold text-adventist-blue mb-6 text-center">
+    <div class="container mx-auto px-6 max-w-5xl text-center">
+
+        <h2 class="text-4xl font-bold text-adventist-blue mb-6">
             📘 Curso Bíblico «La Fe de Jesús»
         </h2>
-        <p class="text-gray-700 mb-10 text-center">
+        <p class="text-gray-700 mb-10">
             Haz clic en la lección para verla directamente aquí.
         </p>
 
         <!-- Lista de Lecciones (centradas) -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 justify-items-center mb-10">
-            <button class="w-full bg-white p-3 rounded shadow hover:bg-adventist-gold hover:text-white transition"
-                onclick="cargarVideo('https://www.youtube.com/embed/eG_junbJkRM?si=7Aby8BiSnzgl4ABX')">
-                Lección 1 – La Biblia
-            </button>
+        <div id="listaLecciones" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 justify-items-center mb-10">
+            <button class="leccion w-full bg-white p-3 rounded shadow hover:bg-adventist-gold hover:text-white transition"
+                data-video="https://www.youtube.com/embed/dsdjHEMnFJs?si=LTJR92Xa6ptYScFy">Lección 1 – La Biblia</button>
 
-            <button class="w-full bg-white p-3 rounded shadow hover:bg-adventist-gold hover:text-white transition"
-                onclick="cargarVideo('https://www.youtube.com/embed/yCIyxcDc5Z4?list=PLgWDz61jy0ug_ooTglv-lSo4c-yxwtVuC')">
-                Lección 2 – ¿Quién es Dios?
-            </button>
+            <button class="leccion w-full bg-white p-3 rounded shadow hover:bg-adventist-gold hover:text-white transition"
+                data-video="https://www.youtube.com/embed/yCIyxcDc5Z4">Lección 2 – ¿Quién es Dios?</button>
 
-            <button class="w-full bg-white p-3 rounded shadow hover:bg-adventist-gold hover:text-white transition"
-                onclick="cargarVideo('https://www.youtube.com/embed/a9KfMJ_7c50?list=PLgWDz61jy0ug_ooTglv-lSo4c-yxwtVuC')">
-                Lección 3 – ¿Me puedo comunicar con Dios?
-            </button>
+            <button class="leccion w-full bg-white p-3 rounded shadow hover:bg-adventist-gold hover:text-white transition"
+                data-video="https://www.youtube.com/embed/_yl_pItOdTw">Lección 3 – ¿Me puedo comunicar con Dios?</button>
 
-            <!-- A partir de aquí usamos la playlist completa, porque no todas las lecciones individuales están indexadas por separado -->
-            <button class="w-full bg-white p-3 rounded shadow hover:bg-adventist-gold hover:text-white transition"
-                onclick="cargarVideo('https://www.youtube.com/embed?list=PLgWDz61jy0ug_ooTglv-lSo4c-yxwtVuC')">
-                Lección 4
-            </button>
-
-            <button class="w-full bg-white p-3 rounded shadow hover:bg-adventist-gold hover:text-white transition"
-                onclick="cargarVideo('https://www.youtube.com/embed?list=PLgWDz61jy0ug_ooTglv-lSo4c-yxwtVuC')">
-                Lección 5
-            </button>
-
-            <button class="w-full bg-white p-3 rounded shadow hover:bg-adventist-gold hover:text-white transition"
-                onclick="cargarVideo('https://www.youtube.com/embed?list=PLgWDz61jy0ug_ooTglv-lSo4c-yxwtVuC')">
-                Lección 6
-            </button>
-
-            <button class="w-full bg-white p-3 rounded shadow hover:bg-adventist-gold hover:text-white transition"
-                onclick="cargarVideo('https://www.youtube.com/embed?list=PLgWDz61jy0ug_ooTglv-lSo4c-yxwtVuC')">
-                Lección 7
-            </button>
-
-            <button class="w-full bg-white p-3 rounded shadow hover:bg-adventist-gold hover:text-white transition"
-                onclick="cargarVideo('https://www.youtube.com/embed?list=PLgWDz61jy0ug_ooTglv-lSo4c-yxwtVuC')">
-                Lección 8
-            </button>
-
-            <button class="w-full bg-white p-3 rounded shadow hover:bg-adventist-gold hover:text-white transition"
-                onclick="cargarVideo('https://www.youtube.com/embed?list=PLgWDz61jy0ug_ooTglv-lSo4c-yxwtVuC')">
-                Lección 9
-            </button>
-
-            <button class="w-full bg-white p-3 rounded shadow hover:bg-adventist-gold hover:text-white transition"
-                onclick="cargarVideo('https://www.youtube.com/embed?list=PLgWDz61jy0ug_ooTglv-lSo4c-yxwtVuC')">
-                Lección 10
-            </button>
-
-            <button class="w-full bg-white p-3 rounded shadow hover:bg-adventist-gold hover:text-white transition"
-                onclick="cargarVideo('https://www.youtube.com/embed?list=PLgWDz61jy0ug_ooTglv-lSo4c-yxwtVuC')">
-                Lección 11
-            </button>
-
-            <button class="w-full bg-white p-3 rounded shadow hover:bg-adventist-gold hover:text-white transition"
-                onclick="cargarVideo('https://www.youtube.com/embed?list=PLgWDz61jy0ug_ooTglv-lSo4c-yxwtVuC')">
-                Lección 12
-            </button>
-
-            <button class="w-full bg-white p-3 rounded shadow hover:bg-adventist-gold hover:text-white transition"
-                onclick="cargarVideo('https://www.youtube.com/embed?list=PLgWDz61jy0ug_ooTglv-lSo4c-yxwtVuC')">
-                Lección 13
-            </button>
-
-            <button class="w-full bg-white p-3 rounded shadow hover:bg-adventist-gold hover:text-white transition"
-                onclick="cargarVideo('https://www.youtube.com/embed?list=PLgWDz61jy0ug_ooTglv-lSo4c-yxwtVuC')">
-                Lección 14
-            </button>
-
-            <button class="w-full bg-white p-3 rounded shadow hover:bg-adventist-gold hover:text-white transition"
-                onclick="cargarVideo('https://www.youtube.com/embed?list=PLgWDz61jy0ug_ooTglv-lSo4c-yxwtVuC')">
-                Lección 15
-            </button>
-
-            <button class="w-full bg-white p-3 rounded shadow hover:bg-adventist-gold hover:text-white transition"
-                onclick="cargarVideo('https://www.youtube.com/embed?list=PLgWDz61jy0ug_ooTglv-lSo4c-yxwtVuC')">
-                Lección 16
-            </button>
-
-            <button class="w-full bg-white p-3 rounded shadow hover:bg-adventist-gold hover:text-white transition"
-                onclick="cargarVideo('https://www.youtube.com/embed?list=PLgWDz61jy0ug_ooTglv-lSo4c-yxwtVuC')">
-                Lección 17
-            </button>
-
-            <button class="w-full bg-white p-3 rounded shadow hover:bg-adventist-gold hover:text-white transition"
-                onclick="cargarVideo('https://www.youtube.com/embed?list=PLgWDz61jy0ug_ooTglv-lSo4c-yxwtVuC')">
-                Lección 18
-            </button>
-
-            <button class="w-full bg-white p-3 rounded shadow hover:bg-adventist-gold hover:text-white transition"
-                onclick="cargarVideo('https://www.youtube.com/embed?list=PLgWDz61jy0ug_ooTglv-lSo4c-yxwtVuC')">
-                Lección 19
-            </button>
-
-            <button class="w-full bg-white p-3 rounded shadow hover:bg-adventist-gold hover:text-white transition"
-                onclick="cargarVideo('https://www.youtube.com/embed?list=PLgWDz61jy0ug_ooTglv-lSo4c-yxwtVuC')">
-                Lección 20
-            </button>
+            <!-- Lecciones de la playlist -->
+            <!-- Repetimos botones para lecciones 4 a 20 -->
+            <button class="leccion w-full bg-white p-3 rounded shadow hover:bg-adventist-gold hover:text-white transition"
+                data-video="https://www.youtube.com/embed/e8fingVNnuU?si=iBxyn5oDw5taXtuh">Lección 4 - ¿Cómo comenzó el sufrimiento?</button>
+            <button class="leccion w-full bg-white p-3 rounded shadow hover:bg-adventist-gold hover:text-white transition"
+                data-video="https://www.youtube.com/embed/BKzNFyVYnpo?si=_ZaBGwgm_YvfZN6s">Lección 5 - ¿Hay Salvación para mí?</button>
+            <button class="leccion w-full bg-white p-3 rounded shadow hover:bg-adventist-gold hover:text-white transition"
+                data-video="https://www.youtube.com/embed?list=PLgWDz61jy0ug_ooTglv-lSo4c-yxwtVuC">Lección 6</button>
+            <button class="leccion w-full bg-white p-3 rounded shadow hover:bg-adventist-gold hover:text-white transition"
+                data-video="https://www.youtube.com/embed?list=PLgWDz61jy0ug_ooTglv-lSo4c-yxwtVuC">Lección 7</button>
+            <button class="leccion w-full bg-white p-3 rounded shadow hover:bg-adventist-gold hover:text-white transition"
+                data-video="https://www.youtube.com/embed?list=PLgWDz61jy0ug_ooTglv-lSo4c-yxwtVuC">Lección 8</button>
+            <button class="leccion w-full bg-white p-3 rounded shadow hover:bg-adventist-gold hover:text-white transition"
+                data-video="https://www.youtube.com/embed?list=PLgWDz61jy0ug_ooTglv-lSo4c-yxwtVuC">Lección 9</button>
+            <button class="leccion w-full bg-white p-3 rounded shadow hover:bg-adventist-gold hover:text-white transition"
+                data-video="https://www.youtube.com/embed?list=PLgWDz61jy0ug_ooTglv-lSo4c-yxwtVuC">Lección 10</button>
+            <button class="leccion w-full bg-white p-3 rounded shadow hover:bg-adventist-gold hover:text-white transition"
+                data-video="https://www.youtube.com/embed?list=PLgWDz61jy0ug_ooTglv-lSo4c-yxwtVuC">Lección 11</button>
+            <button class="leccion w-full bg-white p-3 rounded shadow hover:bg-adventist-gold hover:text-white transition"
+                data-video="https://www.youtube.com/embed?list=PLgWDz61jy0ug_ooTglv-lSo4c-yxwtVuC">Lección 12</button>
+            <button class="leccion w-full bg-white p-3 rounded shadow hover:bg-adventist-gold hover:text-white transition"
+                data-video="https://www.youtube.com/embed?list=PLgWDz61jy0ug_ooTglv-lSo4c-yxwtVuC">Lección 13</button>
+            <button class="leccion w-full bg-white p-3 rounded shadow hover:bg-adventist-gold hover:text-white transition"
+                data-video="https://www.youtube.com/embed?list=PLgWDz61jy0ug_ooTglv-lSo4c-yxwtVuC">Lección 14</button>
+            <button class="leccion w-full bg-white p-3 rounded shadow hover:bg-adventist-gold hover:text-white transition"
+                data-video="https://www.youtube.com/embed?list=PLgWDz61jy0ug_ooTglv-lSo4c-yxwtVuC">Lección 15</button>
+            <button class="leccion w-full bg-white p-3 rounded shadow hover:bg-adventist-gold hover:text-white transition"
+                data-video="https://www.youtube.com/embed?list=PLgWDz61jy0ug_ooTglv-lSo4c-yxwtVuC">Lección 16</button>
+            <button class="leccion w-full bg-white p-3 rounded shadow hover:bg-adventist-gold hover:text-white transition"
+                data-video="https://www.youtube.com/embed?list=PLgWDz61jy0ug_ooTglv-lSo4c-yxwtVuC">Lección 17</button>
+            <button class="leccion w-full bg-white p-3 rounded shadow hover:bg-adventist-gold hover:text-white transition"
+                data-video="https://www.youtube.com/embed?list=PLgWDz61jy0ug_ooTglv-lSo4c-yxwtVuC">Lección 18</button>
+            <button class="leccion w-full bg-white p-3 rounded shadow hover:bg-adventist-gold hover:text-white transition"
+                data-video="https://www.youtube.com/embed?list=PLgWDz61jy0ug_ooTglv-lSo4c-yxwtVuC">Lección 19</button>
+            <button class="leccion w-full bg-white p-3 rounded shadow hover:bg-adventist-gold hover:text-white transition"
+                data-video="https://www.youtube.com/embed?list=PLgWDz61jy0ug_ooTglv-lSo4c-yxwtVuC">Lección 20</button>
         </div>
 
         <!-- Video debajo -->
         <div class="flex justify-center">
             <iframe id="videoFrame"
                     class="w-full h-96 md:h-[500px] rounded shadow-lg"
-                    src=""
+                    src="https://www.youtube.com/embed/dsdjHEMnFJs"
                     frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen>
@@ -408,12 +354,21 @@ San Francisco de Limache">
 </section>
 
 <script>
-function cargarVideo(url) {
-    document.getElementById('videoFrame').src = url;
-}
+// Captura todos los botones de lecciones
+const lecciones = document.querySelectorAll('#listaLecciones .leccion');
+const iframe = document.getElementById('videoFrame');
+
+lecciones.forEach(btn => {
+    btn.addEventListener('click', () => {
+        // Cambia el src del iframe al video correspondiente
+        iframe.src = btn.dataset.video;
+
+        // Resaltar lección activa
+        lecciones.forEach(l => l.classList.remove('bg-adventist-gold', 'text-white'));
+        btn.classList.add('bg-adventist-gold', 'text-white');
+    });
+});
 </script>
-</body>
-</html>
 
 
 
