@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Avisos Semanales - IASD Limache</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Open+Sans:wght@400;600&display=swap"
+        rel="stylesheet">
+
     <script>
         // Configuración de colores y fuentes personalizados para Tailwind
         tailwind.config = {
@@ -31,128 +34,175 @@
     <style>
         /* Ajuste para evitar que el contenido se oculte bajo el NAV fijo */
         .pt-nav {
-            padding-top: 8rem; /* Espacio suficiente para la barra de navegación */
+            padding-top: 8rem;
+            /* Espacio suficiente para la barra de navegación */
         }
+
         .scroll-smooth {
-            scroll-behavior: smooth; 
+            scroll-behavior: smooth;
         }
     </style>
 </head>
+
 <body class="font-sans text-gray-700 bg-adventist-light scroll-smooth">
 
-<nav class="bg-adventist-blue text-white shadow-lg fixed w-full z-50">
-    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-    <a href="#" class="flex items-center space-x-3">
-        <img src="imagenes/logo.jpg" alt="Logo IASD Limache" class="h-10 w-auto rounded-full">
-        <div class="flex flex-col">
-            <span class="font-heading font-bold text-sm leading-tight">IASD</span>
-            <span class="font-heading font-bold text-xs leading-tight">San Francisco de Limache</span>
-        </div>
-    </a>
-        
-        <div class="hidden md:flex items-center space-x-6 font-semibold text-xs uppercase tracking-wide">
-            <a href="index.html#inicio" class="hover:text-adventist-gold transition duration-300">Inicio</a>
-            <a href="index.html#nosotros" class="hover:text-adventist-gold transition duration-300">Nosotros</a>
-            <a href="index.html#horarios" class="hover:text-adventist-gold transition duration-300">Horarios</a>
-            <a href="index.html#ministerios" class="hover:text-adventist-gold transition duration-300">Ministerios</a>
-            <a href="estudio-biblico.html" class="hover:text-adventist-gold">Estudio Bíblico</a>
-            <a href="avisos.html" class="text-adventist-gold transition duration-300 font-extrabold">Avisos</a>
-            <a href="index.html#contacto" class="hover:text-adventist-gold transition duration-300">Contacto</a>
-            
-        </div>
-
-        <div class="md:hidden">
-            <button id="menu-button" class="text-white focus:outline-none p-2">
-                <i class="fas fa-bars text-2xl"></i>
-            </button>
-        </div>
-    </div>
-    
-    <div id="mobile-menu" class="hidden md:hidden">
-        <div class="flex flex-col space-y-2 p-4 font-semibold uppercase tracking-wide bg-adventist-blue/90 border-t border-gray-700">
-            <a href="index.html#inicio" class="block py-2 px-3 hover:bg-adventist-gold hover:text-adventist-blue transition duration-300 rounded-md">Inicio</a>
-            <a href="index.html#nosotros" class="block py-2 px-3 hover:bg-adventist-gold hover:text-adventist-blue transition duration-300 rounded-md">Nosotros</a>
-            <a href="index.html#horarios" class="block py-2 px-3 hover:bg-adventist-gold hover:text-adventist-blue transition duration-300 rounded-md">Horarios</a>
-            <a href="index.html#ministerios" class="block py-2 px-3 hover:bg-adventist-gold hover:text-adventist-blue transition duration-300 rounded-md">Ministerios</a>
-            <a href="index.html#contacto" class="block py-2 px-3 hover:bg-adventist-gold hover:text-adventist-blue transition duration-300 rounded-md">Contacto</a>
-            <a href="avisos.html" class="block py-2 px-3 text-adventist-gold transition duration-300 rounded-md bg-adventist-blue/90 font-extrabold">Avisos</a>
-        </div>
-    </div>
-</nav>
-
-<section class="py-12 md:py-16 pt-nav">
-    <div class="container mx-auto px-6">
-        
-        <div class="text-center mb-12">
-            <img src="imagenes/logo_circular.png" alt="" class="mx-auto h-24 mb-4">
-            <h1 class="text-4xl font-heading font-bold text-adventist-blue mb-2">
-                Avisos Semanales y Próximos Eventos
-            </h1>
-            <h2 class="text-3xl font-heading font-bold text-adventist-gold mb-2">
-                Sábado 20 de Diciembre de 2025
-            </h2>
-            <div class="w-32 h-1 bg-adventist-blue mx-auto mt-4"></div>
-        </div>
-
-        <div class="bg-white p-8 rounded-xl shadow-xl mb-12 border-l-8 border-adventist-gold">
-            <h3 class="text-2xl font-heading font-bold text-gray-800 mb-6 flex items-center">
-                <i class="fas fa-calendar-check text-adventist-gold mr-3"></i> Eventos para Hoy
-            </h3>
-            
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-adventist-light p-6 rounded-lg shadow-inner">
-                    <p class="text-lg font-bold text-adventist-blue mb-1">Oración Intercesora</p>
-                    <p class="text-gray-700"><i class="fas fa-clock mr-2"></i> Hoy desde **17:30 Hrs.**</p>
-                    <p class="text-sm italic mt-2 text-gray-500 rounded text-center">Acompañemos al Ministerio de Oración.</p>
+    <nav class="bg-adventist-blue text-white shadow-lg fixed w-full z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="flex items-center space-x-3">
+                <img src="imagenes/logo.jpg" alt="Logo IASD Limache" class="h-10 w-auto rounded-full">
+                <div class="flex flex-col">
+                    <span class="font-heading font-bold text-sm leading-tight">IASD</span>
+                    <span class="font-heading font-bold text-xs leading-tight">San Francisco de Limache</span>
                 </div>
+            </a>
 
-                <div class="bg-adventist-light p-6 rounded-lg shadow-inner">
-                    <p class="text-lg font-bold text-adventist-blue mb-1">Culto JA</p>
-                    <p class="text-gray-700"><i class="fas fa-clock mr-2"></i> Hoy desde **19:00 hrs.**</p>
-                    <p class="text-sm italic mt-2 text-gray-500 rounded text-center">Programa de Jóvenes y para todo miembro que apoye a nuestros jóvenes.</p>
+            <div class="hidden md:flex items-center space-x-6 font-semibold text-xs uppercase tracking-wide">
+                <a href="index.html#inicio" class="hover:text-adventist-gold transition duration-300">Inicio</a>
+                <a href="index.html#nosotros" class="hover:text-adventist-gold transition duration-300">Nosotros</a>
+                <a href="index.html#horarios" class="hover:text-adventist-gold transition duration-300">Horarios</a>
+                <a href="index.html#ministerios"
+                    class="hover:text-adventist-gold transition duration-300">Ministerios</a>
+                <a href="estudio-biblico.html" class="hover:text-adventist-gold">Estudio Bíblico</a>
+                <a href="avisos.html" class="text-adventist-gold transition duration-300 font-extrabold">Avisos</a>
+                <a href="index.html#contacto" class="hover:text-adventist-gold transition duration-300">Contacto</a>
+
+            </div>
+
+            <div class="md:hidden">
+                <button id="menu-button" class="text-white focus:outline-none p-2">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden">
+            <div
+                class="flex flex-col space-y-2 p-4 font-semibold uppercase tracking-wide bg-adventist-blue/90 border-t border-gray-700">
+                <a href="index.html#inicio"
+                    class="block py-2 px-3 hover:bg-adventist-gold hover:text-adventist-blue transition duration-300 rounded-md">Inicio</a>
+                <a href="index.html#nosotros"
+                    class="block py-2 px-3 hover:bg-adventist-gold hover:text-adventist-blue transition duration-300 rounded-md">Nosotros</a>
+                <a href="index.html#horarios"
+                    class="block py-2 px-3 hover:bg-adventist-gold hover:text-adventist-blue transition duration-300 rounded-md">Horarios</a>
+                <a href="index.html#ministerios"
+                    class="block py-2 px-3 hover:bg-adventist-gold hover:text-adventist-blue transition duration-300 rounded-md">Ministerios</a>
+                <a href="index.html#contacto"
+                    class="block py-2 px-3 hover:bg-adventist-gold hover:text-adventist-blue transition duration-300 rounded-md">Contacto</a>
+                <a href="avisos.html"
+                    class="block py-2 px-3 text-adventist-gold transition duration-300 rounded-md bg-adventist-blue/90 font-extrabold">Avisos</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="py-12 md:py-16 pt-nav">
+        <div class="container mx-auto px-6">
+
+            <div class="text-center mb-12">
+                <img src="imagenes/logo_circular.png" alt="" class="mx-auto h-24 mb-4">
+                <h1 class="text-4xl font-heading font-bold text-adventist-blue mb-2">
+                    Avisos Semanales y Próximos Eventos
+                </h1>
+                <h2 class="text-3xl font-heading font-bold text-adventist-gold mb-2">
+                    Sábado 20 de Diciembre de 2025
+                </h2>
+                <div class="w-32 h-1 bg-adventist-blue mx-auto mt-4"></div>
+            </div>
+
+            <div class="bg-red-600 text-white p-8 rounded-xl shadow-2xl mb-12 border-4 border-yellow-400 animate-pulse">
+                <div class="text-center">
+                    <i class="fas fa-bell fa-3x mb-4 text-yellow-300"></i>
+
+                    <h3 class="text-3xl font-heading font-extrabold uppercase mb-2 tracking-wider">
+                        ¡¡AVISO URGENTE!!
+                    </h3>
+
+                    <p class="text-2xl font-bold mb-3">
+                        Reunión de Diáconos y Diaconisas
+                    </p>
+
+                    <p class="text-lg mb-2">
+                        <i class="fas fa-calendar-day mr-2"></i>
+                        Sábado 20 de Diciembre
+                    </p>
+
+                    <p class="text-lg mb-4">
+                        <i class="fas fa-clock mr-2"></i>
+                        Inmediatamente después del Culto Divino
+                    </p>
+
+                    <div class="bg-white text-red-700 p-4 rounded-lg font-semibold text-base max-w-2xl mx-auto">
+                        Se solicita la <strong>asistencia obligatoria</strong> de todos los diáconos y diaconisas.
+                        <br>
+                        Tema de carácter <strong>urgente e importante</strong>.
+                    </div>
                 </div>
             </div>
 
-            <div class="mt-12 text-center p-6 bg-gray-200 rounded-lg shadow-md">
+
+            <div class="bg-white p-8 rounded-xl shadow-xl mb-12 border-l-8 border-adventist-gold">
+                <h3 class="text-2xl font-heading font-bold text-gray-800 mb-6 flex items-center">
+                    <i class="fas fa-calendar-check text-adventist-gold mr-3"></i> Eventos para Hoy
+                </h3>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-adventist-light p-6 rounded-lg shadow-inner">
+                        <p class="text-lg font-bold text-adventist-blue mb-1">Oración Intercesora</p>
+                        <p class="text-gray-700"><i class="fas fa-clock mr-2"></i> Hoy desde **17:30 Hrs.**</p>
+                        <p class="text-sm italic mt-2 text-gray-500 rounded text-center">Acompañemos al Ministerio de
+                            Oración.</p>
+                    </div>
+
+                    <div class="bg-adventist-light p-6 rounded-lg shadow-inner">
+                        <p class="text-lg font-bold text-adventist-blue mb-1">Culto JA</p>
+                        <p class="text-gray-700"><i class="fas fa-clock mr-2"></i> Hoy desde **19:00 hrs.**</p>
+                        <p class="text-sm italic mt-2 text-gray-500 rounded text-center">Programa de Jóvenes y para todo
+                            miembro que apoye a nuestros jóvenes.</p>
+                    </div>
+                </div>
+
+                <div class="mt-12 text-center p-6 bg-gray-200 rounded-lg shadow-md">
                     <p class="text-lg font-bold text-adventist-blue mb-3">!Proximamente!</p>
                     <p class="text-gray-700"><i class="fas fa-clock mr-2"></i> **PASEO DE IGLESIA**</p>
-                    <p class="text-sm italic mt-2 text-gray-500 rounded text-center">Programa especial para hermano en cristo.</p>
+                    <p class="text-sm italic mt-2 text-gray-500 rounded text-center">Programa especial para hermano en
+                        cristo.</p>
                 </div>
-        </div>
+            </div>
 
-        <div class="bg-white p-8 rounded-xl shadow-xl mb-12 border-l-8 border-adventist-blue">
-            <h3 class="text-2xl font-heading font-bold text-gray-800 mb-6 flex items-center">
-                <i class="fas fa-arrow-alt-circle-right text-adventist-blue mr-3"></i> Próximos Encuentros
-            </h3>
+            <div class="bg-white p-8 rounded-xl shadow-xl mb-12 border-l-8 border-adventist-blue">
+                <h3 class="text-2xl font-heading font-bold text-gray-800 mb-6 flex items-center">
+                    <i class="fas fa-arrow-alt-circle-right text-adventist-blue mr-3"></i> Próximos Encuentros
+                </h3>
 
-            <div class="border p-5 rounded-lg relative bg-yellow-50 border-yellow-400">
-    <span class="absolute -top-3 -right-3 bg-red-600 text-white text-xs px-3 py-1 rounded-full font-bold shadow">
-        CAMBIO DE DÍA
-    </span>
+                <div class="border p-5 rounded-lg relative bg-yellow-50 border-yellow-400">
+                    <span
+                        class="absolute -top-3 -right-3 bg-red-600 text-white text-xs px-3 py-1 rounded-full font-bold shadow">
+                        CAMBIO DE DÍA
+                    </span>
 
-    <p class="font-heading font-bold text-lg text-adventist-gold mb-1">
-        Martes 23 y Martes 30 de Diciembre
-    </p>
+                    <p class="font-heading font-bold text-lg text-adventist-gold mb-1">
+                        Martes 23 y Martes 30 de Diciembre
+                    </p>
 
-    <p class="text-xl font-bold text-gray-800 mb-1">
-        Culto de Oración
-    </p>
+                    <p class="text-xl font-bold text-gray-800 mb-1">
+                        Culto de Oración
+                    </p>
 
-    <p class="text-gray-700 mb-2">
-        <i class="fas fa-clock mr-2"></i> Desde <strong>19:00 hrs.</strong>
-    </p>
+                    <p class="text-gray-700 mb-2">
+                        <i class="fas fa-clock mr-2"></i> Desde <strong>19:00 hrs.</strong>
+                    </p>
 
-    <div class="mt-3 bg-red-100 text-red-700 text-sm p-3 rounded-lg font-semibold flex items-center">
-        <i class="fas fa-exclamation-triangle mr-2"></i>
-        Debido a que los miércoles son feriados, el culto se realizará excepcionalmente los días martes.
-    </div>
-</div>
+                    <div class="mt-3 bg-red-100 text-red-700 text-sm p-3 rounded-lg font-semibold flex items-center">
+                        <i class="fas fa-exclamation-triangle mr-2"></i>
+                        Debido a que los miércoles son feriados, el culto se realizará excepcionalmente los días martes.
+                    </div>
+                </div>
 
-                
+
                 <div class="border p-5 rounded-lg">
                     <p class="font-heading font-bold text-lg text-adventist-gold mb-2">Cada Sábado</p>
                     <p class="text-xl font-bold text-gray-800 mb-1">Madres de Rodillas, Hijos de Pie (MRHP)</p>
-                    <p class="text-gray-600"><i class="fas fa-praying-hands mr-2"></i> Cada sábado después de Culto Divino</p>
+                    <p class="text-gray-600"><i class="fas fa-praying-hands mr-2"></i> Cada sábado después de Culto
+                        Divino</p>
                 </div>
             </div>
         </div>
@@ -168,7 +218,7 @@
                     <p class="text-xl font-bold mb-1">Programa Especial "Acción de Gracias"</p>
                     <p class="text-gray-300"><i class="fas fa-church mr-2"></i> Durante Culto Divino</p>
                 </div>
-                
+
                 <div class="bg-adventist-blue text-white p-6 rounded-lg justify-center">
                     <p class="font-heading font-bold text-lg text-adventist-gold mb-2">Sábado 27 de Diciembre</p>
                     <p class="text-xl font-bold mb-1">Club de Aventureros: Investidura de cierre</p>
@@ -182,15 +232,15 @@
             <p class="font-heading font-bold text-lg text-adventist-green mb-2">Hno. Víctor Recabarren</p>
         </div>
 
-    </div>
-</section>
+        </div>
+    </section>
 
 
-<!-- FOOTER -->
+    <!-- FOOTER -->
     <footer class="bg-gray-900 text-white py-6 text-center text-sm">
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-center">
-                    <div class="flex space-x-6 mb-6 md:mb-0">
+                <div class="flex space-x-6 mb-6 md:mb-0">
                     <a href="#" class="text-gray-400 hover:text-white transition">
                         <i class="fab fa-facebook-f fa-lg"></i>
                     </a>
@@ -218,7 +268,7 @@
         </button>
 
     </footer>
-    
+
     <script>
         /* Cambiar video */
         function cargarVideo(url) {
@@ -239,4 +289,5 @@
 
 
 </body>
+
 </html>
