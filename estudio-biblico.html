@@ -119,7 +119,7 @@
 
         <div class="mb-12">
             <a id="btnDescarga" href="https://drive.google.com/uc?export=download&id=ID_DE_DRIVE_AQUI" target="_blank" 
-               class="inline-flex items-center bg-red-600 text-white px-8 py-3 rounded-full font-bold shadow-lg hover:bg-red-700 transition transform hover:scale-105">
+            class="inline-flex items-center bg-red-600 text-white px-8 py-3 rounded-full font-bold shadow-lg hover:bg-red-700 transition transform hover:scale-105">
                 <i class="fas fa-file-pdf mr-2"></i> Descargar Guía: <span id="nombreDescarga" class="ml-1">01_leccion.pdf</span>
             </a>
         </div>
@@ -158,7 +158,7 @@
             <input type="text" name="Nombre" placeholder="Nombre completo" required class="w-full p-3 border rounded">
             <input type="hidden" name="Curso" value="La Fe de Jesús">
             <input type="email" name="email" placeholder="Correo electrónico" required class="w-full p-3 border rounded">
-            <input type="tel" name="Telefono" placeholder="Teléfono / WhatsApp" required class="w-full p-3 border rounded">
+            <input type="tel" name="Telefono" placeholder="Telefono / WhatsApp" required class="w-full p-3 border rounded">
             <textarea name="Mensaje" rows="4" placeholder="Mensaje o consulta" class="w-full p-3 border rounded"></textarea>
             <button type="submit" class="w-full bg-adventist-blue text-white py-3 rounded-full font-bold hover:bg-adventist-gold transition">Enviar Solicitud</button>
         </form>
@@ -173,11 +173,56 @@
         </p>
     </div>
 </section>
+<!-- FOOTER -->
+    <footer class="bg-gray-900 text-white py-6 text-center text-sm">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="flex space-x-6 mb-6 md:mb-0">
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-facebook-f fa-lg"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-instagram fa-lg"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-youtube fa-lg"></i>
+                    </a>
+                </div>
+            </div>
 
-<footer class="bg-gray-900 text-white py-6 text-center text-sm">
-    © 2025 Iglesia Adventista del Séptimo Día – Limache
-    <p class="mt-2 text-adventist-gold font-bold">MGE</p>
-</footer>
+            <hr class="border-gray-800 my-6">
+
+            <p>© 2025 Iglesia Adventista del Séptimo Día – Limache</p>
+            <p class="mt-2">
+                Desarrollado con <i class="fas fa-heart text-red-500"></i> por
+                <a href="#" class="text-adventist-gold hover:underline font-bold">MGE</a>
+            </p>
+        </div>
+        <!-- BOTÓN VOLVER ARRIBA -->
+        <button id="btnTop" class="hidden fixed bottom-6 right-6 bg-adventist-gold text-adventist-blue
+        p-3 rounded-full shadow-lg hover:scale-110 transition z-50">
+            <i class="fas fa-chevron-up"></i>
+        </button>
+
+    </footer>
+    
+    <script>
+        /* Cambiar video */
+        function cargarVideo(url) {
+            document.getElementById("videoFrame").src = url;
+        }
+
+        /* Botón volver arriba */
+        const btnTop = document.getElementById("btnTop");
+
+        window.addEventListener("scroll", () => {
+            btnTop.classList.toggle("hidden", window.scrollY < 300);
+        });
+
+        btnTop.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    </script>
 
 <script>
     // Menú móvil
@@ -205,38 +250,73 @@
         });
     });
 
-    // Versículos rotativos
-    const versiculos = [
-        "“Conocerán la verdad, y la verdad los hará libres.” – Juan 8:32",
-        "“El Señor es mi pastor; nada me faltará.” – Salmos 23:1",
-        "“Todo lo puedo en Cristo que me fortalece.” – Filipenses 4:13",
-        "“Venid a mí todos los que estáis trabajados.” – Mateo 11:28",
-        "“Porque yo sé los planes que tengo para vosotros.” – Jeremías 29:11"
-    ];
-    let i = 0;
-    setInterval(() => {
-        i = (i + 1) % versiculos.length;
-        const v = document.getElementById("versiculo");
-        v.style.opacity = 0;
-        setTimeout(() => { v.textContent = versiculos[i]; v.style.opacity = 1; }, 500);
-    }, 5000);
 
-    // Animaciones
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('show'); });
-    }, { threshold: 0.2 });
-    document.querySelectorAll('.fade-up').forEach(f => observer.observe(f));
+/* =========================
+   Versículos rotativos
+========================= */
+const versiculos = [
+    "“Conocerán la verdad, y la verdad los hará libres.” – Juan 8:32",
+    "“El Señor es mi pastor; nada me faltará.” – Salmos 23:1",
+    "“Todo lo puedo en Cristo que me fortalece.” – Filipenses 4:13",
+    "“Venid a mí todos los que estáis trabajados.” – Mateo 11:28",
+    "“Porque yo sé los planes que tengo para vosotros.” – Jeremías 29:11"
+];
 
-    // FormSubmit
-    document.getElementById("estudioBiblicoForm").addEventListener("submit", function(e) {
-        e.preventDefault();
-        fetch("https://formsubmit.co/ajax/iasdsanfranciscodelimache@gmail.com", {
-            method: "POST",
-            headers: { "Accept": "application/json" },
-            body: new FormData(this)
-        }).then(() => alert("Solicitud enviada. ¡Dios te bendiga!"));
+let i = 0;
+setInterval(() => {
+    i = (i + 1) % versiculos.length;
+    const v = document.getElementById("versiculo");
+    if (!v) return;
+    v.style.opacity = 0;
+    setTimeout(() => {
+        v.textContent = versiculos[i];
+        v.style.opacity = 1;
+    }, 500);
+}, 5000);
+
+/* =========================
+   Animaciones
+========================= */
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+        if (e.isIntersecting) {
+            e.target.classList.add('show');
+        }
     });
+}, { threshold: 0.2 });
+
+document.querySelectorAll('.fade-up').forEach(f =>
+    observer.observe(f)
+);
+
+/* =========================
+   Formulario Estudio Bíblico
+========================= */
+document.getElementById("estudioBiblicoForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const formData = new FormData(this);
+    const telefono = (formData.get("Telefono") || "").replace(/\D/g, "");
+
+    formData.append("_captcha", "false");
+    formData.append("_template", "table");
+    formData.append("_subject", "📖 Solicitud Estudio Bíblico – IASD San Francisco de Limache");
+
+    fetch("https://formsubmit.co/ajax/iasdsanfranciscodelimache@gmail.com", {
+        method: "POST",
+        headers: { "Accept": "application/json" },
+        body: formData
+    })
+    .then(() => {
+        window.location.href = `confirmacion.html?tel=${telefono}`;
+    })
+    .catch(() => {
+        alert("❌ Error al enviar la solicitud");
+    });
+});
 </script>
+
+
 
 </body>
 </html>
