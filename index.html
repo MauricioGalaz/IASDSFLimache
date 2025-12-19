@@ -79,7 +79,12 @@
                 <a href="index.html#horarios" class="hover:text-adventist-gold">Horarios</a>
                 <a href="index.html#ministerios" class="hover:text-adventist-gold">Ministerios</a>
                 <a href="estudio-biblico.html" class="hover:text-adventist-gold">Estudio Bíblico</a>
-                <a href="avisos.html" class="hover:text-adventist-gold">Avisos</a>
+                <a href="avisos.html" class="bg-adventist-gold text-adventist-blue
+                px-4 py-2 rounded-full font-extrabold uppercase
+                shadow-lg">
+                    🚨 Avisos Importantes
+                </a>
+
                 <a href="index.html#contacto" class="hover:text-adventist-gold">Contacto</a>
             </div>
 
@@ -520,24 +525,25 @@
         });
     </script>
 
-<script>
-    // MENÚ HAMBURGUESA MÓVIL
-    const menuButton = document.getElementById("menu-button");
-    const mobileMenu = document.getElementById("mobile-menu");
+    <script>
+        // MENÚ HAMBURGUESA MÓVIL
+        const menuButton = document.getElementById("menu-button");
+        const mobileMenu = document.getElementById("mobile-menu");
 
-    menuButton.addEventListener("click", () => {
-        mobileMenu.classList.toggle("hidden");
-    });
-</script>
-<script>
-    const menuLinks = mobileMenu.querySelectorAll("a");
-
-    menuLinks.forEach(link => {
-        link.addEventListener("click", () => {
-            mobileMenu.classList.add("hidden");
+        menuButton.addEventListener("click", () => {
+            mobileMenu.classList.toggle("hidden");
         });
-    });
-</script>
+    </script>
+    <script>
+        const menuLinks = mobileMenu.querySelectorAll("a");
+
+        menuLinks.forEach(link => {
+            link.addEventListener("click", () => {
+                mobileMenu.classList.add("hidden");
+            });
+        });
+    </script>
+
 
 </body>
 
