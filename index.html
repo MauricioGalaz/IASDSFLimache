@@ -233,20 +233,24 @@
                 <h2 class="text-3xl font-heading font-bold text-adventist-blue mb-4">Nuestros Servicios</h2>
                 <div class="w-24 h-1 bg-adventist-gold mx-auto"></div>
                 <p class="mt-4 text-gray-600">Te invitamos a adorar con nosotros cada semana.</p>
-            </div>
-            <section class="py-16 bg-white fade-in">
-    <div class="container mx-auto px-6 text-center">
+        </div>
+<section class="py-16 bg-white fade-in">
+    <div class="container mx-auto px-6">
 
-        <h2 class="text-3xl font-heading font-bold text-adventist-blue mb-8">
+        <h2 class="text-3xl font-heading font-bold text-adventist-blue mb-8 text-center">
             Nuestra comunidad
         </h2>
 
-        <img id="carousel"
-                src="imagenes/foto1.jpg"
-                class="mx-auto rounded-xl shadow-xl max-w-3xl transition-all duration-700">
-                
+        <div class="relative max-w-5xl mx-auto overflow-hidden rounded-xl shadow-xl">
+            <img id="carousel"
+                    src="imagenes/foto1.jpg"
+                class="w-full h-[220px] sm:h-[320px] md:h-[420px] lg:h-[520px]
+                        object-cover transition-opacity duration-700">
+        </div>
+
     </div>
 </section>
+
 
             <div class="grid md:grid-cols-3 gap-8">
                 <div
@@ -596,7 +600,6 @@
         });
     </script>
 
-
 <script>
 const fotos = [
     "imagenes/foto1.jpg",
@@ -605,20 +608,26 @@ const fotos = [
     "imagenes/foto4.jpg",
     "imagenes/foto5.jpg",
     "imagenes/foto6.jpg",
-    "imagenes/foto7.jpg",
     "imagenes/foto8.jpg",
     "imagenes/foto9.jpg",
     "imagenes/foto10.jpg",
     "imagenes/foto11.jpg",
     "imagenes/foto12.jpg",
     "imagenes/foto13.jpg"
-    
 ];
 
 let index = 0;
+const img = document.getElementById("carousel");
+
 setInterval(() => {
-    index = (index + 1) % fotos.length;
-    document.getElementById("carousel").src = fotos[index];
+    img.classList.add("opacity-0");
+
+    setTimeout(() => {
+        index = (index + 1) % fotos.length;
+        img.src = fotos[index];
+        img.classList.remove("opacity-0");
+    }, 400);
+
 }, 4000);
 </script>
 
