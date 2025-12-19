@@ -109,12 +109,13 @@
             </div>
         </div>
     </nav>
+    
     <!-- BLOQUE BIENVENIDA A CASA -->
     <section class="pt-nav bg-gradient-to-br from-adventist-blue via-blue-900 to-adventist-blue text-white">
         <div class="container mx-auto px-6 py-20 text-center max-w-4xl">
 
             <span class="inline-block mb-4 bg-adventist-gold text-adventist-blue
-                     px-4 py-1 rounded-full text-sm font-bold uppercase tracking-wide shadow">
+                        px-4 py-1 rounded-full text-sm font-bold uppercase tracking-wide shadow">
                 Bienvenido
             </span>
 
@@ -174,6 +175,7 @@
                 </a>
             </div>
         </div>
+        
     </header>
 
     <div class="bg-gray-800 text-gray-400 py-2 text-center text-xs uppercase tracking-widest">
@@ -232,6 +234,19 @@
                 <div class="w-24 h-1 bg-adventist-gold mx-auto"></div>
                 <p class="mt-4 text-gray-600">Te invitamos a adorar con nosotros cada semana.</p>
             </div>
+            <section class="py-16 bg-white fade-in">
+    <div class="container mx-auto px-6 text-center">
+
+        <h2 class="text-3xl font-heading font-bold text-adventist-blue mb-8">
+            Nuestra comunidad
+        </h2>
+
+        <img id="carousel"
+                src="imagenes/foto1.jpg"
+                class="mx-auto rounded-xl shadow-xl max-w-3xl transition-all duration-700">
+                
+    </div>
+</section>
 
             <div class="grid md:grid-cols-3 gap-8">
                 <div
@@ -582,6 +597,30 @@
     </script>
 
 
+<script>
+const fotos = [
+    "imagenes/foto1.jpg",
+    "imagenes/foto2.jpg",
+    "imagenes/foto3.jpg",
+    "imagenes/foto4.jpg",
+    "imagenes/foto5.jpg",
+    "imagenes/foto6.jpg",
+    "imagenes/foto7.jpg",
+    "imagenes/foto8.jpg",
+    "imagenes/foto9.jpg",
+    "imagenes/foto10.jpg",
+    "imagenes/foto11.jpg",
+    "imagenes/foto12.jpg",
+    "imagenes/foto13.jpg"
+    
+];
+
+let index = 0;
+setInterval(() => {
+    index = (index + 1) % fotos.length;
+    document.getElementById("carousel").src = fotos[index];
+}, 4000);
+</script>
 
 </body>
 
