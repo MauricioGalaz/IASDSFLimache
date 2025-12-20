@@ -60,6 +60,11 @@
 
 <body class="font-sans text-gray-700 bg-gray-50 scroll-smooth">
 
+<!-- Contenido principal oculto inicialmente -->
+<div class="container" id="contenidoPDF" style="display:none;">
+    <!-- TODO: Aquí va todo tu contenido HTML actual de la planificación -->
+</div>
+
     <!-- NAV -->
     <nav class="bg-adventist-blue text-white shadow-lg fixed w-full z-50">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
@@ -537,46 +542,53 @@
     </section>
 
 
-    <!-- FOOTER -->
-    <footer class="bg-gray-900 text-white py-6 text-center text-sm">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="flex space-x-6 mb-6 md:mb-0">
-                    <a href="#" class="text-gray-400 hover:text-white transition">
-                        <i class="fab fa-facebook-f fa-lg"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white transition">
-                        <i class="fab fa-instagram fa-lg"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white transition">
-                        <i class="fab fa-youtube fa-lg"></i>
-                    </a>
-                </div>
+    <!-- ACCESO RESTRINGIDO ANCIANOS -->
+<footer class="bg-gray-900 text-white py-6 text-center text-sm">
+    <div class="container mx-auto px-6">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+            <div class="flex space-x-6 mb-6 md:mb-0">
+                <a href="#" class="text-gray-400 hover:text-white transition">
+                    <i class="fab fa-facebook-f fa-lg"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-white transition">
+                    <i class="fab fa-instagram fa-lg"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-white transition">
+                    <i class="fab fa-youtube fa-lg"></i>
+                </a>
             </div>
-
-            <hr class="border-gray-800 my-6">
-
-            <p>© 2025 Iglesia Adventista del Séptimo Día – Limache</p>
-            <p class="mt-2">
-                Desarrollado con <i class="fas fa-heart text-red-500"></i> por
-                <a href="#" class="text-adventist-gold hover:underline font-bold">MGE</a>
-            </p>
         </div>
-        <!-- BOTÓN VOLVER ARRIBA -->
-        <button id="btnTop" class="hidden fixed bottom-6 right-6 bg-adventist-gold text-adventist-blue
-        p-3 rounded-full shadow-lg hover:scale-110 transition z-50">
-            <i class="fas fa-chevron-up"></i>
-        </button>
 
-<!-- ACCESO RESTRINGIDO ANCIANOS -->
-<div class="mt-4 text-center">
-    <button onclick="accesoAncianos()"
-        class="text-[11px] text-gray-400 hover:text-adventist-gold transition underline">
-        Acceso Ancianos
-    </button>
-</div>
+        <hr class="border-gray-800 my-6">
 
-    </footer>
+        <p>© 2025 Iglesia Adventista del Séptimo Día – Limache</p>
+        <p class="mt-2">
+            Desarrollado con <i class="fas fa-heart text-red-500"></i> por
+            <a href="#" class="text-adventist-gold hover:underline font-bold">MGE</a>
+        </p>
+
+        <!-- Botón de acceso ancianos -->
+        <div class="mt-4 text-center">
+            <button onclick="accesoAncianos()"
+                class="text-[11px] text-gray-400 hover:text-adventist-gold transition underline">
+                Acceso Ancianos
+            </button>
+        </div>
+    </div>
+</footer>
+
+<script>
+function accesoAncianos() {
+    const clave = prompt("Acceso restringido\n\nIngrese la contraseña de Ancianos:");
+    if (clave === null) return; // Cancelar
+    if (clave.trim().toLowerCase() === "iasd") {
+        window.location.href = "./orden_culto.html";
+    } else {
+        alert("⛔ Acceso denegado.\nContraseña incorrecta.");
+    }
+}
+</script>
+
 
 
     <script>
@@ -647,31 +659,6 @@
         }, 4000);
     </script>
 
-
-<script>
-function accesoAncianos() {
-
-    const autorizados = [
-        "guillermo vera",
-        "victor recabarren",
-        "mauricio galaz"
-    ];
-
-    const nombre = prompt(
-        "Acceso restringido\n\nIngrese su nombre y apellido:"
-    );
-
-    if (nombre === null) return;
-
-    const normalizado = nombre.trim().toLowerCase();
-
-    if (autorizados.includes(normalizado)) {
-        window.location.href = "./orden_culto.html";
-    } else {
-        alert("⛔ Acceso denegado.\nSolo para ancianos autorizados.");
-    }
-}
-</script>
 
 <script>
 document.getElementById("ordenCultoForm").addEventListener("submit", function (e) {
