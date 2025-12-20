@@ -109,14 +109,24 @@
             </div>
         </div>
     </nav>
-    
+<div class="w-full bg-blue-900 py-4 flex justify-center">
+    <a href="orden_culto.html"
+        class="bg-white text-blue-900 px-6 py-3 rounded-full font-bold text-lg
+            hover:bg-yellow-400 hover:text-black transition transform hover:scale-105">
+        📖 ORDEN DE CULTO
+    </a>
+</div>
+
+
+
+
     <!-- BLOQUE BIENVENIDA A CASA -->
     <section class="pt-nav bg-gradient-to-br from-adventist-blue via-blue-900 to-adventist-blue text-white">
         <div class="container mx-auto px-6 py-20 text-center max-w-4xl">
 
             <span class="inline-block mb-4 bg-adventist-gold text-adventist-blue
                         px-4 py-1 rounded-full text-sm font-bold uppercase tracking-wide shadow">
-                Bienvenido
+
             </span>
 
             <h1 class="text-4xl md:text-5xl font-heading font-extrabold mb-6 leading-tight">
@@ -153,11 +163,11 @@
         <div class="max-w-4xl text-white">
             <h2 class="text-xl mb-4 text-adventist-gold uppercase tracking-widest">Bienvenido a casa</h2>
             <h1 class="font-heading text-4xl md:text-6xl font-bold mb-6">
-                Una familia de esperanza en Limache
+                Una familia de esperanza en el corazón de Limache
             </h1>
-            <p class="text-lg mb-10 text-gray-200">
+            <h2 class="text-xl mb-80 text-adventist-gold uppercase tracking-widest">
                 "Lámpara es a mis pies tu palabra, y lumbrera a mi camino."<br>Salmos 119:105
-            </p>
+            </h2>
 
             <div class="flex flex-col md:flex-row justify-center gap-4">
                 <a href="#horarios" class="bg-adventist-gold text-adventist-blue px-8 py-3 rounded-full font-bold">
@@ -175,7 +185,7 @@
                 </a>
             </div>
         </div>
-        
+
     </header>
 
     <div class="bg-gray-800 text-gray-400 py-2 text-center text-xs uppercase tracking-widest">
@@ -233,23 +243,21 @@
                 <h2 class="text-3xl font-heading font-bold text-adventist-blue mb-4">Nuestros Servicios</h2>
                 <div class="w-24 h-1 bg-adventist-gold mx-auto"></div>
                 <p class="mt-4 text-gray-600">Te invitamos a adorar con nosotros cada semana.</p>
-        </div>
-<section class="py-16 bg-white fade-in">
-    <div class="container mx-auto px-6">
+            </div>
+            <section class="py-16 bg-white fade-in">
+                <div class="container mx-auto px-6">
 
-        <h2 class="text-3xl font-heading font-bold text-adventist-blue mb-8 text-center">
-            Algunos Eventos y Actividades
-        </h2>
+                    <h2 class="text-3xl font-heading font-bold text-adventist-blue mb-8 text-center">
+                        Algunos Eventos y Actividades
+                    </h2>
 
-        <div class="relative max-w-5xl mx-auto overflow-hidden rounded-xl shadow-xl">
-            <img id="carousel"
-                    src="imagenes/foto1.jpg"
-                class="w-full h-[220px] sm:h-[320px] md:h-[420px] lg:h-[520px]
+                    <div class="relative max-w-5xl mx-auto overflow-hidden rounded-xl shadow-xl">
+                        <img id="carousel" src="imagenes/foto1.jpg" class="w-full h-[220px] sm:h-[320px] md:h-[420px] lg:h-[520px]
                         object-cover transition-opacity duration-700">
-        </div>
+                    </div>
 
-    </div>
-</section>
+                </div>
+            </section>
 
 
             <div class="grid md:grid-cols-3 gap-8">
@@ -560,6 +568,14 @@
             <i class="fas fa-chevron-up"></i>
         </button>
 
+<!-- ACCESO RESTRINGIDO ANCIANOS -->
+<div class="mt-4 text-center">
+    <button onclick="accesoAncianos()"
+        class="text-[11px] text-gray-400 hover:text-adventist-gold transition underline">
+        Acceso Ancianos
+    </button>
+</div>
+
     </footer>
 
 
@@ -600,36 +616,95 @@
         });
     </script>
 
+    <script>
+        const fotos = [
+            "imagenes/foto1.jpg",
+            "imagenes/foto2.jpg",
+            "imagenes/foto3.jpg",
+            "imagenes/foto4.jpg",
+            "imagenes/foto5.jpg",
+            "imagenes/foto6.jpg",
+            "imagenes/foto8.jpg",
+            "imagenes/foto9.jpg",
+            "imagenes/foto10.jpg",
+            "imagenes/foto11.jpg",
+            "imagenes/foto12.jpg",
+            "imagenes/foto13.jpg"
+        ];
+
+        let index = 0;
+        const img = document.getElementById("carousel");
+
+        setInterval(() => {
+            img.classList.add("opacity-0");
+
+            setTimeout(() => {
+                index = (index + 1) % fotos.length;
+                img.src = fotos[index];
+                img.classList.remove("opacity-0");
+            }, 400);
+
+        }, 4000);
+    </script>
+
+
 <script>
-const fotos = [
-    "imagenes/foto1.jpg",
-    "imagenes/foto2.jpg",
-    "imagenes/foto3.jpg",
-    "imagenes/foto4.jpg",
-    "imagenes/foto5.jpg",
-    "imagenes/foto6.jpg",
-    "imagenes/foto8.jpg",
-    "imagenes/foto9.jpg",
-    "imagenes/foto10.jpg",
-    "imagenes/foto11.jpg",
-    "imagenes/foto12.jpg",
-    "imagenes/foto13.jpg"
-];
+function accesoAncianos() {
 
-let index = 0;
-const img = document.getElementById("carousel");
+    const autorizados = [
+        "guillermo vera",
+        "victor recabarren",
+        "mauricio galaz"
+    ];
 
-setInterval(() => {
-    img.classList.add("opacity-0");
+    const nombre = prompt(
+        "Acceso restringido\n\nIngrese su nombre y apellido:"
+    );
 
-    setTimeout(() => {
-        index = (index + 1) % fotos.length;
-        img.src = fotos[index];
-        img.classList.remove("opacity-0");
-    }, 400);
+    if (nombre === null) return;
 
-}, 4000);
+    const normalizado = nombre.trim().toLowerCase();
+
+    if (autorizados.includes(normalizado)) {
+        window.location.href = "./orden_culto.html";
+    } else {
+        alert("⛔ Acceso denegado.\nSolo para ancianos autorizados.");
+    }
+}
 </script>
+
+<script>
+document.getElementById("ordenCultoForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const fecha = document.getElementById("fecha").value;
+    const predicador = document.getElementById("predicador").value;
+    const contenido = document.getElementById("contenido").value;
+
+    const mensaje = `
+📖 *ORDEN DE CULTO*
+
+📅 Fecha: ${fecha}
+🎤 Predicador: ${predicador}
+
+📝 Detalle:
+${contenido}
+    `;
+
+    const texto = encodeURIComponent(mensaje);
+
+    const contactos = [
+        "56968401298", // Mauricio Galaz
+        "56990724209", // Guillermo Vera
+        "56996997577"  // Victor Recabarren
+    ];
+
+    contactos.forEach(numero => {
+        window.open(`https://wa.me/${numero}?text=${texto}`, "_blank");
+    });
+});
+</script>
+
 
 </body>
 
