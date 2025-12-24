@@ -76,7 +76,35 @@
         /* Estilo para que el menú móvil no se superponga mal */
         #mobile-menu {
             transition: all 0.3s ease-in-out;
+
+            @keyframes fadeInScale {
+                from {
+                    opacity: 0;
+                    transform: scale(0.9);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+            }
+
+            .animate-fade {
+                animation: fadeInScale 0.35s ease-out;
+            }
+
         }
+
+        footer {
+    padding-bottom: calc(5rem + env(safe-area-inset-bottom));
+}
+
+@media (max-width: 768px) {
+    footer {
+        padding-bottom: 2.8rem;
+    }
+}
+
     </style>
 </head>
 
@@ -103,15 +131,14 @@
                 <a href="#contacto" class="hover:text-adventist-gold">Contacto</a>
             </div>
             <!-- Botón descarga APK -->
-            <a href="https://drive.google.com/uc?export=download&id=19XrG3oWQXDVXN0jHdafbsMTMUvfrpFVl"
-                class="bg-adventist-gold text-adventist-blue px-3 py-2 rounded-full font-bold text-xs shadow-lg"
-                download>
+
+
+            <button onclick="abrirModalApp()">
                 📱 App
-            </a>
-            <button onclick="instalarApp()"
-            class="fixed top-3 right-3 bg-blue-600 text-white px-4 py-2 rounded-full shadow-lg">
-            📲 APP
             </button>
+
+
+
 
 
             <div class="md:hidden">
@@ -200,13 +227,17 @@
                 </p>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
                     <div class="flex items-center space-x-2"><i class="fas fa-check-circle text-adventist-blue"></i>
-                        <span>Estudio Bíblico</span></div>
+                        <span>Estudio Bíblico</span>
+                    </div>
                     <div class="flex items-center space-x-2"><i class="fas fa-check-circle text-adventist-blue"></i>
-                        <span>Vida Saludable</span></div>
+                        <span>Vida Saludable</span>
+                    </div>
                     <div class="flex items-center space-x-2"><i class="fas fa-check-circle text-adventist-blue"></i>
-                        <span>Educación Cristiana</span></div>
+                        <span>Educación Cristiana</span>
+                    </div>
                     <div class="flex items-center space-x-2"><i class="fas fa-check-circle text-adventist-blue"></i>
-                        <span>Servicio Comunitario</span></div>
+                        <span>Servicio Comunitario</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -353,9 +384,13 @@
             <p>© 2025 Iglesia Adventista del Séptimo Día – Limache</p>
             <p class="mt-2">Desarrollado por <span class="text-adventist-gold font-bold">MGE</span></p>
 
-            <button onclick="accesoAncianos()" class="mt-6 text-[10px] text-gray-500 hover:text-white underline">
-                Acceso Ancianos
-            </button>
+                <p class="mt-1">
+                <button onclick="accesoAncianos()"
+                    class="text-xs text-adventist-gold font-semibold hover:text-white transition underline underline-offset-4">
+                    Acceso Ancianos
+                </button>
+            </p>
+
         </div>
     </footer>
 
@@ -375,14 +410,28 @@
             });
         });
 
-        // ACCESO ANCIANOS
+        // acceso ancianos
         function accesoAncianos() {
-            const clave = prompt("Ingrese la contraseña de Ancianos:");
-            if (clave && clave.trim().toLowerCase() === "iasd") {
+            document.getElementById("modalAncianos").classList.remove("hidden");
+        }
+
+        function cerrarAncianos() {
+            document.getElementById("modalAncianos").classList.add("hidden");
+            document.getElementById("claveAncianos").value = "";
+            document.getElementById("errorAncianos").classList.add("hidden");
+        }
+
+        function validarAncianos() {
+            const clave = document.getElementById("claveAncianos").value.trim();
+
+            if (clave === "iasd") {
                 window.location.href = "./orden_culto.html";
+            } else {
+                document.getElementById("errorAncianos").classList.remove("hidden");
             }
         }
     </script>
+
 
     <script>
         /* ==========================
@@ -422,53 +471,113 @@
     </script>
 
     <script>
-function instalarApp() {
-    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-
-  // ANDROID
-    if (/android/i.test(userAgent)) {
-    window.location.href = "IASD-Limache.apk"; // TU APK
-    }
-
-  // IPHONE / IOS
-    else if (/iPhone|iPad|iPod/i.test(userAgent)) {
-    alert(
-        "Para instalar en iPhone:\n\n" +
-        "1️⃣ Presiona el botón Compartir 📤\n" +
-        "2️⃣ Selecciona 'Agregar a pantalla de inicio'\n" +
-        "3️⃣ Confirma\n\n" +
-        "¡Listo! Se instala como App."
-    );
-    }
-
-  // PC U OTRO
-    else {
-    alert("Abre este sitio desde tu celular para instalar la app.");
+        function abrirModalApp() {
+            document.getElementById("modalApp").classList.remove("hidden");
+            document.getElementById("modalApp").classList.add("flex");
         }
-}   
-</script>
 
-<script>
-let deferredPrompt;
+        function cerrarModalApp() {
+            document.getElementById("modalApp").classList.add("hidden");
+        }
 
-window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-});
+        function instalarApp() {
+            const ua = navigator.userAgent.toLowerCase();
 
-async function instalarApp() {
-    if (deferredPrompt) {
-    deferredPrompt.prompt();
-    deferredPrompt = null;
-    } else {
-    window.location.href = "IASD-Limache.apk";
+            // ANDROID → APK
+            if (ua.includes("android")) {
+                window.location.href =
+                    "https://drive.google.com/uc?export=download&id=19XrG3oWQXDVXN0jHdafbsMTMUvfrpFVl";
+                return;
+            }
 
-    }
-}
-</script>
+            // IPHONE → PWA
+            if (ua.includes("iphone") || ua.includes("ipad")) {
+                cerrarModalApp();
+                setTimeout(() => {
+                    alert(
+                        "📱 INSTALAR EN IPHONE\n\n" +
+                        "1️⃣ Presiona Compartir 📤\n" +
+                        "2️⃣ 'Agregar a pantalla de inicio'\n" +
+                        "3️⃣ Confirmar\n\n" +
+                        "✅ Listo"
+                    );
+                }, 300);
+                return;
+            }
 
-    
-    
+            // PC
+            alert("Abre esta página desde tu celular para instalar la app.");
+        }
+    </script>
+
+
+    <div id="modalApp" class="fixed inset-0 bg-black/60 hidden items-center justify-center z-50">
+
+        <div class="bg-white rounded-xl max-w-sm w-full mx-4 p-6 text-center shadow-2xl">
+            <h2 class="text-xl font-bold text-adventist-blue mb-3">
+                📱 Instalar App
+            </h2>
+
+            <p class="text-sm text-gray-600 mb-5">
+                Instala la app oficial de la Iglesia Adventista San Francisco de Limache
+            </p>
+
+            <div class="flex flex-col gap-3">
+                <button onclick="instalarApp()"
+                    class="bg-adventist-gold text-adventist-blue py-3 rounded-full font-bold">
+                    Instalar ahora
+                </button>
+
+                <button onclick="cerrarModalApp()" class="text-gray-500 text-sm underline">
+                    Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- MODAL ACCESO ANCIANOS -->
+    <div id="modalAncianos" class="fixed inset-0 bg-black/70 hidden flex items-center justify-center z-50 px-4">
+
+        <div class="bg-white rounded-2xl shadow-2xl w-[90%] max-w-sm p-6 animate-fade">
+
+            <div class="text-center mb-4">
+                <img src="imagenes/logo.jpg" class="mx-auto h-14 w-14 rounded-full mb-2">
+                <h2 class="font-heading text-xl font-bold text-adventist-blue">
+                    Acceso Ancianos
+                </h2>
+                <p class="text-sm text-gray-500">
+                    Área restringida – IASD San Francisco de Limache
+                </p>
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-sm font-semibold text-gray-600 mb-1">
+                    Contraseña
+                </label>
+                <div class="relative">
+                    <i class="fas fa-lock absolute left-3 top-3 text-gray-400"></i>
+                    <input id="claveAncianos" type="password"
+                        class="w-full pl-10 pr-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-adventist-gold"
+                        placeholder="Ingrese la clave">
+                </div>
+            </div>
+
+            <div class="flex gap-3">
+                <button onclick="validarAncianos()"
+                    class="flex-1 bg-adventist-blue text-white py-2 rounded-lg font-bold hover:bg-blue-900 transition">
+                    Ingresar
+                </button>
+
+                <button onclick="cerrarAncianos()"
+                    class="flex-1 bg-gray-200 py-2 rounded-lg font-semibold hover:bg-gray-300 transition">
+                    Cancelar
+                </button>
+            </div>
+
+            <p id="errorAncianos" class="text-red-600 text-sm text-center mt-3 hidden">
+                ❌ Contraseña incorrecta
+            </p>
+        </div>
+    </div>
 
 </body>
 
