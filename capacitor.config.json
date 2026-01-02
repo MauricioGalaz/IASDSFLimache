@@ -1,5 +1,9 @@
 {
   "appId": "com.iasd.limache",
   "appName": "IASD Limache",
-  "webDir": "www"
+  "webDir": "www",
+  "server": {
+    "url": "https://iasdsflim.netlify.app/",
+    "cleartext": true
+  }
 }

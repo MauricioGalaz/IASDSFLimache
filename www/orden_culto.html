@@ -197,21 +197,83 @@ function limpiar() {
 }
 
 // Generar PDF y abrir WhatsApp
-function generarPDFyEnviar() {
+async function generarPDFyEnviar() {
     const elemento = document.getElementById("contenidoPDF");
 
+    const fecha = document.getElementById("fecha")?.value || "Sin_Fecha";
+    const nombreArchivo = `Orden_Culto_${fecha}.pdf`;
+
     const opciones = {
-        margin: 0.5,
-        filename: 'Orden_Culto_IASD_Limache.pdf',
+        margin: 8,
+        filename: nombreArchivo,
         image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2, useCORS: true },
-        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+        html2canvas: { scale: 2, useCORS: true, scrollY: 0 },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+        pagebreak: { mode: ['css', 'legacy'] }
     };
 
-    html2pdf().set(opciones).from(elemento).save().then(() => {
-        alert("PDF generado ✅\nAhora se abrirá WhatsApp para enviar el archivo.");
-        window.open("https://wa.me/", "_blank");
-    });
+    try {
+        // Esperar que las fuentes carguen
+        if (document.fonts && document.fonts.ready) await document.fonts.ready;
+
+        // Clonar y preparar el contenido para evitar recortes en el PDF
+        const clone = elemento.cloneNode(true);
+        clone.style.boxShadow = 'none'; clone.style.borderRadius = '0'; clone.style.padding = '10mm'; clone.style.maxWidth = 'none';
+        const mmToPx = mm => Math.ceil(mm * 96 / 25.4);
+        clone.style.width = mmToPx(190) + 'px';
+        clone.querySelectorAll('.actions, input, label, select, .btn-clear, .btn-wa, .btn-pdf').forEach(n => n && (n.style.display = 'none'));
+        // Insertar el clon en posición absoluta sobre la página pero casi invisible
+        clone.removeAttribute('id');
+        clone.style.position = 'absolute'; clone.style.left = '0'; clone.style.top = window.scrollY + 'px';
+        clone.style.background = '#ffffff'; clone.style.zIndex = '999999'; clone.style.opacity = '0.01'; clone.style.pointerEvents = 'none';
+        document.body.appendChild(clone);
+
+        opciones.html2canvas.scale = Math.max(2, window.devicePixelRatio || 1);
+        opciones.html2canvas.windowWidth = Math.ceil(clone.scrollWidth);
+
+        const pdfBlob = await html2pdf().set(opciones).from(clone).output('blob');
+        const archivo = new File([pdfBlob], nombreArchivo, { type: 'application/pdf' });
+
+        if (navigator.canShare && navigator.canShare({ files: [archivo] })) {
+            try {
+                await navigator.share({ files: [archivo], title: 'Orden de Culto', text: 'Adjunto envío el Orden de Culto.' });
+                const url = URL.createObjectURL(pdfBlob);
+                if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+                    window.navigator.msSaveOrOpenBlob(pdfBlob, nombreArchivo);
+                } else {
+                    const newTab = window.open(url, '_blank');
+                    if (!newTab) { const a = document.createElement('a'); a.href = url; a.download = nombreArchivo; document.body.appendChild(a); a.click(); a.remove(); }
+                }
+                URL.revokeObjectURL(url);
+            } catch (shareError) {
+                console.warn('Compartir falló, forzando descarga:', shareError);
+                const url = URL.createObjectURL(pdfBlob);
+                if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+                    window.navigator.msSaveOrOpenBlob(pdfBlob, nombreArchivo);
+                } else {
+                    const newTab = window.open(url, '_blank');
+                    if (!newTab) { const a = document.createElement('a'); a.href = url; a.download = nombreArchivo; document.body.appendChild(a); a.click(); a.remove(); }
+                }
+                URL.revokeObjectURL(url);
+                alert('No fue posible compartir. El PDF se abrirá/descargará para que lo puedas adjuntar manualmente.');
+            }
+        } else {
+            const url = URL.createObjectURL(pdfBlob);
+            if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+                window.navigator.msSaveOrOpenBlob(pdfBlob, nombreArchivo);
+            } else {
+                const newTab = window.open(url, '_blank');
+                if (!newTab) { const a = document.createElement('a'); a.href = url; a.download = nombreArchivo; document.body.appendChild(a); a.click(); a.remove(); }
+            }
+            URL.revokeObjectURL(url);
+            alert('PDF descargado o abierto en nueva pestaña. Adjunta el archivo manualmente en WhatsApp.');
+        }
+        // limpiar clon
+        document.body.removeChild(clone);
+    } catch (err) {
+        console.error('Error al generar PDF:', err);
+        alert('Error al generar el PDF.');
+    }
 }
 </script>
 

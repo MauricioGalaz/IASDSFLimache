@@ -3,714 +3,422 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IASD - San Francisco de Limache</title>
-    <meta name="description"
-        content="Comunidad de fe de la Iglesia Adventista del Séptimo Día de San Francisco de Limache. Comparte tus oraciones, testimonios y estudia la Palabra de Dios con nosotros.">
-
-    <!-- Google Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Open+Sans:wght@300;400;600;700&display=swap"
-        rel="stylesheet">
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css">
-</head>
-
-<body>
-    <!-- Header & Navigation -->
-    <header class="main-header">
-        <nav class="navbar">
-            <div class="container nav-container">
-
-                <!-- LOGO -->
-                <div class="logo">
-                    <img src="imagenes/oracion.jpg" alt="Logo IASD" class="logo-img">
-
-                    <div class="logo-text">
-                        <h1>IASD San Francisco</h1>
-                        <p>Limache</p>
-                    </div>
-                </div>
-
-                <!-- BOTÓN HAMBURGUESA -->
-                <button class="mobile-menu-toggle" id="menuToggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-
-                <!-- MENÚ -->
-                <ul class="nav-menu" id="navMenu">
-                    <li><a href="#inicio" class="nav-link"><i class="fas fa-home"></i> Inicio</a></li>
-                    <li><a href="#oracion" class="nav-link"><i class="fas fa-praying-hands"></i> Oración</a></li>
-                    <li><a href="#estudio" class="nav-link"><i class="fas fa-bible"></i> Estudio</a></li>
-                    <li>
-                        <a href="../index.html" class="nav-link">
-                            <i class="fas fa-arrow-left"></i> Volver a la App
-                        </a>
-                    </li>
-
-
-                </ul>
-
-            </div>
-        </nav>
-    </header>
-
-    <!-- Hero Section -->
-    <section id="inicio" class="hero-section">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <div class="container">
-                <h2 class="hero-title">Bienvenidos a Nuestra Familia de Fe</h2>
-                <p class="hero-subtitle">Iglesia Adventista del Séptimo Día - San Francisco de Limache</p>
-                <div class="verse-box">
-                    <i class="fas fa-bible"></i>
-                    <p class="verse-text">"Porque donde están dos o tres congregados en mi nombre, allí estoy yo en
-                        medio de ellos."</p>
-                    <p class="verse-ref">Mateo 18:20</p>
-                </div>
-                <div class="hero-buttons">
-                    <a href="#oracion" class="btn btn-primary"><i class="fas fa-praying-hands"></i> Compartir Pedido de
-                        Oración</a>
-                    <a href="#testimonios" class="btn btn-secondary"><i class="fas fa-comment-dots"></i> Compartir
-                        Testimonio</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pedidos de Oración Section -->
-    <section id="oracion" class="section prayer-section">
-        <div class="container">
-            <div class="section-header">
-                <i class="fas fa-praying-hands section-icon"></i>
-                <h2 class="section-title">Pedidos de Oración</h2>
-                <p class="section-description">Comparte tus necesidades con nuestra familia de fe. Oramos unos por
-                    otros.</p>
-            </div>
-
-            <div class="content-grid">
-                <!-- Formulario de Pedido -->
-                <div class="form-card">
-                    <h3><i class="fas fa-plus-circle"></i> Nuevo Pedido de Oración</h3>
-                    <form id="prayer-form" class="prayer-form">
-                        <div class="form-group">
-                            <label for="prayer-name"><i class="fas fa-user"></i> Tu Nombre</label>
-                            <input type="text" id="prayer-name" name="nombre" required placeholder="Ingresa tu nombre">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="prayer-category"><i class="fas fa-list"></i> Categoría</label>
-                            <select id="prayer-category" name="categoria" required>
-                                <option value="">Selecciona una categoría</option>
-                                <option value="salud">Salud</option>
-                                <option value="familia">Familia</option>
-                                <option value="trabajo">Trabajo/Estudios</option>
-                                <option value="espiritual">Vida Espiritual</option>
-                                <option value="otro">Otro</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="prayer-request"><i class="fas fa-pen"></i> Tu Petición</label>
-                            <textarea id="prayer-request" name="peticion" required rows="5"
-                                placeholder="Comparte tu necesidad de oración..."></textarea>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-paper-plane"></i> Enviar Pedido
-                        </button>
-                    </form>
-                </div>
-
-                <!-- Lista de Pedidos -->
-                <div class="prayers-list-card">
-                    <h3><i class="fas fa-list"></i> Peticiones Activas</h3>
-                    <div class="filter-tabs">
-                        <button class="filter-tab active" data-filter="todos">Todos</button>
-                        <button class="filter-tab" data-filter="salud">Salud</button>
-                        <button class="filter-tab" data-filter="familia">Familia</button>
-                        <button class="filter-tab" data-filter="trabajo">Trabajo</button>
-                        <button class="filter-tab" data-filter="espiritual">Espiritual</button>
-                    </div>
-                    <div id="prayers-list" class="prayers-list">
-                        <div class="loading">
-                            <i class="fas fa-spinner fa-spin"></i> Cargando peticiones...
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Agradecimientos Section -->
-    <section id="agradecimientos" class="section thanksgiving-section">
-        <div class="container">
-            <div class="section-header">
-                <i class="fas fa-heart section-icon"></i>
-                <h2 class="section-title">Agradecimientos a Dios</h2>
-                <p class="section-description">Celebramos las bendiciones y respuestas a nuestras oraciones.</p>
-            </div>
-
-            <div class="content-grid">
-
-                <!-- Formulario de Agradecimiento -->
-                <div class="form-card">
-                    <h3><i class="fas fa-plus-circle"></i> Compartir Agradecimiento</h3>
-                    <form id="thanksgiving-form" class="thanksgiving-form">
-                        <div class="form-group">
-                            <label for="thanks-name"><i class="fas fa-user"></i> Tu Nombre</label>
-                            <input type="text" id="thanks-name" name="nombre" required placeholder="Ingresa tu nombre">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="thanks-category"><i class="fas fa-list"></i> Categoría de Bendición</label>
-                            <select id="thanks-category" name="categoria" required>
-                                <option value="">Selecciona una categoría</option>
-                                <option value="salud">Sanidad</option>
-                                <option value="provision">Provisión</option>
-                                <option value="familia">Familia</option>
-                                <option value="trabajo">Trabajo</option>
-                                <option value="espiritual">Crecimiento Espiritual</option>
-                                <option value="otro">Otro</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="thanks-testimony"><i class="fas fa-pen"></i> Tu Testimonio de Gratitud</label>
-                            <textarea id="thanks-testimony" name="testimonio" required rows="5"
-                                placeholder="Comparte cómo Dios ha bendecido tu vida..."></textarea>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-paper-plane"></i> Compartir Agradecimiento
-                        </button>
-                    </form>
-                </div>
-
-                <!-- Lista de Agradecimientos -->
-                <div class="thanksgiving-list-card">
-                    <h3><i class="fas fa-list"></i> Testimonios de Gratitud</h3>
-                    <div id="thanksgiving-list" class="thanksgiving-list">
-                        <div class="loading">
-                            <i class="fas fa-spinner fa-spin"></i> Cargando agradecimientos...
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonios Section -->
-    <section id="testimonios" class="section testimonies-section">
-        <div class="container">
-            <div class="section-header">
-                <i class="fas fa-comment-dots section-icon"></i>
-                <h2 class="section-title">Testimonios de Fe</h2>
-                <p class="section-description">Historias de cómo Dios transforma vidas y fortalece nuestra fe.</p>
-            </div>
-
-            <div class="content-grid">
-                <!-- Formulario de Testimonio -->
-                <div class="form-card">
-                    <h3><i class="fas fa-plus-circle"></i> Compartir Testimonio</h3>
-                    <form id="testimony-form" class="testimony-form">
-                        <div class="form-group">
-                            <label for="testimony-name"><i class="fas fa-user"></i> Tu Nombre</label>
-                            <input type="text" id="testimony-name" name="nombre" required
-                                placeholder="Ingresa tu nombre">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="testimony-title"><i class="fas fa-heading"></i> Título del Testimonio</label>
-                            <input type="text" id="testimony-title" name="titulo" required
-                                placeholder="Ej: Cómo Dios restauró mi familia">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="testimony-content"><i class="fas fa-pen"></i> Tu Testimonio</label>
-                            <textarea id="testimony-content" name="contenido" required rows="6"
-                                placeholder="Comparte tu experiencia de fe..."></textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="testimony-verse"><i class="fas fa-bible"></i> Versículo Relacionado
-                                (opcional)</label>
-                            <input type="text" id="testimony-verse" name="versiculo" placeholder="Ej: Juan 3:16">
-                        </div>
-
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-paper-plane"></i> Compartir Testimonio
-                        </button>
-                    </form>
-                </div>
-
-                <!-- Lista de Testimonios -->
-                <div class="testimonies-list-card">
-                    <h3><i class="fas fa-list"></i> Testimonios de la Comunidad</h3>
-                    <div id="testimonies-list" class="testimonies-list">
-                        <div class="loading">
-                            <i class="fas fa-spinner fa-spin"></i> Cargando testimonios...
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Estudio Bíblico Section -->
-    <section id="estudio" class="section study-section">
-        <div class="container">
-            <div class="section-header">
-                <i class="fas fa-book-open section-icon"></i>
-                <h2 class="section-title">Estudio Bíblico</h2>
-                <p class="section-description">Recursos y guías para profundizar en la Palabra de Dios.</p>
-            </div>
-
-            <div class="study-grid">
-                <!-- Guías de Estudio -->
-                <div class="study-card">
-                    <div class="study-card-icon">
-                        <i class="fas fa-book-reader"></i>
-                    </div>
-                    <h3>Guías de Estudio Diario</h3>
-                    <p>Recursos para tu estudio personal de la Biblia</p>
-                    <ul class="study-list">
-                        <li><a href="https://am.adventistas.org/es/recursos/videos/" target="_blank"><i
-                                    class="fas fa-video"></i> Lecciones en Video</a></li>
-                        <li><a href="https://escuelasabatica.cl/" target="_blank"><i class="fas fa-book"></i> Lección de
-                                Escuela Sabática</a></li>
-                        <li><a href="https://www.adventistas.org/es/institucional/recursos-biblicos/" target="_blank"><i
-                                    class="fas fa-clipboard-list"></i> Guías Temáticas</a></li>
-                        <li><a href="https://www.biblegateway.com/versions/Reina-Valera-1960-RVR1960-Biblia/"
-                                target="_blank"><i class="fas fa-bible"></i> Biblia en Línea</a></li>
-                    </ul>
-                </div>
-
-                <!-- Estudios Temáticos -->
-                <div class="study-card">
-                    <div class="study-card-icon">
-                        <i class="fas fa-scroll"></i>
-                    </div>
-                    <h3>Estudios Temáticos</h3>
-                    <p>Profundiza en temas específicos de la fe</p>
-                    <ul class="study-list">
-                        <li><i class="fas fa-cross"></i> El Plan de Salvación</li>
-                        <li><i class="fas fa-dove"></i> El Espíritu Santo</li>
-                        <li><i class="fas fa-hands-praying"></i> La Oración Eficaz</li>
-                        <li><i class="fas fa-heart"></i> El Amor de Dios</li>
-                        <li><i class="fas fa-crown"></i> La Segunda Venida</li>
-                        <li><i class="fas fa-hand-holding-heart"></i> Vida Cristiana Práctica</li>
-                    </ul>
-                </div>
-
-                <!-- Recursos Adventistas -->
-                <div class="study-card">
-                    <div class="study-card-icon">
-                        <i class="fas fa-church"></i>
-                    </div>
-                    <h3>Recursos Adventistas</h3>
-                    <p>Materiales oficiales de la Iglesia Adventista</p>
-                    <ul class="study-list">
-                        <li><a href="https://www.adventistas.org/es/creencias/" target="_blank"><i
-                                    class="fas fa-list-check"></i> 28 Creencias Fundamentales</a></li>
-                        <li><a href="https://www.ministeriosnpe.org/" target="_blank"><i
-                                    class="fas fa-graduation-cap"></i> Ministerios Nuevos Personas</a></li>
-                        <li><a href="https://www.hopetv.org/es/" target="_blank"><i class="fas fa-tv"></i> HopeTV en
-                                Español</a></li>
-                        <li><a href="https://www.adventistas.org/es/radio/" target="_blank"><i
-                                    class="fas fa-podcast"></i> Radio Adventista</a></li>
-                    </ul>
-                </div>
-
-                <!-- Plan de Lectura -->
-                <div class="study-card">
-                    <div class="study-card-icon">
-                        <i class="fas fa-calendar-check"></i>
-                    </div>
-                    <h3>Plan de Lectura Bíblica</h3>
-                    <p>Lee la Biblia completa en un año</p>
-                    <ul class="study-list">
-                        <li><i class="fas fa-calendar-day"></i> Plan de 365 días</li>
-                        <li><i class="fas fa-bookmark"></i> Antiguo y Nuevo Testamento</li>
-                        <li><i class="fas fa-clock"></i> 15-20 minutos diarios</li>
-                        <li><i class="fas fa-chart-line"></i> Seguimiento de progreso</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Biblioteca de Esperanza Section -->
-    <section id="biblioteca" class="section library-section">
-        <div class="container">
-            <div class="section-header">
-                <i class="fas fa-book section-icon"></i>
-                <h2 class="section-title">Biblioteca de Esperanza</h2>
-                <p class="section-description">Obras de Elena G. de White y recursos inspiradores</p>
-            </div>
-
-            <div class="library-intro">
-                <p>Elena G. de White fue una de las fundadoras de la Iglesia Adventista del Séptimo Día. Sus escritos
-                    han inspirado a millones de personas en todo el mundo. Aquí encontrarás acceso a sus obras más
-                    importantes.</p>
-            </div>
-
-            <div class="books-grid">
-                <!-- El Camino a Cristo -->
-                <div class="book-card">
-                    <div class="book-cover">
-                        <i class="fas fa-cross"></i>
-                    </div>
-                    <h3>El Camino a Cristo</h3>
-                    <p>Una guía para encontrar paz y esperanza en Jesús</p>
-                    <a href="https://egwwritings.org/read?panels=p8.1&index=0" target="_blank" class="btn btn-outline">
-                        <i class="fas fa-external-link-alt"></i> Leer en Línea
-                    </a>
-                </div>
-
-                <!-- El Conflicto de los Siglos -->
-                <div class="book-card">
-                    <div class="book-cover">
-                        <i class="fas fa-book-open"></i>
-                    </div>
-                    <h3>El Conflicto de los Siglos</h3>
-                    <p>La gran controversia entre Cristo y Satanás</p>
-                    <a href="https://egwwritings.org/read?panels=p132.1&index=0" target="_blank"
-                        class="btn btn-outline">
-                        <i class="fas fa-external-link-alt"></i> Leer en Línea
-                    </a>
-                </div>
-
-                <!-- El Deseado de Todas las Gentes -->
-                <div class="book-card">
-                    <div class="book-cover">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                    <h3>El Deseado de Todas las Gentes</h3>
-                    <p>La vida de Cristo narrada con profundidad</p>
-                    <a href="https://egwwritings.org/read?panels=p130.1&index=0" target="_blank"
-                        class="btn btn-outline">
-                        <i class="fas fa-external-link-alt"></i> Leer en Línea
-                    </a>
-                </div>
-
-                <!-- Patriarcas y Profetas -->
-                <div class="book-card">
-                    <div class="book-cover">
-                        <i class="fas fa-scroll"></i>
-                    </div>
-                    <h3>Patriarcas y Profetas</h3>
-                    <p>Historia bíblica desde la creación hasta el rey David</p>
-                    <a href="https://egwwritings.org/read?panels=p84.1&index=0" target="_blank" class="btn btn-outline">
-                        <i class="fas fa-external-link-alt"></i> Leer en Línea
-                    </a>
-                </div>
-
-                <!-- Palabras de Vida del Gran Maestro -->
-                <div class="book-card">
-                    <div class="book-cover">
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h3>Palabras de Vida del Gran Maestro</h3>
-                    <p>Las parábolas de Jesús explicadas</p>
-                    <a href="https://egwwritings.org/read?panels=p15.1&index=0" target="_blank" class="btn btn-outline">
-                        <i class="fas fa-external-link-alt"></i> Leer en Línea
-                    </a>
-                </div>
-
-                <!-- Hechos de los Apóstoles -->
-                <div class="book-card">
-                    <div class="book-cover">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>Hechos de los Apóstoles</h3>
-                    <p>Historia de la iglesia primitiva</p>
-                    <a href="https://egwwritings.org/read?panels=p108.1&index=0" target="_blank"
-                        class="btn btn-outline">
-                        <i class="fas fa-external-link-alt"></i> Leer en Línea
-                    </a>
-                </div>
-
-                <!-- El Ministerio de Curación -->
-                <div class="book-card">
-                    <div class="book-cover">
-                        <i class="fas fa-hand-holding-medical"></i>
-                    </div>
-                    <h3>El Ministerio de Curación</h3>
-                    <p>Salud física, mental y espiritual</p>
-                    <a href="https://egwwritings.org/read?panels=p127.1&index=0" target="_blank"
-                        class="btn btn-outline">
-                        <i class="fas fa-external-link-alt"></i> Leer en Línea
-                    </a>
-                </div>
-
-                <!-- La Educación -->
-                <div class="book-card">
-                    <div class="book-cover">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <h3>La Educación</h3>
-                    <p>Principios de la verdadera educación</p>
-                    <a href="https://egwwritings.org/read?panels=p29.1&index=0" target="_blank" class="btn btn-outline">
-                        <i class="fas fa-external-link-alt"></i> Leer en Línea
-                    </a>
-                </div>
-            </div>
-
-            <div class="library-footer">
-                <p><i class="fas fa-info-circle"></i> Todos los libros están disponibles gratuitamente en el sitio
-                    oficial:</p>
-                <a href="https://egwwritings.org/" target="_blank" class="btn btn-primary">
-                    <i class="fas fa-globe"></i> Visitar EGW Writings
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Oración Intercesora Section -->
-    <section id="intercesora" class="section intercessory-section">
-        <div class="container">
-            <div class="section-header">
-                <i class="fas fa-hands section-icon"></i>
-                <h2 class="section-title">Muro de Oración Intercesora</h2>
-                <p class="section-description">Únete en oración por las necesidades de nuestra comunidad</p>
-            </div>
-
-            <div class="intercessory-intro">
-                <div class="intro-card">
-                    <i class="fas fa-users"></i>
-                    <h3>Oremos Juntos</h3>
-                    <p>"La oración ferviente del justo es muy poderosa y efectiva." - Santiago 5:16</p>
-                </div>
-            </div>
-
-            <div id="intercessory-wall" class="intercessory-wall">
-                <div class="loading">
-                    <i class="fas fa-spinner fa-spin"></i> Cargando peticiones...
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Noticias y Eventos Section -->
-    <section id="noticias" class="section news-section">
-        <div class="container">
-            <div class="section-header">
-                <i class="fas fa-newspaper section-icon"></i>
-                <h2 class="section-title">Noticias y Eventos</h2>
-                <p class="section-description">Mantente informado sobre las actividades de nuestra iglesia</p>
-            </div>
-
-            <div class="content-grid">
-                <!-- Formulario de Noticia (solo para administradores) -->
-                <div class="form-card">
-                    <h3><i class="fas fa-plus-circle"></i> Publicar Noticia/Evento</h3>
-                    <form id="news-form" class="news-form">
-                        <div class="form-group">
-                            <label for="news-title"><i class="fas fa-heading"></i> Título</label>
-                            <input type="text" id="news-title" name="titulo" required
-                                placeholder="Título de la noticia o evento">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="news-type"><i class="fas fa-list"></i> Tipo</label>
-                            <select id="news-type" name="tipo" required>
-                                <option value="">Selecciona el tipo</option>
-                                <option value="noticia">Noticia</option>
-                                <option value="evento">Evento</option>
-                                <option value="anuncio">Anuncio</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="news-content"><i class="fas fa-pen"></i> Contenido</label>
-                            <textarea id="news-content" name="contenido" required rows="5"
-                                placeholder="Describe la noticia o evento..."></textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="news-event-date"><i class="fas fa-calendar"></i> Fecha del Evento (si
-                                aplica)</label>
-                            <input type="datetime-local" id="news-event-date" name="fecha_evento">
-                        </div>
-
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-paper-plane"></i> Publicar
-                        </button>
-                    </form>
-                </div>
-
-                <!-- Lista de Noticias -->
-                <div class="news-list-card">
-                    <h3><i class="fas fa-list"></i> Últimas Publicaciones</h3>
-                    <div class="news-filter">
-                        <button class="filter-btn active" data-type="todos">Todos</button>
-                        <button class="filter-btn" data-type="noticia">Noticias</button>
-                        <button class="filter-btn" data-type="evento">Eventos</button>
-                        <button class="filter-btn" data-type="anuncio">Anuncios</button>
-                    </div>
-                    <div id="news-list" class="news-list">
-                        <div class="loading">
-                            <i class="fas fa-spinner fa-spin"></i> Cargando publicaciones...
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contacto Section -->
-    <section id="contacto" class="section contact-section">
-        <div class="container">
-            <div class="section-header">
-                <i class="fas fa-envelope section-icon"></i>
-                <h2 class="section-title">Contáctanos</h2>
-                <p class="section-description">Estamos aquí para servirte y acompañarte en tu caminar de fe</p>
-            </div>
-
-            <div class="contact-grid">
-                <!-- Información de Contacto -->
-                <div class="contact-info">
-                    <h3>Información de la Iglesia</h3>
-
-                    <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div>
-                            <h4>Dirección</h4>
-                            <p>San Francisco de Limache<br>Región de Valparaíso, Chile</p>
-                        </div>
-                    </div>
-
-                    <div class="contact-item">
-                        <i class="fas fa-clock"></i>
-                        <div>
-                            <h4>Horarios de Culto</h4>
-                            <p><strong>Sábados:</strong></p>
-                            <p>Escuela Sabática: 9:30 AM</p>
-                            <p>Culto Divino: 11:00 AM</p>
-                        </div>
-                    </div>
-
-                    <div class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <div>
-                            <h4>Teléfono</h4>
-                            <p>Próximamente</p>
-                        </div>
-                    </div>
-
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <div>
-                            <h4>Email</h4>
-                            <p>Próximamente</p>
-                        </div>
-                    </div>
-
-                    <div class="social-media">
-                        <h4>Síguenos</h4>
-                        <div class="social-links">
-                            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                            <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Formulario de Contacto -->
-                <div class="contact-form-card">
-                    <h3>Envíanos un Mensaje</h3>
-                    <form id="contact-form" class="contact-form">
-                        <div class="form-group">
-                            <label for="contact-name"><i class="fas fa-user"></i> Nombre Completo</label>
-                            <input type="text" id="contact-name" required placeholder="Tu nombre">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="contact-email"><i class="fas fa-envelope"></i> Email</label>
-                            <input type="email" id="contact-email" required placeholder="tu@email.com">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="contact-phone"><i class="fas fa-phone"></i> Teléfono (opcional)</label>
-                            <input type="tel" id="contact-phone" placeholder="+56 9 1234 5678">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="contact-message"><i class="fas fa-comment"></i> Mensaje</label>
-                            <textarea id="contact-message" required rows="5"
-                                placeholder="¿En qué podemos ayudarte?"></textarea>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-paper-plane"></i> Enviar Mensaje
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="main-footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>IASD San Francisco de Limache</h4>
-                    <h4>
-                        <center>Salmos 23:1 </center>
-                    </h4>
-                    <h3 class="footer-verse">"El Señor es mi pastor, nada me faltará"</h3>
-                </div>
-
-                <div class="footer-section">
-                    <h4>Enlaces Útiles</h4>
-                    <ul>
-                        <li><a href="https://www.adventistas.org/es/" target="_blank">Iglesia Adventista Mundial</a>
-                        </li>
-                        <li><a href="https://www.adventistas.cl/" target="_blank">Adventistas Chile</a></li>
-                        <li><a href="https://escuelasabatica.cl/" target="_blank">Escuela Sabática</a></li>
-                        <li><a href="https://egwwritings.org/" target="_blank">EGW Writings</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-section">
-                    <h4>Comunidad</h4>
-                    <ul>
-                        <li><a href="#oraciones">Pedidos de Oración</a></li>
-                        <li><a href="#testimonios">Testimonios</a></li>
-                        <li><a href="#estudio">Estudio Bíblico</a></li>
-                        <li><a href="#contacto">Contacto</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <p>&copy; 2025 Iglesia Adventista del Séptimo Día - San Francisco de Limache</p>
-                <p>Desarrollado con amor por Mauricio Galaz</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Scripts -->
-    <script src="js/main.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Muro de Oración - IASD Limache</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-database-compat.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
     <script>
-        function volverAPK() {
-            if (window.history.length > 1) {
-                window.history.back();
-            } else {
-                window.close();
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        adventist: { blue: '#00305e', gold: '#fec325', light: '#f4f4f4' }
+                    },
+                    fontFamily: { sans: ['Open Sans', 'sans-serif'], heading: ['Montserrat', 'sans-serif'] }
+                }
             }
         }
     </script>
+    <style>
+        .hero-bg-prayer {
+            background-image: linear-gradient(rgba(0, 48, 94, 0.8), rgba(0, 48, 94, 0.8)), url('imagenes/oracion.jpg');
+            background-size: cover; background-position: center;
+        }
+        .scroll-smooth { scroll-behavior: smooth; }
+        .post-item { animation: slideIn 0.3s ease-out; }
+        @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .modern-swal-popup { border-radius: 25px !important; }
+    </style>
+</head>
 
+<body class="font-sans text-gray-700 bg-gray-50 scroll-smooth">
+
+    <nav class="bg-adventist-blue text-white shadow-lg fixed w-full z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <img src="imagenes/oracion.jpg" class="h-9 w-9 rounded-full object-cover border-2 border-adventist-gold">
+                <span class="font-heading font-bold text-[10px] leading-tight uppercase">IASD<br>San Francisco<br>de Limache</span>
+            </div>
+            <div class="hidden md:flex space-x-6 text-xs font-bold uppercase">
+                <a href="#inicio" class="hover:text-adventist-gold">Inicio</a>
+                <a href="#oracion" class="hover:text-adventist-gold">Oración</a>
+                <a href="#estudio" class="hover:text-adventist-gold">Estudio</a>
+            </div>
+            <a href="../index.html" class="bg-adventist-gold text-adventist-blue px-4 py-2 rounded-lg font-bold text-xs">VOLVER A LA APP</a>
+        </div>
+    </nav>
+
+    <header id="inicio" class="hero-bg-prayer pt-32 pb-20 px-6 text-center text-white">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-adventist-gold uppercase tracking-widest font-bold mb-2">Bienvenidos a Nuestra Familia de Fe</h2>
+            <h1 class="font-heading text-3xl md:text-5xl font-bold mb-6 italic">Ministerio de Oración Intercesora</h1>
+            <p class="italic text-lg">"Porque donde están dos o tres congregados en mi nombre, allí estoy yo en medio de ellos."</p>
+            <p class="font-bold text-adventist-gold">Mateo 18:20</p>
+        </div>
+    </header>
+
+    <section class="container mx-auto px-4 -mt-10 relative z-10">
+        <div id="wall-metrics" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            </div>
+    </section>
+
+    <main class="container mx-auto px-4 py-12">
+        <section id="oracion" class="mb-20">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-heading font-bold text-adventist-blue uppercase">Pedidos y Agradecimientos</h2>
+                <div class="w-24 h-1 bg-adventist-gold mx-auto mt-2"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl shadow-xl p-6 border-t-4 border-adventist-blue h-fit">
+                    <h3 class="font-bold text-xl mb-4 text-adventist-blue uppercase"><i class="fas fa-edit mr-2"></i>Nueva Entrada</h3>
+                    <form id="prayer-form" class="space-y-4">
+                        <input type="text" id="p-name" placeholder="Tu Nombre" class="w-full p-3 border rounded-xl focus:ring-2 focus:ring-adventist-blue outline-none" required>
+                        <select id="p-cat" class="w-full p-3 border rounded-xl focus:ring-2 focus:ring-adventist-blue outline-none" required>
+                            <option value="">Selecciona Categoría</option>
+                            <option value="Salud">Salud</option>
+                            <option value="Familia">Familia</option>
+                            <option value="Trabajo">Trabajo/Estudios</option>
+                            <option value="Espiritual">Vida Espiritual</option>
+                            <option value="Agradecimiento">✨ Agradecimiento</option>
+                        </select>
+                        <textarea id="p-req" placeholder="Escribe aquí tu petición o testimonio..." class="w-full p-3 border rounded-xl focus:ring-2 focus:ring-adventist-blue outline-none" rows="4" required></textarea>
+                        <button type="submit" class="w-full bg-adventist-blue text-white py-3 rounded-xl font-bold hover:bg-slate-800 transition shadow-lg uppercase tracking-wide">Publicar en el Muro</button>
+                    </form>
+                </div>
+
+                <div class="lg:col-span-2">
+                    <div id="prayers-list" class="space-y-4 max-h-[600px] overflow-y-auto pr-2">
+                        <p class="text-center py-10 text-gray-400">Conectando con el Muro de Oración...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="estudio" class="mb-20 py-10 bg-white rounded-3xl shadow-sm px-6 border border-slate-100">
+            <h2 class="text-2xl font-heading font-bold text-adventist-blue text-center mb-10 uppercase tracking-widest">Recursos de Estudio</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-slate-50 p-6 rounded-2xl border-l-4 border-adventist-gold">
+                    <h4 class="font-bold text-adventist-blue mb-4 uppercase text-sm">Guías Diarias</h4>
+                    <ul class="space-y-3 text-sm font-semibold">
+                        <li><a href="https://escuelasabatica.es/" target="_blank" class="flex items-center text-slate-600 hover:text-adventist-gold"><i class="fas fa-book mr-2"></i> Lección Escuela Sabática</a></li>
+                        <li><a href="https://egwwritings.org/" target="_blank" class="flex items-center text-slate-600 hover:text-adventist-gold"><i class="fas fa-feather mr-2"></i> Escritos de Elena G. White</a></li>
+                    </ul>
+                </div>
+                <div class="bg-slate-50 p-6 rounded-2xl border-l-4 border-adventist-blue">
+                    <h4 class="font-bold text-adventist-blue mb-4 uppercase text-sm">Medios</h4>
+                    <ul class="space-y-3 text-sm font-semibold">
+                        <li><a href="https://www.nuevotiempo.org" target="_blank" class="flex items-center text-slate-600 hover:text-adventist-blue"><i class="fas fa-tv mr-2"></i> TV Nuevo Tiempo</a></li>
+                        <li><a href="https://www.nuevotiempo.org/envivo/radio/" class="flex items-center text-slate-600 hover:text-adventist-blue"><i class="fas fa-radio mr-2"></i> Radio Adventista</a></li>
+                    </ul>
+                </div>
+                <div class="bg-slate-50 p-6 rounded-2xl border-l-4 border-adventist-gold">
+                    <h4 class="font-bold text-adventist-blue mb-4 uppercase text-sm">Planes de Lectura</h4>
+                    <ul class="space-y-3 text-sm font-semibold text-slate-500">
+                        <li><i class="fas fa-check-circle mr-2 text-green-500"></i> Plan 365 días</li>
+                        <li><i class="fas fa-clock mr-2 text-adventist-blue"></i> 15-20 min diarios</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="biblioteca" class="bg-adventist-blue text-white rounded-3xl p-8 md:p-12 mb-20 shadow-2xl">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-heading font-bold mb-4 text-adventist-gold uppercase tracking-wider">Biblioteca de Esperanza</h2>
+                <p class="text-slate-300 max-w-2xl mx-auto italic">"Unidos en el estudio de las verdades que transforman el corazón."</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden border-t-4 border-adventist-gold hover:scale-105 transition-transform group">
+                    <img src="imagenes/el-deseado.jpg" class="w-full h-48 object-cover">
+                    <div class="p-6 text-center text-gray-700">
+                        <h4 class="font-bold text-lg text-adventist-blue uppercase mb-2">El Deseado de Todas las Gentes</h4>
+                        <p class="text-xs mb-6 italic">La vida de Jesús narrada con profundidad espiritual.</p>
+                        <a href="https://egwwritings.org/read?panels=p130.1" target="_blank" class="w-full bg-adventist-blue text-white py-3 rounded-xl font-black text-xs block">LEER LIBRO</a>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden border-t-4 border-adventist-gold hover:scale-105 transition-transform group">
+                    <img src="imagenes/eventos.jpg" class="w-full h-48 object-cover">
+                    <div class="p-6 text-center text-gray-700">
+                        <h4 class="font-bold text-lg text-adventist-blue uppercase mb-2">Eventos de los Últimos Días</h4>
+                        <p class="text-xs mb-6 italic">Panorama profético de los sucesos finales de la historia.</p>
+                        <a href="https://egwwritings.org/" target="_blank" class="w-full bg-adventist-blue text-white py-3 rounded-xl font-black text-xs block">LEER LIBRO</a>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden border-t-4 border-adventist-gold hover:scale-105 transition-transform group">
+                    <img src="imagenes/conflicto.jpg" class="w-full h-48 object-cover">
+                    <div class="p-6 text-center text-gray-700">
+                        <h4 class="font-bold text-lg text-adventist-blue uppercase mb-2">El Conflicto de los Siglos</h4>
+                        <p class="text-xs mb-6 italic">La gran controversia entre el bien y el mal a través de los siglos.</p>
+                        <a href="https://egwwritings.org/read?panels=p132.1" target="_blank" class="w-full bg-adventist-blue text-white py-3 rounded-xl font-black text-xs block">LEER LIBRO</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-white py-16 text-center rounded-t-[4rem] border-t border-slate-200 relative">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-center space-x-8 mb-8">
+                <a href="#"
+                    class="text-adventist-blue hover:text-adventist-gold transition-transform hover:-translate-y-1"><i
+                        class="fab fa-facebook-f fa-2xl"></i></a>
+                <a href="#"
+                    class="text-adventist-blue hover:text-adventist-gold transition-transform hover:-translate-y-1"><i
+                        class="fab fa-instagram fa-2xl"></i></a>
+                <a href="#"
+                    class="text-adventist-blue hover:text-adventist-gold transition-transform hover:-translate-y-1"><i
+                        class="fab fa-youtube fa-2xl"></i></a>
+            </div>
+
+            <p
+                class="font-heading font-black text-adventist-blue text-2xl md:text-3xl uppercase tracking-tighter mb-6 italic underline decoration-adventist-gold decoration-4">
+                IASD SAN FRANCISCO DE LIMACHE
+            </p>
+
+            <p
+                class="text-slate-500 font-bold uppercase tracking-widest text-sm flex items-center justify-center gap-2">
+                Diseñado con <i class="fas fa-heart text-red-500 animate-pulse"></i> por <span
+                    class="text-slate-900 font-black">MGE</span>
+            </p>
+
+            <p class="text-[10px] text-slate-800 mt-8 uppercase tracking-[0.4em] font-bold italic">Esperanza en el
+                pronto regreso de Jesús</p>
+
+            <p class="text-[10px] text-slate-400 mt-4 uppercase tracking-[0.2em] font-bold">© 2025 DERECHOS RESERVADOS -
+                San Francisco de Limache</p>
+        </div>
+    </footer>
+
+    <div class="fixed bottom-6 right-6 flex flex-col gap-3 z-[100]">
+        <button onclick="descargarReportePDF()" title="Descargar PDF" class="bg-green-600 text-white p-4 rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all">
+            <i class="fas fa-file-pdf"></i>
+        </button>
+        <button onclick="menuAdmin()" title="Administración" class="bg-slate-900 text-white p-4 rounded-full shadow-2xl hover:scale-110 active:scale-95 border-2 border-white/20 transition-all">
+            <i class="fas fa-user-shield"></i>
+        </button>
+    </div>
+
+    <script>
+        // --- 1. CONFIGURACIÓN FIREBASE ACTUALIZADA ---
+        const firebaseConfig = {
+            apiKey: "AIzaSyAoC_7Pehjca4CQSoy0K3Rm5q9CC-IY1Ic",
+            authDomain: "iasd-limache-muro.firebaseapp.com",
+            databaseURL: "https://iasd-limache-muro-default-rtdb.firebaseio.com",
+            projectId: "iasd-limache-muro",
+            storageBucket: "iasd-limache-muro.firebasestorage.app",
+            messagingSenderId: "277039117234",
+            appId: "1:277039117234:web:65f4e76064935cadabaaab",
+            measurementId: "G-8VBFEYZRTT"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+        const CLAVE_ADMIN = "iasdsf";
+
+        // --- 2. ESCUCHA Y MÉTRICAS EN TIEMPO REAL ---
+        function escucharPedidos() {
+            database.ref('pedidos').on('value', (snapshot) => {
+                const data = snapshot.val();
+                const container = document.getElementById('prayers-list');
+                const metricsContainer = document.getElementById('wall-metrics');
+                if (!container || !metricsContainer) return;
+                
+                container.innerHTML = "";
+                if (data) {
+                    const pedidosArray = Object.keys(data).map(key => ({ id: key, ...data[key] })).reverse();
+                    
+                    // Métricas
+                    const total = pedidosArray.length;
+                    const agradecimientos = pedidosArray.filter(p => p.category === 'Agradecimiento' || p.contestada).length;
+                    const soloPedidos = total - agradecimientos;
+
+                    metricsContainer.innerHTML = `
+                        <div class="bg-white p-6 rounded-2xl shadow-lg border-b-4 border-adventist-blue text-center fade-in">
+                            <span class="text-[10px] font-black uppercase text-slate-400">Pedidos de Oración</span>
+                            <p class="text-3xl font-black text-adventist-blue">${soloPedidos}</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-2xl shadow-lg border-b-4 border-adventist-gold text-center fade-in">
+                            <span class="text-[10px] font-black uppercase text-slate-400">Agradecimientos</span>
+                            <p class="text-3xl font-black text-adventist-blue">${agradecimientos}</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-2xl shadow-lg border-b-4 border-slate-800 text-center fade-in">
+                            <span class="text-[10px] font-black uppercase text-slate-400">Total en la Nube</span>
+                            <p class="text-3xl font-black text-adventist-blue">${total}</p>
+                        </div>`;
+
+                    pedidosArray.forEach(item => {
+                        const isContestada = item.contestada === true;
+                        const isThanks = item.category === 'Agradecimiento' || isContestada;
+                        const card = document.createElement('div');
+                        card.className = `bg-white p-6 rounded-2xl shadow-md border-l-8 ${isContestada ? 'border-yellow-500 bg-yellow-50 animate-pulse' : (isThanks ? 'border-adventist-gold' : 'border-adventist-blue')} relative group post-item mb-4`;
+                        
+                        card.innerHTML = `
+                            <div class="flex justify-between items-start mb-2">
+                                <span class="text-[10px] font-black uppercase tracking-widest ${isContestada ? 'text-yellow-600' : (isThanks ? 'text-adventist-gold' : 'text-adventist-blue')}">
+                                    ${isContestada ? '✨ ORACIÓN CONTESTADA' : (isThanks ? '✨ GRATITUD' : '🙏 ' + item.category)}
+                                </span>
+                                <div class="flex gap-2">
+                                    ${!isContestada ? `<button onclick="marcarContestada('${item.id}')" class="text-yellow-500 opacity-0 group-hover:opacity-100 transition" title="Resaltar"><i class="fas fa-star"></i></button>` : ''}
+                                    <button onclick="adminDelete('${item.id}')" class="text-slate-300 hover:text-red-500 opacity-0 group-hover:opacity-100 transition"><i class="fas fa-trash-alt"></i></button>
+                                </div>
+                            </div>
+                            <p class="text-slate-800 font-medium ${isContestada ? 'font-bold text-lg' : 'italic'} mb-4">"${item.content}"</p>
+                            <div class="flex justify-between items-center border-t border-slate-50 pt-3">
+                                <span class="text-xs font-bold text-adventist-blue uppercase"><i class="fas fa-user-circle mr-1 text-adventist-gold"></i> ${item.name}</span>
+                                <span class="text-[10px] font-bold text-slate-300">${item.date}</span>
+                            </div>`;
+                        container.appendChild(card);
+                    });
+                } else {
+                    container.innerHTML = '<p class="text-center py-20 text-slate-300 font-bold uppercase italic tracking-widest">Muro vacío - Conexión establecida</p>';
+                }
+            });
+        }
+
+        // --- 3. GUARDAR PEDIDO ---
+        document.getElementById('prayer-form').onsubmit = (e) => {
+            e.preventDefault();
+            const nuevoPedido = {
+                name: document.getElementById('p-name').value,
+                category: document.getElementById('p-cat').value,
+                content: document.getElementById('p-req').value,
+                date: new Date().toLocaleDateString('es-CL'),
+                contestada: false
+            };
+
+            database.ref('pedidos').push(nuevoPedido).then(() => {
+                e.target.reset();
+                Swal.fire({
+                    title: '¡Recibido con Amor!',
+                    html: 'Tu solicitud ha sido registrada.<br><b style="color: #1e5aa8;">Estaremos orando por ti.</b>',
+                    icon: 'success',
+                    confirmButtonText: 'Amén',
+                    confirmButtonColor: '#00305e',
+                    customClass: { popup: 'modern-swal-popup' }
+                });
+            });
+        };
+
+        // --- 4. FUNCIONES ADMIN ---
+        async function marcarContestada(id) {
+            const { value: pass } = await Swal.fire({ title: 'Confirmar Testimonio', input: 'password', inputPlaceholder: 'Clave Admin', showCancelButton: true });
+            if (pass === CLAVE_ADMIN) {
+                database.ref('pedidos/' + id).update({ contestada: true, category: 'Agradecimiento' }).then(() => {
+                    confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 }, colors: ['#00305e', '#fec325'] });
+                    Swal.fire('¡Gloria a Dios!', 'El testimonio ha sido resaltado globalmente.', 'success');
+                });
+            }
+        }
+
+        async function adminDelete(id) {
+            const { value: pass } = await Swal.fire({ title: 'Eliminar Registro', input: 'password', showCancelButton: true });
+            if (pass === CLAVE_ADMIN) {
+                database.ref('pedidos/' + id).remove().then(() => Swal.fire('Eliminado', '', 'success'));
+            }
+        }
+
+        async function menuAdmin() {
+            const { value: pass } = await Swal.fire({ title: 'Panel de Control', input: 'password', showCancelButton: true });
+            if (pass === CLAVE_ADMIN) {
+                const { isConfirmed } = await Swal.fire({ title: '¿Vaciado Global?', text: "Borrará el muro de TODOS los usuarios.", icon: 'warning', showCancelButton: true, confirmButtonText: 'Sí, borrar todo' });
+                if (isConfirmed) database.ref('pedidos').remove();
+            }
+        }
+
+        // --- 5. REPORTES PDF GLOBALES ---
+// --- 5. REPORTES PDF GLOBALES CENTRADOS Y CON LOGO ---
+async function descargarReportePDF() {
+    database.ref('pedidos').once('value', async (snapshot) => {
+        const data = snapshot.val();
+        if (!data) return Swal.fire('Sin datos', 'No hay nada en la nube para exportar', 'info');
+
+        const pedidosArray = Object.values(data);
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+        
+        // Configuración de dimensiones
+        const pageWidth = doc.internal.pageSize.getWidth();
+        const centerX = pageWidth / 2;
+
+        // 1. AGREGAR LOGO (Centrado arriba)
+        try {
+            const logoImg = new Image();
+            logoImg.src = 'imagenes/logo.png'; // Asegúrate de que esta ruta sea correcta en tu servidor/proyecto
+            await new Promise((resolve) => {
+                logoImg.onload = () => {
+                    // doc.addImage(img, type, x, y, width, height)
+                    doc.addImage(logoImg, 'JPEG', centerX - 15, 10, 30, 30);
+                    resolve();
+                };
+                logoImg.onerror = () => resolve(); // Si falla el logo, continua sin él
+            });
+        } catch (e) { console.error("Error cargando logo"); }
+
+        // 2. TÍTULO CENTRADO
+        doc.setFontSize(18);
+        doc.setTextColor(0, 48, 94); // Azul Adventista
+        doc.setFont("Montserrat", "bold");
+        doc.text("REPORTE GLOBAL DE ORACIÓN", centerX, 50, { align: 'center' });
+        
+        doc.setFontSize(14);
+        doc.text("IASD SAN FRANCISCO DE LIMACHE", centerX, 58, { align: 'center' });
+
+        // 3. TABLA CENTRADA
+        doc.autoTable({
+            startY: 65,
+            head: [['Fecha', 'Nombre', 'Tipo', 'Contenido']],
+            body: pedidosArray.map(p => [p.date, p.name, p.category, p.content]),
+            theme: 'striped',
+            headStyles: { 
+                fillColor: [0, 48, 94], // Azul Adventista
+                halign: 'center' 
+            },
+            styles: { 
+                fontSize: 10,
+                cellPadding: 3,
+                valign: 'middle'
+            },
+            columnStyles: {
+                0: { halign: 'center', cellWidth: 30 },
+                1: { halign: 'center', cellWidth: 40 },
+                2: { halign: 'center', cellWidth: 30 },
+                3: { halign: 'left' }
+            },
+            margin: { left: 15, right: 15 }
+        });
+
+        // 4. GUARDAR Y PREPARAR GMAIL
+        const nombreArchivo = `Reporte_IASD_Global_${new Date().toLocaleDateString().replace(/\//g, '-')}.pdf`;
+        doc.save(nombreArchivo);
+        
+        const { isConfirmed } = await Swal.fire({ 
+            title: 'PDF Generado con Éxito', 
+            text: '¿Deseas abrir Gmail para enviar el reporte centrado?', 
+            icon: 'success', 
+            showCancelButton: true, 
+            confirmButtonText: 'Ir a Gmail',
+            confirmButtonColor: '#00305e',
+            customClass: { popup: 'modern-swal-popup' }
+        });
+
+        if (isConfirmed) {
+            const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=hildateresasandoval@gmail.com,iasdsanfranciscodelimache@gmail.com&su=Reporte de Oracion Global&body=Adjunto reporte global de oraciones generado desde la App.`;
+            window.open(gmailUrl, '_blank');
+        }
+    });
+}
+
+        window.onload = escucharPedidos;
+    </script>
 </body>
-
 </html>
