@@ -3,31 +3,42 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Iglesia Adventista del Séptimo Día - Limache</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Open+Sans:wght@400;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&family=Open+Sans:wght@400;600&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#0b132b">
+    <meta name="theme-color" content="#00305e">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="msapplication-TileColor" content="#00305e">
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- iOS -->
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="IASD Limache">
+
+    <!-- Theme -->
+    <meta name="theme-color" content="#00305e">
+
+
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        adventist: {
-                            blue: '#00305e',
-                            gold: '#fec325',
-                            light: '#f4f4f4'
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Open Sans', 'sans-serif'],
-                        heading: ['Montserrat', 'sans-serif'],
+                        adventist: { blue: '#00305e', gold: '#fec325', accent: '#004a87', oro: '#a6893e' }
                     }
                 }
             }
@@ -35,590 +46,1498 @@
     </script>
 
     <style>
-        /* EVITA EL SCROLL HORIZONTAL QUE DISTORSIONA LA APP */
+        /* RESET Y RESPONSIVIDAD */
         html,
         body {
             max-width: 100%;
             overflow-x: hidden;
             width: 100%;
+            scroll-behavior: smooth;
+            background-color: #f9fafb;
         }
 
-        .fade-up {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.9s ease-out;
+        /* EFECTO DE LUZ SOLO PARA BOTONES (SUAVE Y LENTO) */
+        .shimmer-effect {
+            position: relative;
+            overflow: hidden;
         }
 
-        .fade-up.show {
-            opacity: 1;
-            transform: translateY(0);
+        /* Solo se aplica el brillo a los elementos que sean botones o enlaces */
+        a.shimmer-effect::after,
+        button.shimmer-effect::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transform: skewX(-25deg);
+            animation: shine-slow 8s infinite;
+            /* Más lento aún */
         }
 
-        /* HERO BACKGROUND OPTIMIZADO */
+        @keyframes shine-slow {
+            0% {
+                left: -150%;
+            }
+
+            20% {
+                left: 250%;
+            }
+
+            100% {
+                left: 250%;
+            }
+        }
+
+        /* Eliminado el shimmer de secciones, imágenes y tarjetas */
+        .reveal,
+        section,
+        img,
+        .glass-modal {
+            position: relative;
+            overflow: visible;
+        }
+
+        .reveal::after,
+        section::after,
+        img::after {
+            display: none !important;
+        }
+
+        /* AJUSTES PARA EL LOGO REDONDEADO Y GRANDE */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            /* Esto lo hace redondo */
+            background: white;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            border: 3px solid #b45309;
+            /* Un borde color oro o azul según prefieras */
+            transition: all 0.3s ease;
+        }
+
+        .logo-container:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        /* Si usas un Navbar fijo, ajusta su altura para que el logo grande quepa */
+        nav {
+            min-height: 90px;
+        }
+
+        /* Añade esto a tu <style> para que el menú se adapte al logo grande */
+        nav {
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            min-height: 80px;
+            /* Ajusta según qué tan grande quieras que se vea el menú */
+        }
+
+
+
+        /* EFECTO DE BRILLO PARA EL BOTÓN DE CUMPLEAÑOS */
+        .shine-effect {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right,
+                    rgba(255, 255, 255, 0) 0%,
+                    rgba(255, 255, 255, 0.3) 50%,
+                    rgba(255, 255, 255, 0) 100%);
+            transform: skewX(-25deg);
+            /* Cambiado de 20s a 30s para una ráfaga muy ocasional y elegante */
+            animation: shine-birthday 30s infinite;
+        }
+
+        @keyframes shine-birthday {
+            0% {
+                left: -100%;
+            }
+
+            10% {
+                left: 150%;
+            }
+
+            /* La ráfaga cruza rápido pero el ciclo total es largo */
+            100% {
+                left: 150%;
+            }
+        }
+
+        /* SCROLL HORIZONTAL PARA MINISTERIOS */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
         .hero-bg {
             background-image: linear-gradient(rgba(0, 48, 94, 0.7), rgba(0, 48, 94, 0.7)), url('imagenes/ig.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: scroll;
-            /* Cambiado de fixed a scroll para mejor rendimiento en APK */
         }
 
-        @media (min-width: 768px) {
-            .hero-bg {
-                background-attachment: fixed;
+        #progress-timer {
+            animation: countdown 30s linear forwards;
+        }
+
+        #invitacion-progress {
+            animation: countdown 18s linear forwards;
+        }
+
+        @keyframes countdown {
+            from {
+                width: 100%;
+            }
+
+            to {
+                width: 0%;
             }
         }
 
-        .pt-nav {
-            padding-top: 70px;
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.7s ease-out;
         }
 
-        /* Estilo para que el menú móvil no se superponga mal */
-        #mobile-menu {
-            transition: all 0.3s ease-in-out;
-
-            @keyframes fadeInScale {
-                from {
-                    opacity: 0;
-                    transform: scale(0.9);
-                }
-
-                to {
-                    opacity: 1;
-                    transform: scale(1);
-                }
-            }
-
-            .animate-fade {
-                animation: fadeInScale 0.35s ease-out;
-            }
-
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        footer {
-    padding-bottom: calc(5rem + env(safe-area-inset-bottom));
-}
+        .glass-modal {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
 
-@media (max-width: 768px) {
-    footer {
-        padding-bottom: 2.8rem;
-    }
-}
 
+
+        /* Efecto de pulso suave para llamar la atención sin molestar */
+        .btn-cumpleaños {
+            /* ... otras propiedades ... */
+            background-color: #ec4899;
+            color: white;
+
+            /* CAMBIO: Eliminar padding: auto y margin: auto */
+            /* AÑADIR: */
+            margin-bottom: 2rem;
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            /* Asegúrate de usar valores numéricos */
+        }
+
+        .btn-cumpleaños:hover {
+            animation: pulse-gold 4s infinite;
+        }
+
+        @keyframes pulse-gold {
+            20% {
+                box-shadow: 0 0 0 0 rgba(180, 83, 9, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 15px rgba(180, 83, 9, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(180, 83, 9, 0);
+            }
+        }
+
+        /* Brillo blanco que pasa por el botón cada cierto tiempo */
+        .shine-effect {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right,
+                    rgba(255, 255, 255, 0) 0%,
+                    rgba(255, 255, 255, 0.4) 50%,
+                    rgba(255, 255, 255, 0) 100%);
+            transform: skewX(-25deg);
+            animation: shine 12s infinite;
+        }
+
+        @keyframes shine {
+            0% {
+                left: -100%;
+            }
+
+            20% {
+                left: 150%;
+            }
+
+            100% {
+                left: 150%;
+            }
+        }
+
+        /* Color personalizado si no usas Tailwind completo */
+        .text-adventist-oro {
+            color: #b45309;
+        }
+
+        .bg-adventist-oro {
+            background-color: #b45309;
+        }
+
+
+        /* Efecto de Zoom Suave para el Carrusel */
+        .ken-burns {
+            animation: kenburns 8s ease-out infinite alternate;
+        }
+
+        @keyframes kenburns {
+            0% {
+                transform: scale(1);
+            }
+
+            100% {
+                transform: scale(1.1);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* --- ELIMINACIÓN DE RÁFAGAS Y DESBLOQUEO DE CLICS --- */
+        #invitacion-central,
+        #modal-esperanza {
+            pointer-events: none;
+            /* El mouse atraviesa la capa cuando está oculta */
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s ease;
+        }
+
+        /* Solo cuando están activos permiten interacción */
+        #invitacion-central.active,
+        #modal-esperanza.active {
+            pointer-events: auto;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Asegurar que Acción de Gracias sea visible */
+        #accion-gracias {
+            opacity: 1 !important;
+            transform: none !important;
+            display: block !important;
+        }
+
+        /* Ajuste para las imágenes del carrusel */
+        #carrusel-accion {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 1s ease-in-out;
+        }
+
+        /* Forzar que Acción de Gracias se vea aunque el scroll no llegue */
+        #accion-gracias.active {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+
+        /* Estilo para que el cambio de fotos sea suave */
+        #carrusel-accion {
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        /* Estilo para que los avisos resalten sobre el index */
+        .-mt-10 {
+            margin-top: -2.5rem;
+            /* Esto hace que los cuadros suban y monten sobre la sección de arriba */
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Efecto de elevación y suavizado */
+        .hover\:-translate-y-2:hover {
+            transform: translateY(-0.5rem);
+        }
+
+        /* Asegurar que la imagen de Jesús se vea bien */
+        .object-cover {
+            object-fit: cover;
+            object-position: center;
+        }
+
+        /* Animación sutil para el texto 2026 */
+        @keyframes pulse-soft {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.8;
+            }
+        }
+
+        .text-pink-600 {
+            animation: pulse-soft 6s infinite;
+        }
+
+        /* Marquesina Deslizante Moderna */
+        .marquee-wrapper {
+            background: #00305e;
+            color: #fec325;
+            padding: 10px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            border-bottom: 2px solid #fec325;
+            border-top: 2px solid #fec325;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .marquee-text {
+            display: inline-block;
+            animation: scroll-text 25s linear infinite;
+            font-family: 'Montserrat';
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        @keyframes scroll-text {
+            0% {
+                transform: translateX(100%);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        #app-header {
+            position: sticky;
+            top: 0;
+            z-index: 2000;
+            background: #00305e;
+        }
+
+
+        html,
+        body {
+            height: 100%;
+            overflow-x: hidden;
+        }
+
+        #fixed-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1100;
+            transform: translateZ(0);
+            /* evita saltos */
+        }
     </style>
 </head>
 
-<body class="font-sans text-gray-700 bg-gray-50 scroll-smooth">
+<body class="font-sans text-gray-700">
 
-    <nav class="bg-adventist-blue text-white shadow-lg fixed w-full z-50">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <a href="index.html" class="flex items-center space-x-2">
-                <img src="imagenes/logo.jpg" class="h-9 w-9 rounded-full object-cover">
-                <span class="font-heading font-bold text-[10px] sm:text-xs leading-tight uppercase">
-                    IASD<br>San Francisco<br>de Limache
-                </span>
-            </a>
-
-            <div class="hidden md:flex items-center space-x-6 font-semibold text-xs uppercase tracking-wide">
-                <a href="#inicio" class="hover:text-adventist-gold">Inicio</a>
-                <a href="#nosotros" class="hover:text-adventist-gold">Nosotros</a>
-                <a href="#horarios" class="hover:text-adventist-gold">Actividades</a>
-                <a href="#ministerios" class="hover:text-adventist-gold">Ministerios</a>
-                <a href="estudio-biblico.html" class="hover:text-adventist-gold">Estudio Bíblico</a>
-                <a href="avisos.html"
-                    class="bg-adventist-gold text-adventist-blue px-4 py-2 rounded-full font-extrabold shadow-lg">🚨
-                    Avisos</a>
-                <a href="#contacto" class="hover:text-adventist-gold">Contacto</a>
+    <div id="invitacion-central"
+        class="fixed inset-0 z-[7000] flex items-center justify-center bg-adventist-blue/70 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-700 p-4">
+        <div class="glass-modal w-full max-w-sm rounded-[3rem] shadow-2xl overflow-hidden transform scale-90 transition-all duration-700"
+            id="invitacion-card">
+            <div class="bg-adventist-blue p-6 text-center text-white">
+                <div
+                    class="bg-white text-adventist-blue w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-3 animate-bounce shadow-xl">
+                    <i class="fas fa-church text-2xl"></i>
+                </div>
+                <h2 class="font-heading font-black text-xl uppercase italic">¡Te Esperamos!</h2>
             </div>
-            <!-- Botón descarga APK -->
-
-
-            <button onclick="abrirModalApp()">
-                📱 Instalar <br> <center>App</center>
-            </button>
-
-
-
-
-
-            <div class="md:hidden">
-                <button id="menu-button" class="p-2 outline-none">
-                    <i class="fas fa-bars text-xl"></i>
-                </button>
+            <div class="p-8 text-center text-adventist-blue font-bold italic">
+                <p>Sábado 09:30 AM — Escuela Sabática</p>
+                <p class="mt-2">Sábado 11:00 AM — Culto Divino</p>
+                <div class="w-full h-1 bg-gray-100 rounded-full overflow-hidden my-4">
+                    <div id="invitacion-progress" class="h-full bg-adventist-gold"></div>
+                </div>
+                <button onclick="cerrarInvitacion()"
+                    class="bg-adventist-blue text-white w-full py-3 rounded-xl font-black text-[10px] uppercase tracking-widest active:scale-95 transition shimmer-effect">Entendido</button>
             </div>
-        </div>
-
-        <div id="mobile-menu" class="hidden bg-adventist-blue border-t border-gray-700 md:hidden">
-            <div class="flex flex-col px-6 py-4 space-y-3 text-xs font-semibold uppercase">
-                <a href="#inicio" class="mobile-link">Inicio</a>
-                <a href="#nosotros" class="mobile-link">Nosotros</a>
-                <a href="#horarios" class="mobile-link">Actividades</a>
-                <a href="#ministerios" class="mobile-link">Ministerios</a>
-                <a href="estudio-biblico.html" class="mobile-link">Estudio Bíblico</a>
-                <a href="avisos.html" class="mobile-link text-adventist-gold font-bold">Avisos</a>
-                <a href="#contacto" class="mobile-link">Contacto</a>
-            </div>
-        </div>
-    </nav>
-
-    <div class="pt-nav w-full">
-        <div class="bg-blue-900 py-4 flex justify-center px-4">
-            <a href="ORACION/index.html"
-                class="bg-white text-blue-900 px-6 py-3 rounded-full font-bold text-center text-sm sm:text-lg hover:bg-yellow-400 transition transform hover:scale-105 shadow-lg">
-                📖 Oración Intercesora
-            </a>
         </div>
     </div>
 
-    <section class="bg-gradient-to-br from-adventist-blue via-blue-900 to-adventist-blue text-white overflow-hidden">
-        <div class="container mx-auto px-6 py-16 text-center max-w-4xl">
-            <h1 class="text-3xl md:text-5xl font-heading font-extrabold mb-6 leading-tight">
-                Un lugar para <span class="text-adventist-gold">crecer</span>, compartir y acercarte a <span
-                    class="text-adventist-gold">Dios</span>
-            </h1>
-            <p class="text-base md:text-xl text-gray-200 mb-10">
-                En la Iglesia Adventista de San Francisco de Limache encontrarás una comunidad cercana y un espacio
-                donde siempre serás bienvenido.
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="#horarios"
-                    class="bg-adventist-gold text-adventist-blue px-8 py-4 rounded-full font-bold shadow-xl">Ver
-                    horarios</a>
-                <a href="#contacto"
-                    class="border-2 border-white px-8 py-4 rounded-full font-bold hover:bg-white hover:text-adventist-blue transition">Primera
-                    vez aquí</a>
+    <div id="modal-esperanza"
+        class="fixed inset-0 z-[10001] flex items-center justify-center p-4 bg-slate-950/90 backdrop-blur-xl hidden animate__animated">
+        <div
+            class="glass-modal w-full max-w-sm md:max-w-lg rounded-[3.5rem] shadow-2xl overflow-hidden border-b-[12px] border-adventist-oro text-center bg-white">
+
+            <div class="relative h-64 overflow-hidden">
+                <img src="imagenes/jesus.jpg" class="w-full h-full object-cover object-top" alt="Jesús">
+                <div class="absolute inset-0 bg-gradient-to-t from-white via-transparent"></div>
+            </div>
+
+            <div class="p-8 -mt-8 relative z-10">
+                <h2 class="font-heading font-black text-adventist-blue text-2xl md:text-3xl uppercase italic mb-4">
+                    Jesús es nuestra <br> <span class="text-adventist-oro">Fortaleza</span>
+                </h2>
+
+                <div class="w-full h-1.5 bg-gray-100 rounded-full overflow-hidden mb-6 relative">
+                    <div id="progress-timer" class="progress-fill"></div>
+                </div>
+
+                <button onclick="cerrarMensaje()"
+                    class="text-[10px] font-black uppercase text-slate-400 hover:text-adventist-oro transition-colors">
+                    Continuar <i class="fas fa-chevron-right ml-1"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="min-h-screen flex flex-col">
+        <!-- HEADER COMPLETO -->
+        <header id="app-header" class="sticky top-0 z-[3000]">
+
+
+            <!-- MARQUEE -->
+            <div class="marquee-wrapper h-[44px] w-full bg-adventist-blue text-white overflow-hidden flex items-center">
+                <div class="marquee-text whitespace-nowrap px-4">
+                    ¡Bienvenidos a la IASD San Francisco de Limache! • Próximo Sábado: Culto de Adoración •
+                    "Lámpara es a mis pies tu palabra" • Paseo de Iglesia el 22 de febrero •
+                    ¡Hoy Reunión de oración 16:00 hrs! • Junta Administrativa domingo 10:00 hrs
+                </div>
+            </div>
+
+            <!-- NAVBAR -->
+            <nav class="bg-adventist-blue text-white shadow-lg w-full">
+
+                <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+
+                    <!-- LOGO -->
+                    <a href="index.html" class="flex items-center space-x-4 group">
+                        <div
+                            class="h-16 w-16 sm:h-20 sm:w-20 bg-white rounded-full overflow-hidden border-4 border-[#fec325] shadow-[0_0_20px_rgba(254,195,37,0.5)] flex items-center justify-center transition-transform group-hover:scale-110">
+                            <img src="imagenes/logo.jpg" class="h-full w-full object-cover">
+                        </div>
+
+                        <span
+                            class="font-heading font-black text-[11px] sm:text-sm leading-tight uppercase tracking-[0.2em] text-white">
+                            IASD San Francisco<br>
+                            <span class="text-[#fec325]">de Limache</span>
+                        </span>
+                    </a>
+
+                    <!-- MENU DESKTOP -->
+                    <div class="hidden lg:flex items-center space-x-6 font-bold text-[11px] uppercase tracking-wide">
+                        <a href="#inicio" class="hover:text-adventist-gold">Inicio</a>
+                        <a href="contactoaviso.html" class="hover:text-adventist-gold">Nosotros</a>
+                        <a href="#horarios" class="hover:text-adventist-gold">Actividades</a>
+                        <a href="#ministerios" class="hover:text-adventist-gold">Ministerios</a>
+                        <a href="avisos.html"
+                            class="bg-adventist-gold text-adventist-blue px-4 py-2 rounded-full flex items-center gap-2 shimmer-effect">
+                            <i class="fas fa-bell"></i> Avisos
+                        </a>
+                    </div>
+
+                    <!-- BOTONES -->
+                    <div class="flex items-center gap-2">
+                        <button onclick="abrirModalApp()"
+                            class="text-[10px] font-bold bg-white/10 px-3 py-1 rounded-lg border border-white/20 shimmer-effect">
+                            📱 INSTALAR APP
+                        </button>
+                        <button id="menu-button" class="lg:hidden p-2 text-xl">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                    </div>
+
+                </div>
+
+                <!-- MENU MOVIL -->
+                <div id="mobile-menu"
+                    class="hidden bg-adventist-blue border-t border-white/10 p-6 flex flex-col gap-4 text-xs font-bold uppercase">
+                    <a href="#inicio">Inicio</a>
+                    <a href="contactoaviso.html">Nosotros</a>
+                    <a href="#horarios">Actividades</a>
+                    <a href="#ministerios">Ministerios</a>
+                    <a href="avisos.html" class="text-adventist-gold italic">Avisos Importantes</a>
+                </div>
+
+            </nav>
+        </header>
+
+        <div id="banner-cumple-hoy" class="hidden animate__animated animate__backInDown relative z-[200]">
+            <div class="bg-[#fec325] p-[2px] shadow-[0_0_20px_rgba(254,195,37,0.4)]">
+                <div class="bg-[#00305e] py-4 px-6 flex items-center justify-between">
+                    <div class="flex items-center space-x-4">
+                        <div class="text-2xl animate-bounce">🎂</div>
+                        <div>
+                            <p class="text-white font-black uppercase tracking-tighter text-[10px] leading-none mb-1">
+                                ¡Bendiciones en tu día!
+                            </p>
+                            <p id="nombre-cumple"
+                                class="text-[#fec325] font-black uppercase text-sm sm:text-base leading-none">
+                                ...
+                            </p>
+                        </div>
+                    </div>
+                    <a id="link-felicitar" href="cumpleanos.html" class="...">
+                        FELICITAR ✨
+                    </a>
+                    <a href="#" onclick="cerrarBannerCumple()"
+                        class="text-white text-xl hover:text-gray-300 transition">&times;
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div id="fixed-header"></div>
+
+        <main class="pt-[132px]">
+
+
+            <header id="inicio" class="hero-bg min-h-screen flex items-center justify-center text-center px-4">
+                <div class="max-w-4xl text-white">
+                    <h1
+                        class="font-heading text-3xl md:text-7xl font-black mb-10 leading-tight animate__animated animate__fadeIn">
+                        UNA FAMILIA DE ESPERANZA
+                    </h1>
+
+                    <div class="max-w-2xl mx-auto px-6">
+
+                        <div class="flex justify-center w-full mb-8">
+                            <a href="registro.html" target="_blank"
+                                class="btn-cumpleaños group relative flex items-center justify-center px-8 py-4 bg-gradient-to-r from-adventist-oro to-yellow-500 text-white rounded-full shadow-xl hover:shadow-yellow-500/50 transition-all duration-300 transform hover:-translate-y-1 active:scale-95">
+
+                                <i class="fas fa-birthday-cake mr-3 text-xl group-hover:animate-bounce"></i>
+
+                                <div class="text-left">
+                                    <p class="text-[10px] font-black uppercase leading-none opacity-80">Registro de
+                                    </p>
+                                    <p class="text-lg font-bold uppercase tracking-tighter">CUMPLEAÑOS</p>
+                                </div>
+
+                                <i
+                                    class="fas fa-arrow-right ml-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all"></i>
+
+                                <div class="absolute inset-0 rounded-full overflow-hidden">
+                                    <div class="shine-effect"></div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <a href="ORACION/index.html"
+                                class="shimmer-effect bg-white text-adventist-blue px-8 py-5 rounded-[2.5rem] font-black text-xs uppercase shadow-2xl transition transform hover:scale-105 flex items-center justify-center gap-3">
+                                <i class="fas fa-praying-hands text-xl"></i> Oración Intercesora
+                            </a>
+                            <a href="estudio-biblico.html"
+                                class="shimmer-effect bg-adventist-gold text-adventist-blue px-8 py-5 rounded-[2.5rem] font-black text-xs uppercase shadow-2xl transition transform hover:scale-105 flex items-center justify-center gap-3">
+                                <i class="fas fa-book-open text-xl"></i> Estudios Bíblicos
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+
+
+
+    </div>
+
+    </div>
+    </section>
+
+
+
+    </div>
+    </div>
+
+    <section class="py-12 bg-white reveal">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <div class="bg-adventist-blue rounded-[3rem] p-8 text-center text-white shadow-2xl shimmer-effect">
+                <h2 class="font-heading font-black text-2xl md:text-4xl uppercase italic mb-4">Invitación para cada
+                    Sábado</h2>
+                <p class="text-lg italic text-blue-100 mb-6">"Vengan a mí todos ustedes que están cansados y
+                    agobiados..."</p>
+                <div class="bg-white/10 p-5 rounded-2xl border border-white/20 inline-block">
+                    <p class="font-black text-adventist-gold text-xl tracking-widest leading-none">SÁBADOS 09:30 AM
+                    </p>
+                </div>
             </div>
         </div>
     </section>
 
-    <header id="inicio" class="hero-bg min-h-screen flex items-center justify-center text-center px-6">
-        <div class="max-w-4xl text-white">
-            <h2 class="text-lg mb-4 text-adventist-gold uppercase tracking-widest font-bold">Bienvenido a casa</h2>
-            <h1 class="font-heading text-3xl md:text-6xl font-bold mb-6">Una familia de esperanza en el corazón de
-                Limache</h1>
-            <h2 class="text-base md:text-xl mb-10 md:mb-80 text-adventist-gold italic">
-                "Lámpara es a mis pies tu palabra, y lumbrera a mi camino."<br>Salmos 119:105
-            </h2>
-            <div class="flex flex-wrap justify-center gap-3">
-                <a href="#horarios"
-                    class="bg-adventist-gold text-adventist-blue px-6 py-3 rounded-full font-bold text-sm">Ver
-                    Horarios</a>
-                <a href="#contacto"
-                    class="border-2 border-white px-6 py-3 rounded-full font-bold text-sm">Contáctanos</a>
-                <a href="estudio-biblico.html"
-                    class="border-2 border-adventist-gold text-adventist-gold px-6 py-3 rounded-full font-bold text-sm hover:bg-adventist-gold hover:text-adventist-blue">📖
-                    Estudiar Biblia</a>
+    <section id="horarios" class="py-12 bg-adventist-light reveal">
+        <div class="container mx-auto px-4">
+            <div
+                class="relative max-w-5xl mx-auto overflow-hidden rounded-[3rem] shadow-2xl mb-12 border-8 border-white shimmer-effect">
+                <img id="carousel" src="imagenes/foto1.jpg"
+                    class="w-full aspect-video object-cover transition-opacity duration-1000">
             </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white p-8 rounded-[2.5rem] border-t-8 border-adventist-blue text-center shadow-sm">
+                    <i class="fas fa-sun text-adventist-gold text-4xl mb-4"></i>
+                    <h3 class="font-black uppercase text-sm mb-2 italic">Sábado Mañana</h3>
+                    <p class="font-bold">09:30 AM — Escuela Sabática</p>
+                </div>
+                <div class="bg-white p-8 rounded-[2.5rem] border-t-8 border-adventist-oro text-center shadow-sm">
+                    <i class="fas fa-users text-adventist-blue text-4xl mb-4"></i>
+                    <h3 class="font-black uppercase text-sm mb-2 italic">Sábado Tarde</h3>
+                    <p class="font-bold">17:30 PM — Oración Intercesora</p>
+                </div>
+                <div class="bg-white p-8 rounded-[2.5rem] border-t-8 border-adventist-blue text-center shadow-sm">
+                    <i class="fas fa-moon text-adventist-gold text-4xl mb-4"></i>
+                    <h3 class="font-black uppercase text-sm mb-2 italic">Miércoles</h3>
+                    <p class="font-bold">19:00 PM — Culto de Oración</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="ministerios" class="py-16 bg-white overflow-hidden">
+        <div class="container mx-auto px-4 mb-8 text-center">
+            <h2 class="text-3xl font-heading font-black text-adventist-blue uppercase italic">Nuestros Ministerios
+            </h2>
+        </div>
+
+        <div class="relative group max-w-7xl mx-auto">
+
+            <button onclick="scrollMinisterios(-300)"
+                class="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-adventist-blue/90 text-white p-3 rounded-full shadow-xl hover:scale-110 transition-all opacity-0 group-hover:opacity-100 hidden md:flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3"
+                    stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                </svg>
+            </button>
+
+            <div id="scrollContainer" class="flex overflow-x-auto gap-6 px-12 pb-8 no-scrollbar scroll-smooth">
+
+                <a href="Departamentos/jovenes.html" class="flex-none w-32 text-center shimmer-effect">
+                    <img src="imagenes/ja.jpg" class="h-28 w-28 object-cover rounded-3xl mx-auto shadow-md mb-2">
+                    <p class="text-[10px] font-black uppercase">Jóvenes</p>
+                </a>
+
+                <a href="Departamentos/mujer.html" class="flex-none w-32 text-center shimmer-effect">
+                    <img src="imagenes/mujer.jpg" class="h-28 w-28 object-cover rounded-3xl mx-auto shadow-md mb-2">
+                    <p class="text-[10px] font-black uppercase">Ministerio de la Mujer</p>
+                </a>
+
+                <a href="Departamentos/salud.html" class="flex-none w-32 text-center shimmer-effect">
+                    <img src="imagenes/salud.jpg" class="h-28 w-28 object-cover rounded-3xl mx-auto shadow-md mb-2">
+                    <p class="text-[10px] font-black uppercase">Salud</p>
+                </a>
+
+                <a href="Departamentos/infantil.html" class="flex-none w-32 text-center shimmer-effect">
+                    <img src="imagenes/infantil.jpg" class="h-28 w-28 object-cover rounded-3xl mx-auto shadow-md mb-2">
+                    <p class="text-[10px] font-black uppercase">Infantil</p>
+                </a>
+
+                <a href="Departamentos/aventureros.html" class="flex-none w-32 text-center shimmer-effect">
+                    <img src="imagenes/avent.jpg" class="h-28 w-28 object-cover rounded-3xl mx-auto shadow-md mb-2">
+                    <p class="text-[10px] font-black uppercase">Aventureros</p>
+                </a>
+
+                <a href="Departamentos/Mayordomia.html" class="flex-none w-32 text-center shimmer-effect">
+                    <img src="imagenes/mayor.jpg" class="h-28 w-28 object-cover rounded-3xl mx-auto shadow-md mb-2">
+                    <p class="text-[10px] font-black uppercase">Mayordomía</p>
+                </a>
+
+                <a href="Departamentos/Diaconos.html" class="flex-none w-32 text-center shimmer-effect">
+                    <img src="imagenes/diacono.jpg" class="h-28 w-28 object-cover rounded-3xl mx-auto shadow-md mb-2">
+                    <p class="text-[10px] font-black uppercase">Diáconos / Diaconisas</p>
+                </a>
+
+                <a href="Departamentos/escuela-sabatica.html" class="flex-none w-32 text-center shimmer-effect">
+                    <img src="imagenes/sabatica.jpg" class="h-28 w-28 object-cover rounded-3xl mx-auto shadow-md mb-2">
+                    <p class="text-[10px] font-black uppercase">Escuela Sabática</p>
+                </a>
+
+                <a href="Departamentos/personal.html" class="flex-none w-32 text-center shimmer-effect">
+                    <img src="imagenes/personal.jpg" class="h-28 w-28 object-cover rounded-3xl mx-auto shadow-md mb-2">
+                    <p class="text-[10px] font-black uppercase">Ministerio Personal</p>
+                </a>
+
+                <a href="Departamentos/asa.html" class="flex-none w-32 text-center shimmer-effect">
+                    <img src="imagenes/asa.jpg" class="h-28 w-28 object-cover rounded-3xl mx-auto shadow-md mb-2">
+                    <p class="text-[10px] font-black uppercase">ASA</p>
+                </a>
+
+                <a href="Departamentos/publicaciones.html" class="flex-none w-32 text-center shimmer-effect">
+                    <img src="imagenes/publicaciones.jpg"
+                        class="h-28 w-28 object-cover rounded-3xl mx-auto shadow-md mb-2">
+                    <p class="text-[10px] font-black uppercase">Publicaciones</p>
+                </a>
+
+                <a href="Departamentos/Dorcas.html" class="flex-none w-32 text-center shimmer-effect">
+                    <img src="imagenes/dorcas.jpg" class="h-28 w-28 object-cover rounded-3xl mx-auto shadow-md mb-2">
+                    <p class="text-[10px] font-black uppercase">Dorcas</p>
+                </a>
+
+            </div>
+
+            <button onclick="scrollMinisterios(300)"
+                class="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-adventist-blue/90 text-white p-3 rounded-full shadow-xl hover:scale-110 transition-all opacity-0 group-hover:opacity-100 hidden md:flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3"
+                    stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                </svg>
+            </button>
+        </div>
+    </section>
+
+    <script>
+        function scrollMinisterios(distance) {
+            document.getElementById('scrollContainer').scrollBy({
+                left: distance,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+
+    <style>
+        /* Ocultar barra de scroll estética */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Asegurar que las imágenes no se deformen */
+        #scrollContainer img {
+            min-width: 112px;
+            /* h-28 */
+            min-height: 112px;
+        }
+
+        /* Barra de progreso suave para el mensaje de Jesús */
+        .progress-fill-jesus {
+            height: 100%;
+            width: 100%;
+            background: #b45309;
+            border-radius: 9999px;
+            animation: countdown-jesus 25s linear forwards;
+        }
+
+        @keyframes countdown-jesus {
+            from {
+                width: 100%;
+            }
+
+            to {
+                width: 0%;
+            }
+        }
+
+        /* Shimmer solo para botones, muy lento y sutil */
+        .shimmer-effect::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: skewX(-25deg);
+            animation: shine-slow 10s infinite;
+        }
+
+        @keyframes shine-slow {
+            0% {
+                left: -150%;
+            }
+
+            15% {
+                left: 250%;
+            }
+
+            100% {
+                left: 250%;
+            }
+        }
+
+
+
+
+        /* Estilo adicional para que el modal se vea tipo cristal */
+
+        .glass-modal {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+        }
+    </style>
+
+    <section id="accion-gracias" class="py-16 bg-white reveal">
+        <div class="container mx-auto px-4 max-w-5xl">
+            <div
+                class="bg-slate-900 rounded-[3rem] shadow-2xl overflow-hidden flex flex-col lg:flex-row items-stretch border border-slate-800">
+
+                <div class="lg:w-1/2 relative overflow-hidden bg-black h-[350px] lg:h-auto">
+                    <img id="carrusel-accion" src="imagenes/accion/acc1.jpg"
+                        class="w-full h-full object-cover ken-burns" style="transition: opacity 1s ease-in-out;">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-60">
+                    </div>
+                </div>
+
+                <div
+                    class="lg:w-1/2 p-10 lg:p-16 flex flex-col justify-center text-center lg:text-left bg-slate-900 text-white">
+                    <span
+                        class="text-yellow-500 font-black text-[10px] uppercase mb-4 tracking-[0.3em] flex items-center justify-center lg:justify-start">
+                        <span class="w-8 h-[1px] bg-yellow-500 mr-2"></span> Testimonio Especial
+                    </span>
+
+                    <h3 class="text-4xl font-black mb-6 uppercase italic leading-none">
+                        Acción de <br><span class="text-[#fec325]">Gracias</span>
+                    </h3>
+
+                    <p class="text-slate-400 mb-8 italic text-sm leading-relaxed">
+                        Revive los momentos más emotivos y las bendiciones que Dios ha derramado en nuestra iglesia
+                        este año.
+                    </p>
+
+                    <div>
+                        <button onclick="playFullVideo()"
+                            class="bg-[#fec325] text-[#00305e] px-10 py-5 rounded-full font-black text-[11px] uppercase shadow-xl hover:scale-105 active:scale-95 transition-all tracking-widest flex items-center">
+                            <i class="fas fa-play-circle text-xl mr-3"></i> REPRODUCIR VIDEO TRÍO SALEM
+
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <header class="bg-blue-900 text-white py-20 text-center shadow-lg">
+        <h1 class="text-4xl font-bold">!!Envía tu anuncio hasta día Jueves de cada semana!!</h1>
+        <p class="mt-4 text-xl text-blue-200">Sirviendo con amor en este nuevo año 2026</p>
+
+        <div class="mt-10">
+            <a href="Anuncios 2026.html"
+                class="bg-yellow-500 hover:bg-yellow-400 text-blue-900 font-black py-4 px-8 rounded-full text-lg shadow-2xl transition-all transform hover:scale-110 inline-flex items-center gap-3">
+                <i class="fas fa-bullhorn animate-bounce"></i>
+                MURO DE ANUNCIOS LÍDERES
+            </a>
+            <p class="text-xs mt-3 text-blue-300 italic">Acceso exclusivo para directores de departamentos</p>
         </div>
     </header>
 
-    <section id="nosotros" class="py-16 bg-white overflow-hidden">
-        <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
-            <div class="relative order-2 md:order-1">
-                <img src="imagenes/comunidad.jpg" alt="Comunidad"
-                    class="rounded-lg shadow-2xl relative z-10 w-full h-64 md:h-80 object-cover">
-            </div>
-            <div class="order-1 md:order-2">
-                <h3
-                    class="text-adventist-blue font-heading text-3xl font-bold mb-6 border-l-4 border-adventist-gold pl-4">
-                    Nuestra Misión</h3>
-                <p class="text-gray-600 mb-6 leading-relaxed text-justify">Somos una comunidad cristiana Adventista de
-                    Limache comprometida para compartir el evangelio eterno invitando a todos a aceptar a Jesucristo.
-                </p>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
-                    <div class="flex items-center space-x-2"><i class="fas fa-check-circle text-adventist-blue"></i>
-                        <span>Estudio Bíblico</span>
-                    </div>
-                    <div class="flex items-center space-x-2"><i class="fas fa-check-circle text-adventist-blue"></i>
-                        <span>Vida Saludable</span>
-                    </div>
-                    <div class="flex items-center space-x-2"><i class="fas fa-check-circle text-adventist-blue"></i>
-                        <span>Educación Cristiana</span>
-                    </div>
-                    <div class="flex items-center space-x-2"><i class="fas fa-check-circle text-adventist-blue"></i>
-                        <span>Servicio Comunitario</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="horarios" class="py-16 bg-adventist-light">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-heading font-bold text-adventist-blue">Nuestros Servicios</h2>
-                <div class="w-24 h-1 bg-adventist-gold mx-auto mt-2"></div>
-            </div>
-
-            <div class="relative max-w-4xl mx-auto overflow-hidden rounded-xl shadow-xl mb-12">
-                <img id="carousel" src="imagenes/foto1.jpg"
-                    class="w-full h-48 sm:h-64 md:h-[400px] object-cover transition-all duration-700">
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-white p-6 rounded-xl shadow border-t-4 border-adventist-blue text-center">
-                    <i class="fas fa-sun text-adventist-gold text-3xl mb-3"></i>
-                    <h3 class="font-bold mb-2">Sábado (Mañana)</h3>
-                    <p class="text-adventist-blue font-bold">09:30 AM - Escuela Sabática</p>
-                    <p class="text-adventist-blue font-bold">11:00 AM - Culto Adoración</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow border-t-4 border-adventist-gold text-center">
-                    <i class="fas fa-users text-adventist-blue text-3xl mb-3"></i>
-                    <h3 class="font-bold mb-2">Sábado (Tarde)</h3>
-                    <p class="text-adventist-blue font-bold">17:30 PM - Oración</p>
-                    <p class="text-adventist-blue font-bold">19:00 PM - Culto Jóvenes</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow border-t-4 border-adventist-blue text-center">
-                    <i class="fas fa-praying-hands text-adventist-gold text-3xl mb-3"></i>
-                    <h3 class="font-bold mb-2">Miércoles</h3>
-                    <p class="text-adventist-blue font-bold">19:00 PM - Culto Oración</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="ministerios" class="py-16 bg-white">
-        <div class="container mx-auto px-6 text-center mb-10">
-            <h2 class="text-3xl font-heading font-bold text-adventist-blue">Nuestros Ministerios</h2>
-        </div>
-        <div class="container mx-auto px-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8">
-            <a href="Departamentos/jovenes.html" class="group bg-gray-50 rounded-xl overflow-hidden shadow">
-                <img src="imagenes/ja.jpg" class="w-full h-32 object-cover">
-                <div class="p-3">
-                    <p class="font-bold text-xs uppercase">Jóvenes</p>
-                </div>
-            </a>
-            <a href="Departamentos/mujer.html" class="group bg-gray-50 rounded-xl overflow-hidden shadow">
-                <img src="imagenes/mujer.jpg" class="w-full h-32 object-cover">
-                <div class="p-3">
-                    <p class="font-bold text-xs uppercase">Mujer</p>
-                </div>
-            </a>
-            <a href="Departamentos/salud.html" class="group bg-gray-50 rounded-xl overflow-hidden shadow">
-                <img src="imagenes/salud.jpg" class="w-full h-32 object-cover">
-                <div class="p-3">
-                    <p class="font-bold text-xs uppercase">Salud</p>
-                </div>
-            </a>
-            <a href="Departamentos/personal.html" class="group bg-gray-50 rounded-xl overflow-hidden shadow">
-                <img src="imagenes/personal.jpg" class="w-full h-32 object-cover">
-                <div class="p-3">
-                    <p class="font-bold text-xs uppercase">Personal</p>
-                </div>
-            </a>
-            <a href="Departamentos/asa.html" class="group bg-gray-50 rounded-xl overflow-hidden shadow">
-                <img src="imagenes/asa.jpg" class="w-full h-32 object-cover">
-                <div class="p-3">
-                    <p class="font-bold text-xs uppercase">ASA</p>
-                </div>
-            </a>
-            <a href="Departamentos/escuela-sabatica.html" class="group bg-gray-50 rounded-xl overflow-hidden shadow">
-                <img src="imagenes/sabatica.jpg" class="w-full h-32 object-cover">
-                <div class="p-3">
-                    <p class="font-bold text-xs uppercase">Escuela Sabática</p>
-                </div>
-            </a>
-            <a href="Departamentos/infantil.html" class="group bg-gray-50 rounded-xl overflow-hidden shadow">
-                <img src="imagenes/infantil.jpg" class="w-full h-32 object-cover">
-                <div class="p-3">
-                    <p class="font-bold text-xs uppercase">Infantil</p>
-                </div>
-            </a>
-            <a href="Departamentos/aventureros.html" class="group bg-gray-50 rounded-xl overflow-hidden shadow">
-                <img src="imagenes/avent.jpg" class="w-full h-32 object-cover">
-                <div class="p-3">
-                    <p class="font-bold text-xs uppercase">Aventureros</p>
-                </div>
-            </a>
-            <a href="Departamentos/publicaciones.html" class="group bg-gray-50 rounded-xl overflow-hidden shadow">
-                <img src="imagenes/publicaciones.jpg" class="w-full h-32 object-cover">
-                <div class="p-3">
-                    <p class="font-bold text-xs uppercase">Publicaciones</p>
-                </div>
-            </a>
-            <a href="Departamentos/Dorcas.html" class="group bg-gray-50 rounded-xl overflow-hidden shadow">
-                <img src="imagenes/dorcas.jpg" class="w-full h-32 object-cover">
-                <div class="p-3">
-                    <p class="font-bold text-xs uppercase">Dorcas</p>
-                </div>
-            </a>
-            <a href="Departamentos/Mayordomia.html" class="group bg-gray-50 rounded-xl overflow-hidden shadow">
-                <img src="imagenes/mayor.jpg" class="w-full h-32 object-cover">
-                <div class="p-3">
-                    <p class="font-bold text-xs uppercase">Mayordomía</p>
-                </div>
-            </a>
-            <a href="Departamentos/Diaconos.html" class="group bg-gray-50 rounded-xl overflow-hidden shadow">
-                <img src="imagenes/diacono.jpg" class="w-full h-32 object-cover">
-                <div class="p-3">
-                    <p class="font-bold text-xs uppercase">Diáconos</p>
-                </div>
-            </a>
-        </div>
-    </section>
-
-    <section id="contacto" class="py-16 bg-adventist-light">
-        <div class="container mx-auto px-6 grid md:grid-cols-2 gap-8">
-            <div>
-                <h3 class="text-2xl font-bold text-adventist-blue mb-4">Visítanos</h3>
-                <div class="space-y-4 text-sm">
-                    <p><i class="fas fa-map-marker-alt text-adventist-gold mr-2"></i> Calle Carrera 131, Limache</p>
-                    <p><i class="fas fa-envelope text-adventist-gold mr-2"></i> iasdsanfranciscodelimache@gmail.com</p>
-                    <p><i class="fas fa-phone text-adventist-gold mr-2"></i> +56 9 90724209</p>
-                </div>
-            </div>
-            <div class="bg-gray-200 rounded-xl overflow-hidden h-64 shadow-inner">
-                <iframe width="100%" height="100%" style="border:0;" loading="lazy"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3345.6789!2d-71.261234!3d-32.991234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzLCsDU5JzI4LjQiUyA3McKwMTUnNDAuNCJX!5e0!3m2!1ses!2scl!4v1620000000000"></iframe>
-            </div>
-        </div>
-    </section>
-
-    <div class="container mx-auto px-6 mb-12 max-w-2xl">
-        <button onclick="accesoAncianos()" class="w-full bg-slate-900 text-white py-6 rounded-[2.5rem] shadow-2xl hover:bg-adventist-blue transition-all duration-300 flex items-center justify-center gap-4 group">
-            <div class="bg-adventist-gold p-3 rounded-2xl group-hover:rotate-12 transition-transform">
-                <i class="fas fa-user-shield text-adventist-blue text-2xl"></i>
-            </div>
-            <div class="text-left">
-                
-                <p class="text-xl md:text-2xl font-heading font-black uppercase italic">Área Restringida</p>
-                <p class="text-[10px] uppercase tracking-[0.3em] text-adventist-gold font-black"><center>Acceso Ancianos de Iglesia</center></p>
-            </div>
+    <div class="py-12 flex justify-center px-4">
+        <button onclick="abrirModalAncianos()"
+            class="w-full max-w-sm bg-slate-950 text-white py-6 rounded-[2.5rem] flex items-center justify-center gap-4 active:scale-95 transition shadow-2xl shimmer-effect">
+            <i class="fas fa-user-shield text-adventist-gold text-2xl"></i><span
+                class="font-black uppercase text-xs tracking-widest italic leading-none">Acceso Ancianos</span>
         </button>
     </div>
+    </main>
 
-    <footer class="bg-white py-16 text-center rounded-t-[4rem] border-t border-slate-200 relative">
+    <footer class="bg-white py-8 text-center border-t">
         <div class="container mx-auto px-6">
-            <div class="flex justify-center space-x-8 mb-8">
-                <a href="#" class="text-adventist-blue hover:text-adventist-gold transition-transform hover:-translate-y-1"><i class="fab fa-facebook-f fa-2xl"></i></a>
-                <a href="#" class="text-adventist-blue hover:text-adventist-gold transition-transform hover:-translate-y-1"><i class="fab fa-instagram fa-2xl"></i></a>
-                <a href="#" class="text-adventist-blue hover:text-adventist-gold transition-transform hover:-translate-y-1"><i class="fab fa-youtube fa-2xl"></i></a>
-            </div>
-
-            <p class="font-heading font-black text-adventist-blue text-2xl md:text-3xl uppercase tracking-tighter mb-6 italic underline decoration-adventist-gold decoration-4">
-                IASD SAN FRANCISCO DE LIMACHE
-            </p>
-            
-            <p class="text-slate-500 font-bold uppercase tracking-widest text-sm flex items-center justify-center gap-2">
-                Diseñado con <i class="fas fa-heart text-red-500 animate-pulse"></i> por <span class="text-slate-900 font-black">MGE</span>
-            </p>
-            
-            <p class="text-[10px] text-slate-800 mt-8 uppercase tracking-[0.4em] font-bold italic">Esperanza en el pronto regreso de Jesús</p>
-            
-            <p class="text-[10px] text-slate-400 mt-4 uppercase tracking-[0.2em] font-bold">© 2025 DERECHOS RESERVADOS - San Francisco de Limache</p>
+            <p
+                class="font-heading font-black text-adventist-blue text-xl uppercase italic underline decoration-adventist-gold">
+                Esperanza en el pronto regreso de Jesús © 2026</p>
+            <p class="text-[8px] text-slate-400 uppercase tracking-[0.5em] mt-4 font-black">Desarrollado por Mauricio
+                Galaz Estay</p>
         </div>
     </footer>
 
-    <button id="btnTop" class="hidden fixed bottom-8 right-8 bg-adventist-gold text-adventist-blue w-14 h-14 rounded-2xl shadow-2xl hover:scale-110 active:scale-95 transition-all z-[100] flex items-center justify-center">
-        <i class="fas fa-chevron-up text-xl"></i>
-    </button>
+    <div id="modalAncianos" class="fixed inset-0 bg-black/80 hidden flex items-center justify-center z-[11000] p-6">
+        <div
+            class="glass-modal rounded-[3rem] w-full max-w-sm p-12 text-center animate__animated animate__zoomIn shadow-2xl">
+            <div
+                class="bg-adventist-blue w-16 h-16 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-xl">
+                <i class="fas fa-shield-alt text-adventist-gold text-2xl"></i>
+            </div>
+            <h2 class="text-xl font-black text-adventist-blue mb-6 uppercase italic tracking-tighter">Liderazgo</h2>
+            <input id="claveAncianos" type="password"
+                class="w-full p-4 bg-gray-50 border rounded-2xl mb-4 text-center font-bold" placeholder="Clave">
+            <div class="flex flex-col gap-2">
+                <button onclick="validarAncianos()"
+                    class="w-full bg-adventist-blue text-white py-4 rounded-2xl font-black uppercase text-xs shimmer-effect">Entrar</button>
+                <button onclick="cerrarModalAncianos()"
+                    class="text-gray-400 font-bold text-[9px] uppercase mt-4 underline">Cancelar</button>
+            </div>
+            <p id="errorAncianos" class="text-red-500 text-[10px] mt-4 hidden font-bold">❌ Clave Incorrecta</p>
+        </div>
+    </div>
+
+    <div id="modalApp" class="fixed inset-0 bg-black/80 hidden flex items-center justify-center z-[11000] p-6">
+        <div
+            class="glass-modal rounded-[3rem] max-w-sm w-full p-12 text-center animate__animated animate__zoomIn shadow-2xl">
+            <h2 class="text-2xl font-black text-adventist-blue mb-4 uppercase italic">Instalar App</h2>
+            <button onclick="instalarApp()"
+                class="bg-adventist-gold text-adventist-blue w-full py-4 rounded-2xl font-black uppercase text-[10px] shadow-lg mb-4 shimmer-effect">Instalar
+                Ahora</button>
+            <button onclick="document.getElementById('modalApp').classList.add('hidden')"
+                class="text-gray-400 font-bold text-[9px] uppercase underline leading-none">Cerrar</button>
+        </div>
+    </div>
+
+    <a href="https://wa.me/56990724209" target="_blank"
+        class="fixed bottom-10 right-6 bg-[#25d366] text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center z-[90] border-2 border-white shimmer-effect"><i
+            class="fab fa-whatsapp text-3xl"></i></a>
 
     <script>
-    // LÓGICA DEL BOTÓN VOLVER ARRIBA
-    const btnTop = document.getElementById("btnTop");
+        let timerCierreAutomatico;
 
-    window.addEventListener("scroll", () => {
-        // Si bajamos más de 400px, mostramos el botón
-        if (window.scrollY > 400) {
-            btnTop.classList.remove("hidden");
-        } else {
-            btnTop.classList.add("hidden");
+        let timerCierreJesus;
+
+
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const invitacion = document.getElementById('invitacion-central');
+            const modalEsp = document.getElementById('modal-esperanza');
+            const yaMostrado = sessionStorage.getItem('mensajeMostrado');
+
+            // 1. Mostrar Horarios (siempre al entrar)
+            setTimeout(() => {
+                invitacion.classList.add('active');
+                invitacion.style.display = 'flex'; // Asegura que se vea
+
+                // 2. Después de 10 segundos, ocultar horarios y evaluar si mostrar a Jesús
+                setTimeout(() => {
+                    invitacion.classList.remove('active');
+
+                    // Esperar un momento antes de mostrar el siguiente para evitar conflictos
+                    setTimeout(() => {
+                        if (!yaMostrado) {
+                            modalEsp.classList.add('active');
+                            modalEsp.classList.remove('hidden');
+
+                            // Iniciar la barra de progreso
+                            const pTimer = document.getElementById('progress-timer');
+                            if (pTimer) pTimer.classList.add('progress-fill-jesus');
+
+                            // Guardar que ya se mostró en esta sesión
+                            sessionStorage.setItem('mensajeMostrado', 'true');
+
+                            // Auto-cerrar en 25 segundos
+                            timerCierreJesus = setTimeout(() => cerrarMensaje(), 25000);
+                        }
+                    }, 500);
+                }, 10000);
+            }, 1000);
+        });
+
+        function cerrarMensaje() {
+            clearTimeout(timerCierreJesus); // CANCELA EL PASO DE LOS SEGUNDOS
+            const m = document.getElementById('modal-esperanza');
+            if (m) {
+                m.classList.remove('active');
+                m.classList.add('animate__fadeOutDown');
+
+                // Lo quitamos totalmente del camino después de la animación
+                setTimeout(() => {
+                    m.classList.add('hidden');
+                    m.style.display = 'none';
+                    m.style.pointerEvents = 'none'; // Liberación final de la pantalla
+                }, 800);
+            }
         }
-    });
 
-    btnTop.addEventListener("click", () => {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth" // Desplazamiento suave
-        });
-    });
+        function cerrarInvitacion() {
+            const invitacion = document.getElementById('invitacion-central');
+            if (invitacion) {
+                invitacion.classList.remove('active');
+                invitacion.style.pointerEvents = 'none';
+            }
+        }
 
-    </script>
+        function abrirModalAncianos() { document.getElementById('modalAncianos').classList.remove('hidden'); }
+        function cerrarModalAncianos() { document.getElementById('modalAncianos').classList.add('hidden'); }
+        function validarAncianos() {
+            if (document.getElementById('claveAncianos').value === "iasd") window.location.href = "orden_culto.html";
+            else document.getElementById('errorAncianos').classList.remove('hidden');
+        }
 
-    <script>
-        // LÓGICA DEL MENÚ MÓVIL
-        const menuButton = document.getElementById('menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const links = document.querySelectorAll('.mobile-link');
+        function abrirModalApp() { document.getElementById("modalApp").classList.remove("hidden"); }
+        function instalarApp() {
+            const ua = navigator.userAgent.toLowerCase();
+            if (ua.includes("android")) window.location.href = "https://drive.google.com/uc?export=download&id=19XrG3oWQXDVXN0jHdafbsMTMUvfrpFVl";
+            else if (ua.includes("iphone")) alert("📱 Pulsa Compartir 📤 y 'Añadir a pantalla de inicio' ➕");
+            else alert("Abre en tu celular para descargar.");
+        }
 
-        menuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+        function validarYEnviarAviso() {
+            if (document.getElementById('passLider').value === document.getElementById('departamento').value) {
+                alert("✅ Publicado."); document.getElementById('formAvisosLideres').reset();
+            } else alert("❌ Error Clave.");
+        }
 
-        links.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
+        window.addEventListener("scroll", () => {
+            document.querySelectorAll(".reveal").forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight - 80) el.classList.add("active");
             });
         });
 
-        // acceso ancianos
-        function accesoAncianos() {
-            document.getElementById("modalAncianos").classList.remove("hidden");
-        }
+        function playFullVideo() {
+            const m = document.createElement('div');
+            m.id = "video-overlay"; // ID para identificarlo
+            m.className = "fixed inset-0 bg-slate-900/90 backdrop-blur-xl z-[20000] flex items-center justify-center p-4 animate__animated animate__fadeIn";
 
-        function cerrarAncianos() {
-            document.getElementById("modalAncianos").classList.add("hidden");
-            document.getElementById("claveAncianos").value = "";
-            document.getElementById("errorAncianos").classList.add("hidden");
-        }
-
-        function validarAncianos() {
-            const clave = document.getElementById("claveAncianos").value.trim();
-
-            if (clave === "iasd") {
-                window.location.href = "./orden_culto.html";
-            } else {
-                document.getElementById("errorAncianos").classList.remove("hidden");
-            }
-        }
-    </script>
-
-
-    <script>
-        /* ==========================
-            CARRUSEL AUTOMÁTICO
-        ========================== */
-
-        const fotos = [
-            "imagenes/foto1.jpg",
-            "imagenes/foto2.jpg",
-            "imagenes/foto3.jpg",
-            "imagenes/foto4.jpg",
-            "imagenes/foto5.jpg",
-            "imagenes/foto6.jpg",
-            "imagenes/foto8.jpg",
-            "imagenes/foto9.jpg",
-            "imagenes/foto10.jpg",
-            "imagenes/foto11.jpg",
-            "imagenes/foto12.jpg",
-            "imagenes/foto13.jpg"
-        ];
-
-        let index = 0;
-        const img = document.getElementById("carousel");
-
-        if (img) {
-            setInterval(() => {
-                img.classList.add("opacity-0");
-
-                setTimeout(() => {
-                    index = (index + 1) % fotos.length;
-                    img.src = fotos[index];
-                    img.classList.remove("opacity-0");
-                }, 400);
-
-            }, 4000);
-        }
-    </script>
-
-    <script>
-        function abrirModalApp() {
-            document.getElementById("modalApp").classList.remove("hidden");
-            document.getElementById("modalApp").classList.add("flex");
-        }
-
-        function cerrarModalApp() {
-            document.getElementById("modalApp").classList.add("hidden");
-        }
-
-        function instalarApp() {
-            const ua = navigator.userAgent.toLowerCase();
-
-            // ANDROID → APK
-            if (ua.includes("android")) {
-                window.location.href =
-                    "https://drive.google.com/uc?export=download&id=19XrG3oWQXDVXN0jHdafbsMTMUvfrpFVl";
-                return;
-            }
-
-            // IPHONE → PWA
-            if (ua.includes("iphone") || ua.includes("ipad")) {
-                cerrarModalApp();
-                setTimeout(() => {
-                    alert(
-                        "📱 INSTALAR EN IPHONE\n\n" +
-                        "1️⃣ Presiona Compartir 📤\n" +
-                        "2️⃣ 'Agregar a pantalla de inicio'\n" +
-                        "3️⃣ Confirmar\n\n" +
-                        "✅ Listo"
-                    );
-                }, 300);
-                return;
-            }
-
-            // PC
-            alert("Abre esta página desde tu celular para instalar la app.");
-        }
-    </script>
-
-
-    <div id="modalApp" class="fixed inset-0 bg-black/60 hidden items-center justify-center z-50">
-
-        <div class="bg-white rounded-xl max-w-sm w-full mx-4 p-6 text-center shadow-2xl">
-            <h2 class="text-xl font-bold text-adventist-blue mb-3">
-                📱 Instalar App
-            </h2>
-
-            <p class="text-sm text-gray-600 mb-5">
-                Instala la app oficial de la Iglesia Adventista San Francisco de Limache
-            </p>
-
-            <div class="flex flex-col gap-3">
-                <button onclick="instalarApp()"
-                    class="bg-adventist-gold text-adventist-blue py-3 rounded-full font-bold">
-                    Instalar ahora
-                </button>
-
-                <button onclick="cerrarModalApp()" class="text-gray-500 text-sm underline">
-                    Cancelar
-                </button>
-            </div>
-        </div>
-    </div>
-    <!-- MODAL ACCESO ANCIANOS -->
-    <div id="modalAncianos" class="fixed inset-0 bg-black/70 hidden flex items-center justify-center z-50 px-4">
-
-        <div class="bg-white rounded-2xl shadow-2xl w-[90%] max-w-sm p-6 animate-fade">
-
-            <div class="text-center mb-4">
-                <img src="imagenes/logo.jpg" class="mx-auto h-14 w-14 rounded-full mb-2">
-                <h2 class="font-heading text-xl font-bold text-adventist-blue">
-                    Acceso Ancianos
-                </h2>
-                <p class="text-sm text-gray-800">
-                    Área restringida – IASD San Francisco de Limache
+            m.innerHTML = `
+        <button onclick="cerrarVideo(this)" class="absolute top-6 right-6 text-white/50 hover:text-white text-4xl transition-colors z-[20001]">
+            <i class="fas fa-times-circle"></i>
+        </button>
+        
+        <div class="w-full max-w-4xl bg-black rounded-[2rem] overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-white/10 animate__animated animate__zoomIn">
+            <video id="videoTestimonio" class="w-full shadow-2xl" controls autoplay src="imagenes/accion/video_gracias.mp4"></video>
+            <div class="bg-slate-900 p-4 text-center border-t border-white/5">
+                <p class="text-white font-black text-[10px] uppercase tracking-[0.3em] flex items-center justify-center">
+                    <i class="fas fa-heart text-red-500 mr-2 animate-pulse"></i> Testimonio: Acción de Gracias
                 </p>
             </div>
-
-            <div class="mb-4">
-                <label class="block text-sm font-semibold text-gray-600 mb-1">
-                    Contraseña
-                </label>
-                <div class="relative">
-                    <i class="fas fa-lock absolute left-3 top-3 text-gray-400"></i>
-                    <input id="claveAncianos" type="password"
-                        class="w-full pl-10 pr-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-adventist-gold"
-                        placeholder="Ingrese la clave">
-                </div>
-            </div>
-
-            <div class="flex gap-3">
-                <button onclick="validarAncianos()"
-                    class="flex-1 bg-adventist-blue text-white py-2 rounded-lg font-bold hover:bg-blue-900 transition">
-                    Ingresar
-                </button>
-
-                <button onclick="cerrarAncianos()"
-                    class="flex-1 bg-gray-200 py-2 rounded-lg font-semibold hover:bg-gray-300 transition">
-                    Cancelar
-                </button>
-            </div>
-
-            <p id="errorAncianos" class="text-red-600 text-sm text-center mt-3 hidden">
-                ❌ Contraseña incorrecta
-            </p>
         </div>
+    `;
+            document.body.appendChild(m);
+
+            // EVENTO: Cuando el video termina
+            const video = document.getElementById('videoTestimonio');
+            video.onended = function () {
+                // Lanzamos confeti de celebración
+                confetti({
+                    particleCount: 150,
+                    spread: 100,
+                    origin: { y: 0.6 },
+                    colors: ['#fec325', '#ffffff', '#00305e']
+                });
+
+                // Cerramos el video automáticamente después de 2 segundos del confeti
+                setTimeout(() => {
+                    const overlay = document.getElementById('video-overlay');
+                    if (overlay) cerrarVideo(overlay.querySelector('button'));
+                }, 2000);
+            };
+        }
+
+        // Función para cerrar con animación suave
+        function cerrarVideo(btn) {
+            const modal = btn.closest('#video-overlay') || btn.parentElement;
+            modal.classList.add('animate__fadeOut');
+            setTimeout(() => modal.remove(), 500);
+        }
+
+        // Función auxiliar para cerrar con animación
+        function cerrarVideo(btn) {
+            const modal = btn.parentElement;
+            modal.classList.add('animate__fadeOut');
+            setTimeout(() => modal.remove(), 500);
+        }
+    </script>
+    <script>
+        // Configuración de ubicación: Limache, Chile
+        const LAT = -33.0153;
+        const LNG = -71.2715;
+
+        async function actualizarEstadoBiblico() {
+            const banner = document.getElementById('banner-cumple-hoy');
+            const txtNombre = document.getElementById('nombre-cumple');
+            const txtTitulo = banner.querySelector('h2');
+
+            try {
+                // Consultamos la hora exacta de puesta de sol para Limache hoy
+                const resp = await fetch(`https://api.sunrise-sunset.org/json?lat=${LAT}&lng=${LNG}&formatted=0`);
+                const data = await resp.json();
+                const sunset = new Date(data.results.sunset);
+                const ahora = new Date();
+
+                // Si ya pasó la puesta de sol...
+                if (ahora > sunset) {
+                    banner.classList.remove('hidden', 'bg-adventist-blue');
+                    banner.classList.add('bg-slate-900', 'border-t-4', 'border-adventist-gold',
+                        'shadow-[0_0_30px_rgba(254,195,37,0.2)]');
+
+                    if (ahora.getDay() === 5) { // Es Viernes noche
+                        txtTitulo.innerHTML = "✨ <span class='animate-pulse'>¡FELIZ SÁBADO!</span>";
+                        txtNombre.innerHTML = "<i class='fas fa-star mr-2'></i> El séptimo día ha comenzado en Limache";
+                    } else {
+                        txtTitulo.innerHTML = "🌙 NUEVO DÍA BÍBLICO";
+                        txtNombre.innerText = "La tarde ha caído. Iniciando una nueva jornada en Su presencia.";
+                    }
+
+                    // Ocultamos botones de felicitación porque el día civil ya terminó bíblicamente
+                    const btn = banner.querySelector('a');
+                    if (btn) btn.classList.add('hidden');
+
+                } else {
+                    // Lógica de cuenta regresiva para la puesta de sol (solo los Viernes)
+                    if (ahora.getDay() === 5) {
+                        const dif = sunset - ahora;
+                        const horas = Math.floor(dif / (1000 * 60 * 60));
+                        const minutos = Math.floor((dif % (1000 * 60 * 60)) / (1000 * 60));
+
+                        // Creamos un pequeño aviso de preparación
+                        const avisoPrep = document.createElement('div');
+                        avisoPrep.className = "text-[10px] font-black text-adventist-gold mt-2 uppercase tracking-widest";
+                        avisoPrep.innerHTML = `<i class='fas fa-clock'></i> Puesta de sol en: ${horas}h ${minutos}m`;
+                        banner.appendChild(avisoPrep);
+                    }
+                }
+            } catch (error) {
+                console.log("Error calculando puesta de sol, usando hora estándar 20:00");
+            }
+        }
+
+        // Ejecutamos al cargar
+        actualizarEstadoBiblico();
+        setInterval(actualizarEstadoBiblico, 60000);
+    </script>
+
+    <script>
+        const scriptURL = 'TU_URL_DE_GOOGLE_APPS_SCRIPT'
+        const form = document.getElementById('formAvisosLideres')
+
+        form.addEventListener('submit', e => {
+            e.preventDefault()
+            // Validación de clave (ya la tenemos)
+            const dept = document.getElementById('departamento').value;
+            const clave = document.getElementById('clave').value;
+
+            if (clave === dept) {
+                fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                    .then(response => {
+                        alert('Anuncio enviado al sistema de pantallas.');
+                        actualizarVistaPrevia();
+                    })
+                    .catch(error => console.error('Error!', error.message))
+            }
+        })
+    </script>
+    <div
+        class="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 p-2 flex justify-around items-center md:hidden z-50">
+        <a href="index.html" class="flex flex-col items-center p-2 text-adventist-blue">
+            <i class="fas fa-church text-xl"></i>
+            <span class="text-[10px] font-bold uppercase">Culto</span>
+        </a>
+        <a href="cumpleanos.html"
+            class="flex flex-col items-center p-2 text-slate-400 hover:text-adventist-gold relative">
+            <div id="badge-cumple"
+                class="hidden absolute -top-1 -right-1 bg-red-500 text-white text-[8px] font-black px-1.5 py-0.5 rounded-full shadow-lg border border-white animate-bounce">
+                0</div>
+            <i class="fas fa-birthday-cake text-xl"></i>
+            <span class="text-[10px] font-bold uppercase">Cumpleaños</span>
+        </a>
+        <a href="registro.html" class="flex flex-col items-center p-2 text-slate-400 hover:text-adventist-gold">
+            <i class="fas fa-qrcode text-xl"></i>
+            <span class="text-[10px] font-bold uppercase">QR Registro</span>
+        </a>
     </div>
+
+    <div class="h-20 md:hidden"></div>
+
+    <script>
+        // Lógica del Menú Móvil
+        const menuBtn = document.getElementById('menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+
+            // CONTROL DE MENSAJES (Para que no salgan a cada rato)
+            document.addEventListener("DOMContentLoaded", () => {
+                const yaVisto = sessionStorage.getItem('mensajeVisto');
+
+                if (!yaVisto) {
+                    const invitacion = document.getElementById('invitacion-central');
+                    const modalEsp = document.getElementById('modal-esperanza');
+
+                    setTimeout(() => {
+                        invitacion.classList.add('show');
+                        setTimeout(() => {
+                            invitacion.classList.remove('show');
+                            modalEsp.classList.remove('hidden');
+                            modalEsp.classList.add('animate__fadeInUp');
+
+                            // Marcar como visto en esta sesión
+                            sessionStorage.setItem('mensajeVisto', 'true');
+
+                            setTimeout(() => cerrarMensaje(), 25000);
+                        }, 10000);
+                    }, 2000);
+                }
+            });
+
+            function cerrarMensaje() {
+                const m = document.getElementById('modal-esperanza');
+                if (m) {
+                    m.classList.replace('animate__fadeInUp', 'animate__fadeOutDown');
+                    setTimeout(() => m.classList.add('hidden'), 800);
+                }
+            }
+
+            // Carrusel de fotos
+            const fotos = ["imagenes/foto1.jpg", "imagenes/foto2.jpg", "imagenes/foto3.jpg", "imagenes/foto4.jpg"];
+            let idx = 0;
+            setInterval(() => {
+                const img = document.getElementById("carousel");
+                if (img) {
+                    img.style.opacity = "0.3";
+                    setTimeout(() => {
+                        idx = (idx + 1) % fotos.length;
+                        img.src = fotos[idx];
+                        img.style.opacity = "1";
+                    }, 500);
+                }
+            }, 5000);
+
+            // Modales de Acceso
+            function abrirModalAncianos() { document.getElementById('modalAncianos').classList.remove('hidden'); }
+            function cerrarModalAncianos() { document.getElementById('modalAncianos').classList.add('hidden'); }
+            function validarAncianos() {
+                if (document.getElementById('claveAncianos').value === "iasd") window.location.href = "orden_culto.html";
+                else document.getElementById('errorAncianos').classList.remove('hidden');
+            }
+    </script>
+
+
+    <script>
+
+            function mostrarMensaje() {
+                const modal = document.getElementById('modal-esperanza');
+                const barra = document.getElementById('progress-timer');
+
+                if (!modal || !barra) return;
+
+                modal.classList.remove('hidden');
+                modal.classList.add('animate__fadeIn');
+
+                // Escucha cuando la barra llega al final de los 9 segundos
+                barra.addEventListener('animationend', () => {
+                    // Espera un instante (300ms) para que se vea llena y cierra
+                    setTimeout(cerrarMensaje, 300);
+                });
+            }
+
+            function cerrarMensaje() {
+                const modal = document.getElementById('modal-esperanza');
+                if (modal && !modal.classList.contains('hidden')) {
+                    modal.classList.replace('animate__fadeIn', 'animate__fadeOut');
+                    setTimeout(() => {
+                        modal.classList.add('hidden');
+                    }, 500);
+                }
+            }
+
+            // Iniciar al cargar la página o al evento que prefieras
+            window.addEventListener('load', mostrarMensaje);
+    </script>
+    <script>
+
+
+            const imagenesAccion = [
+                "imagenes/accion/acc2.jpg",
+                "imagenes/accion/acc3.jpg",
+                "imagenes/accion/acc4.jpg",
+                "imagenes/accion/acc5.jpg",
+                "imagenes/accion/acc6.jpg",
+                "imagenes/accion/acc7.jpg",
+                "imagenes/accion/acc8.jpg"
+            ];
+
+            let iAccion = 0;
+            const imgAccion = document.getElementById('carrusel-accion');
+
+            function carruselAccion() {
+                if (!imgAccion) return;
+
+                // Desvanecer
+                imgAccion.style.opacity = "0";
+
+                setTimeout(() => {
+                    iAccion = (iAccion + 1) % imagenesAccion.length;
+                    imgAccion.src = imagenesAccion[iAccion];
+
+                    // Volver a mostrar con la nueva imagen
+                    imgAccion.style.opacity = "1";
+                }, 1000); // Tiempo de la transición
+            }
+
+            // Cambiar cada 4 segundos
+            setInterval(carruselAccion, 4000);
+    </script>
+    <script>
+            window.addEventListener('load', () => {
+                const banners = document.querySelectorAll('.reveal');
+                banners.forEach((el, index) => {
+                    setTimeout(() => {
+                        el.classList.add('active');
+                    }, index * 200); // Aparecen uno tras otro
+                });
+            });
+    </script>
+
+    <script type="module">
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+            import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+            // Configuración de tu Firebase
+            const firebaseConfig = {
+                apiKey: "AIzaSyAoC_7Pehjca4CQSoy0K3Rm5q9CC-IY1Ic",
+                authDomain: "iasd-limache-muro.firebaseapp.com",
+                projectId: "iasd-limache-muro",
+                storageBucket: "iasd-limache-muro.firebasestorage.app",
+                appId: "1:277039117234:web:65f4e76064935cadabaaab"
+            };
+
+            // Inicializar Firebase
+            const app = initializeApp(firebaseConfig);
+            const db = getFirestore(app);
+
+            async function activarBannerBiblico() {
+                const ahora = new Date();
+                const horaActual = ahora.getHours();
+                const diaSemana = ahora.getDay(); // 5 = Viernes, 6 = Sábado
+                const banner = document.getElementById('banner-cumple-hoy');
+                const txtNombre = document.getElementById('nombre-cumple');
+                const txtTitulo = banner.querySelector('h2');
+                const btnFelicitar = banner.querySelector('a');
+
+                // --- LÓGICA DE PUESTA DE SOL (Inicio del Nuevo Día Bíblico) ---
+                // Usamos las 20:00 hrs como estándar, pero puedes ajustarlo
+                if (horaActual >= 20) {
+                    banner.classList.remove('hidden', 'bg-adventist-blue');
+                    banner.classList.add('bg-slate-900', 'border-t-4', 'border-adventist-gold');
+
+                    if (diaSemana === 5) {
+                        // Es Viernes después de las 20:00 -> YA ES SÁBADO
+                        txtTitulo.innerHTML = "✨ ¡FELIZ SÁBADO!";
+                        txtNombre.innerText = "El séptimo día ha comenzado. ¡Bendiciones!";
+                        if (btnFelicitar) btnFelicitar.classList.add('hidden');
+                    } else {
+                        // Cambio de día normal (Ej: Lunes noche ya es Martes bíblico)
+                        txtTitulo.innerHTML = "🌙 INICIO DEL NUEVO DÍA";
+                        txtNombre.innerText = "Buscando la presencia de Dios para una nueva jornada";
+                        if (btnFelicitar) btnFelicitar.classList.add('hidden');
+                    }
+                    return;
+                }
+
+                // --- LÓGICA DE CUMPLEAÑOS (Durante el día hasta la puesta de sol) ---
+                const q = query(collection(db, "cumpleanos"),
+                    where("dia", "==", ahora.getDate()),
+                    where("mes", "==", ahora.getMonth() + 1));
+
+                const snap = await getDocs(q);
+
+                if (!snap.empty) {
+                    const cumple = snap.docs[0].data();
+                    txtTitulo.innerHTML = "🎂 CUMPLEAÑOS DE HOY";
+                    txtNombre.innerText = cumple.nombre;
+                    banner.classList.remove('hidden');
+                    if (btnFelicitar) btnFelicitar.classList.remove('hidden');
+                } else {
+                    banner.classList.add('hidden');
+                }
+            }
+
+            // Ejecutar la función apenas cargue la página
+            document.addEventListener('DOMContentLoaded', activarBannerCumpleanos);
+    </script>
+
+    <script>
+            // Lógica del menú móvil (ya que estaba en tu código original)
+            const menuBtn = document.getElementById('menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            if (menuBtn && mobileMenu) {
+                menuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // Cerrar mensajes de invitación
+            window.cerrarInvitacion = () => {
+                document.getElementById('invitacion-central').classList.remove('active');
+            };
+
+            window.cerrarMensaje = () => {
+                document.getElementById('modal-esperanza').classList.add('hidden');
+            };
+
+
+    </script>
+
+    <script>
+            let deferredPrompt = null;
+
+            window.addEventListener("beforeinstallprompt", (e) => {
+                e.preventDefault();
+                deferredPrompt = e;
+            });
+
+            function instalarApp() {
+                if (deferredPrompt) {
+                    deferredPrompt.prompt();
+                    deferredPrompt.userChoice.finally(() => {
+                        deferredPrompt = null;
+                        document.getElementById('modalApp').classList.add('hidden');
+                    });
+                } else {
+                    const ua = navigator.userAgent.toLowerCase();
+                    if (ua.includes("iphone")) {
+                        alert("📱 iPhone:\nCompartir → Añadir a pantalla de inicio");
+                    } else {
+                        alert("⚠️ La instalación se habilita solo en HTTPS.");
+                    }
+                }
+            }
+
+            if ("serviceWorker" in navigator) {
+                navigator.serviceWorker.register("service-worker.js");
+            }
+    </script>
+    <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getFirestore, collection } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+    import { getDocs, updateDoc, doc } from "firebase/firestore";
+
+    const snap = await getDocs(collection(db, "avisos"));
+
+    snap.forEach(async d => {
+    const data = d.data();
+    if (!data.expira) {
+    await updateDoc(doc(db, "avisos", d.id), {
+    expira: null
+    });
+    }
+    });
+
+
+    
+            if ("serviceWorker" in navigator) {
+                navigator.serviceWorker.register("sw.js");
+            }
+    </script>
+
 
 </body>
 
