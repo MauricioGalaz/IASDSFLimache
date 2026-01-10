@@ -138,30 +138,46 @@
                 <p class="text-slate-300 max-w-2xl mx-auto italic">"Unidos en el estudio de las verdades que transforman el corazón."</p>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden border-t-4 border-adventist-gold hover:scale-105 transition-transform group relative">
+                    <div class="absolute top-4 right-4 bg-adventist-gold text-adventist-blue text-[10px] font-black px-3 py-1 rounded-full z-10 shadow-lg animate-bounce">
+                        LIBRO DEL AÑO
+                    </div>
+                    <img src="imagenes/orara.jpeg" class="w-full h-48 object-cover">
+                    <div class="p-6 text-center text-gray-700">
+                        <h4 class="font-bold text-lg text-adventist-blue uppercase mb-2">Si mi pueblo orara</h4>
+                        <p class="text-xs mb-6 italic">Randy Maxwell nos invita a experimentar el poder real de la oración intercesora.</p>
+                        <a href="https://eunice.fustero.es/libros/todosPDF/SiMiPuebloOrara_RandyMaxwell.pdf" target="_blank" class="w-full bg-green-600 text-white py-3 rounded-xl font-black text-xs block hover:bg-green-700 transition">DESCARGAR PDF</a>
+                    </div>
+                </div>
+
                 <div class="bg-white rounded-2xl shadow-xl overflow-hidden border-t-4 border-adventist-gold hover:scale-105 transition-transform group">
                     <img src="imagenes/el-deseado.jpg" class="w-full h-48 object-cover">
                     <div class="p-6 text-center text-gray-700">
                         <h4 class="font-bold text-lg text-adventist-blue uppercase mb-2">El Deseado de Todas las Gentes</h4>
                         <p class="text-xs mb-6 italic">La vida de Jesús narrada con profundidad espiritual.</p>
-                        <a href="https://egwwritings.org/read?panels=p130.1" target="_blank" class="w-full bg-adventist-blue text-white py-3 rounded-xl font-black text-xs block">LEER LIBRO</a>
+                        <a href="https://egwwritings.org/read?panels=p174.2&index=0" target="_blank" class="w-full bg-adventist-blue text-white py-3 rounded-xl font-black text-xs block">LEER LIBRO</a>
                     </div>
                 </div>
+
                 <div class="bg-white rounded-2xl shadow-xl overflow-hidden border-t-4 border-adventist-gold hover:scale-105 transition-transform group">
                     <img src="imagenes/eventos.jpg" class="w-full h-48 object-cover">
                     <div class="p-6 text-center text-gray-700">
                         <h4 class="font-bold text-lg text-adventist-blue uppercase mb-2">Eventos de los Últimos Días</h4>
                         <p class="text-xs mb-6 italic">Panorama profético de los sucesos finales de la historia.</p>
-                        <a href="https://egwwritings.org/" target="_blank" class="w-full bg-adventist-blue text-white py-3 rounded-xl font-black text-xs block">LEER LIBRO</a>
+                        <a href="https://egwwritings.org/read?panels=p1709.2&index=0" target="_blank" class="w-full bg-adventist-blue text-white py-3 rounded-xl font-black text-xs block">LEER LIBRO</a>
                     </div>
                 </div>
+
                 <div class="bg-white rounded-2xl shadow-xl overflow-hidden border-t-4 border-adventist-gold hover:scale-105 transition-transform group">
                     <img src="imagenes/conflicto.jpg" class="w-full h-48 object-cover">
                     <div class="p-6 text-center text-gray-700">
                         <h4 class="font-bold text-lg text-adventist-blue uppercase mb-2">El Conflicto de los Siglos</h4>
                         <p class="text-xs mb-6 italic">La gran controversia entre el bien y el mal a través de los siglos.</p>
-                        <a href="https://egwwritings.org/read?panels=p132.1" target="_blank" class="w-full bg-adventist-blue text-white py-3 rounded-xl font-black text-xs block">LEER LIBRO</a>
+                        <a href="https://egwwritings.org/read?panels=p1710.2&index=0" target="_blank" class="w-full bg-adventist-blue text-white py-3 rounded-xl font-black text-xs block">LEER LIBRO</a>
                     </div>
                 </div>
+
             </div>
         </section>
     </main>
@@ -188,7 +204,7 @@
             <p
                 class="text-slate-500 font-bold uppercase tracking-widest text-sm flex items-center justify-center gap-2">
                 Diseñado con <i class="fas fa-heart text-red-500 animate-pulse"></i> por <span
-                    class="text-slate-900 font-black">MGE</span>
+                    class="text-slate-900 font-black">Mauricio Galaz Estay</span>
             </p>
 
             <p class="text-[10px] text-slate-800 mt-8 uppercase tracking-[0.4em] font-bold italic">Esperanza en el
@@ -337,82 +353,90 @@
 
         // --- 5. REPORTES PDF GLOBALES ---
 // --- 5. REPORTES PDF GLOBALES CENTRADOS Y CON LOGO ---
+// --- 5. REPORTE PDF CON FUNCIÓN DE AUTOENVÍO POR GMAIL ---
 async function descargarReportePDF() {
+    // 1. Validación de Seguridad (Sin mostrar la clave)
+    const { value: password } = await Swal.fire({
+        title: 'Acceso Restringido',
+        text: 'Ingrese su credencial para generar y enviar el reporte',
+        input: 'password',
+        inputPlaceholder: 'Contraseña requerida',
+        showCancelButton: true,
+        confirmButtonText: 'Generar y Enviar',
+        confirmButtonColor: '#00305e',
+        customClass: { popup: 'modern-swal-popup' }
+    });
+
+    if (password !== CLAVE_ADMIN) {
+        if (password) Swal.fire('Error', 'Credencial inválida', 'error');
+        return;
+    }
+
+    // 2. Obtención de datos desde Firebase
     database.ref('pedidos').once('value', async (snapshot) => {
         const data = snapshot.val();
-        if (!data) return Swal.fire('Sin datos', 'No hay nada en la nube para exportar', 'info');
+        if (!data) return Swal.fire('Sin datos', 'No hay registros para exportar', 'info');
 
         const pedidosArray = Object.values(data);
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF();
-        
-        // Configuración de dimensiones
-        const pageWidth = doc.internal.pageSize.getWidth();
-        const centerX = pageWidth / 2;
+        const centerX = doc.internal.pageSize.getWidth() / 2;
 
-        // 1. AGREGAR LOGO (Centrado arriba)
+        // 3. Generación del contenido del PDF (Logo y Tabla)
         try {
             const logoImg = new Image();
-            logoImg.src = 'imagenes/logo.png'; // Asegúrate de que esta ruta sea correcta en tu servidor/proyecto
+            logoImg.src = 'imagenes/logo.png'; 
             await new Promise((resolve) => {
                 logoImg.onload = () => {
-                    // doc.addImage(img, type, x, y, width, height)
                     doc.addImage(logoImg, 'JPEG', centerX - 15, 10, 30, 30);
                     resolve();
                 };
-                logoImg.onerror = () => resolve(); // Si falla el logo, continua sin él
+                logoImg.onerror = () => resolve();
             });
-        } catch (e) { console.error("Error cargando logo"); }
+        } catch (e) { console.error("Logo no detectado"); }
 
-        // 2. TÍTULO CENTRADO
         doc.setFontSize(18);
-        doc.setTextColor(0, 48, 94); // Azul Adventista
-        doc.setFont("Montserrat", "bold");
-        doc.text("REPORTE GLOBAL DE ORACIÓN", centerX, 50, { align: 'center' });
+        doc.setTextColor(0, 48, 94);
+        doc.text("REPORTE DE ORACIÓN INTERCESORA", centerX, 50, { align: 'center' });
         
-        doc.setFontSize(14);
-        doc.text("IASD SAN FRANCISCO DE LIMACHE", centerX, 58, { align: 'center' });
-
-        // 3. TABLA CENTRADA
         doc.autoTable({
-            startY: 65,
+            startY: 60,
             head: [['Fecha', 'Nombre', 'Tipo', 'Contenido']],
             body: pedidosArray.map(p => [p.date, p.name, p.category, p.content]),
             theme: 'striped',
-            headStyles: { 
-                fillColor: [0, 48, 94], // Azul Adventista
-                halign: 'center' 
-            },
-            styles: { 
-                fontSize: 10,
-                cellPadding: 3,
-                valign: 'middle'
-            },
-            columnStyles: {
-                0: { halign: 'center', cellWidth: 30 },
-                1: { halign: 'center', cellWidth: 40 },
-                2: { halign: 'center', cellWidth: 30 },
-                3: { halign: 'left' }
-            },
-            margin: { left: 15, right: 15 }
+            headStyles: { fillColor: [0, 48, 94], halign: 'center' }
         });
 
-        // 4. GUARDAR Y PREPARAR GMAIL
-        const nombreArchivo = `Reporte_IASD_Global_${new Date().toLocaleDateString().replace(/\//g, '-')}.pdf`;
+        // 4. Descarga local del archivo
+        const nombreArchivo = `Reporte_IASD_${new Date().toLocaleDateString().replace(/\//g, '-')}.pdf`;
         doc.save(nombreArchivo);
-        
-        const { isConfirmed } = await Swal.fire({ 
-            title: 'PDF Generado con Éxito', 
-            text: '¿Deseas abrir Gmail para enviar el reporte centrado?', 
-            icon: 'success', 
-            showCancelButton: true, 
-            confirmButtonText: 'Ir a Gmail',
-            confirmButtonColor: '#00305e',
-            customClass: { popup: 'modern-swal-popup' }
+
+        // 5. LÓGICA DE AUTOENVÍO (Apertura de Gmail)
+        const destinatarios = "hildateresasandoval@gmail.com,iasdsanfranciscodelimache@gmail.com";
+        const asunto = encodeURIComponent("Reporte Automático - Ministerio de Oración");
+        const cuerpo = encodeURIComponent(
+            "Hola,\n\nSe ha generado un nuevo reporte del Muro de Oración.\n\n" +
+            "POR FAVOR SIGA ESTOS PASOS:\n" +
+            "1. El archivo '" + nombreArchivo + "' se ha descargado en su dispositivo.\n" +
+            "2. Adjúntelo en esta ventana de Gmail que se acaba de abrir.\n" +
+            "3. Presione Enviar.\n\n" +
+            "Bendiciones."
+        );
+
+        // URL universal para Gmail (Web y Móvil)
+        const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${destinatarios}&su=${asunto}&body=${cuerpo}`;
+
+        const { isConfirmed } = await Swal.fire({
+            title: '¡PDF Generado!',
+            text: 'El archivo se descargó. ¿Abrir Gmail para enviarlo ahora?',
+            icon: 'success',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, abrir Gmail',
+            confirmButtonColor: '#d93025' // Color rojo Gmail
         });
 
         if (isConfirmed) {
-            const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=hildateresasandoval@gmail.com,iasdsanfranciscodelimache@gmail.com&su=Reporte de Oracion Global&body=Adjunto reporte global de oraciones generado desde la App.`;
+            // Abre Gmail en una pestaña nueva o en la App del móvil
             window.open(gmailUrl, '_blank');
         }
     });
@@ -420,5 +444,6 @@ async function descargarReportePDF() {
 
         window.onload = escucharPedidos;
     </script>
+    </body> 
 </body>
 </html>
