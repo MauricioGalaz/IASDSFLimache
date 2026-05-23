@@ -13,8 +13,8 @@
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&family=Open+Sans:wght@400;600&display=swap"
         rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png
-    <meta name=" theme-color content="#00305e">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <meta name="theme-color" content="#00305e">
     <link rel="apple-touch-icon" href="icon-192.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -604,7 +604,7 @@
             </div>
         </div>
     </div>
-
+    <!-- 
     <div id="invitacion-central"
         class="fixed inset-0 z-[7000] flex items-center justify-center bg-adventist-blue/70 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-700 p-4">
         <div class="glass-modal w-full max-w-sm rounded-[3rem] shadow-2xl overflow-hidden transform scale-90 transition-all duration-700"
@@ -626,7 +626,7 @@
                     class="bg-adventist-blue text-white w-full py-3 rounded-xl font-black text-[10px] uppercase tracking-widest active:scale-95 transition shimmer-effect">Entendido</button>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <div id="modal-esperanza"
         class="fixed inset-0 z-[10001] flex items-center justify-center p-4 bg-slate-950/90 backdrop-blur-xl hidden animate__animated">
@@ -662,12 +662,14 @@
             <!-- MARQUEE -->
             <div class="marquee-wrapper h-[44px] w-full bg-adventist-blue text-white overflow-hidden flex items-center">
                 <div class="marquee-text whitespace-nowrap px-4">
-                    ¡ Bienvenidos a la IASD San Francisco de Limache ! • Próximo Sábado: Escuela Sabática 09:30 hrs. -
+                    ¡ Bienvenidos a la IASD San Francisco de Limache !
+                    • Próximo Sábado 14 de marzo 2026
+                    -
+                    Escuela Sabática 9:30 hrs. •
                     Culto de Adoración 11:00 hrs.•
-                    "Lámpara es a mis pies tu palabra" • Paseo de Iglesia el 22 de febrero "Solo 80 CUPOS"•
-                    ¡Sábado 17 de enero Reunión de oración Intercesora 16:00 hrs! • Sábado 17 de enero Investidura de
-                    cierre año 2025 de Club de Aventureros 18:00 Hrs. • Al terminar Culto de Adoración, !! Madres de
-                    Rodillas Hijos de pie !!
+
+                    • Al terminar Culto de Adoración - !! Madres de
+                    Rodillas Hijos de pie !! •
                 </div>
             </div>
 
@@ -687,10 +689,17 @@
                             </span>
                         </a>
 
-                        <a href="transmisiones.html"
-                            class="hidden sm:flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-3 py-2 rounded-full text-[10px] font-black uppercase tracking-widest animate-pulse border border-white/20">
-                            <i class="fas fa-circle text-[6px]"></i> En Vivo
-                        </a>
+                        <div class="flex items-center gap-2">
+                            <a href="transmisiones.html"
+                                class="hidden sm:flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-3 py-2 rounded-full text-[10px] font-black uppercase tracking-widest animate-pulse border border-white/20">
+                                <i class="fas fa-circle text-[6px]"></i> En Vivo
+                            </a>
+
+                            <button onclick="abrirModalDoxo()"
+                                class="hidden sm:flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-full text-[10px] font-black uppercase tracking-widest animate-pulse border border-white/20">
+                                <i class="fas fa-music text-[8px]"></i> Doxología
+                            </button>
+                        </div>
                     </div>
 
                     <div class="hidden lg:flex items-center space-x-6 font-bold text-[11px] uppercase tracking-wide">
@@ -723,9 +732,11 @@
                     <a href="#horarios">Actividades</a>
                     <a href="#ministerios">Ministerios</a>
                     <a href="avisos.html" class="text-adventist-gold italic">Avisos Importantes</a>
+                    <button onclick="abrirModalDoxo()" class="text-left text-blue-400 flex items-center gap-2">
+                        <i class="fas fa-music"></i> Doxología (Con Clave)
+                    </button>
                 </div>
             </nav>
-
             <div id="banner-cumple-hoy" class="hidden animate__animated animate__backInDown relative z-[200]">
                 <div class="bg-[#fec325] p-[2px] shadow-lg">
                     <div class="bg-[#00305e] py-4 px-6 flex items-center justify-between">
@@ -831,7 +842,7 @@
         <div class="container mx-auto px-4">
             <div
                 class="relative max-w-5xl mx-auto overflow-hidden rounded-[3rem] shadow-2xl mb-12 border-8 border-white shimmer-effect">
-                <img id="carousel" src="imagenes/foto1.jpg"
+                <img id="carousel" src="imagenes/foto1.jpg,"
                     class="w-full aspect-video object-cover transition-opacity duration-1000">
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -953,7 +964,7 @@
                 <a href="Departamentos/personal.html" class="ministerio-card shimmer-auto">
                     <img src="imagenes/personal.jpg">
                     <div class="card-overlay">
-                        <h3 class="card-title">Personal</h3>
+                        <h3 class="card-title">Ministerio Personal</h3>
                         <div class="card-icon"><i class="fas fa-bullhorn"></i></div>
                     </div>
                 </a>
@@ -1241,13 +1252,13 @@
         }
     </style>
 
-    <section id="accion-gracias" class="py-16 bg-white reveal">
+    <section id="escuela-vacaciones" class="py-16 bg-white reveal">
         <div class="container mx-auto px-4 max-w-5xl">
             <div
                 class="bg-slate-900 rounded-[3rem] shadow-2xl overflow-hidden flex flex-col lg:flex-row items-stretch border border-slate-800">
 
                 <div class="lg:w-1/2 relative overflow-hidden bg-black h-[350px] lg:h-auto">
-                    <img id="carrusel-accion" src="imagenes/accion/acc1.jpg"
+                    <img id="carrusel-accion" src="imagenes/accion/ecv1.jpeg"
                         class="w-full h-full object-cover ken-burns" style="transition: opacity 1s ease-in-out;">
                     <div
                         class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-60">
@@ -1258,22 +1269,21 @@
                     class="lg:w-1/2 p-10 lg:p-16 flex flex-col justify-center text-center lg:text-left bg-slate-900 text-white">
                     <span
                         class="text-yellow-500 font-black text-[10px] uppercase mb-4 tracking-[0.3em] flex items-center justify-center lg:justify-start">
-                        <span class="w-8 h-[1px] bg-yellow-500 mr-2"></span> Testimonio Especial
+                        <span class="w-8 h-[1px] bg-yellow-500 mr-2"></span>Aventuras en el Desierto
                     </span>
 
                     <h3 class="text-4xl font-black mb-6 uppercase italic leading-none">
-                        Acción de <br><span class="text-[#fec325]">Gracias</span>
+                        Escuela Cristana <br><span class="text-[#fec325]">de Vacaciones 2026</span>
                     </h3>
 
                     <p class="text-slate-400 mb-8 italic text-sm leading-relaxed">
-                        Revive los momentos más emotivos y las bendiciones que Dios ha derramado en nuestra iglesia
-                        este año.
+                        Revive los momentos de nuestra escuela cristiana de vacaciones 2026, en nuestra iglesia.
                     </p>
 
                     <div>
                         <button onclick="playFullVideo()"
                             class="bg-[#fec325] text-[#00305e] px-10 py-5 rounded-full font-black text-[11px] uppercase shadow-xl hover:scale-105 active:scale-95 transition-all tracking-widest flex items-center">
-                            <i class="fas fa-play-circle text-xl mr-3"></i> REPRODUCIR VIDEO TRÍO SALEM
+                            <i class="fas fa-play-circle text-xl mr-3"></i> REPRODUCIR VIDEO CANTO LEMA ECV 2026
 
                         </button>
                     </div>
@@ -1310,7 +1320,7 @@
             <div class="flex flex-col items-center">
                 <img src="imagenes/logo.jpg"
                     class="h-16 w-16 rounded-full mb-6 grayscale hover:grayscale-0 transition duration-700">
-                <h2 class="text-adventist-gold font-bold">Igesia Adeventista del Septimo día</h2><br>
+                <h2 class="text-adventist-gold font-bold">Iglesia Adventista del Séptimo día</h2><br>
 
                 <div class="flex justify-center space-x-8 mb-8">
                     <a href="https://www.facebook.com/profile.php?id=61586113753680&__tn__=-UC*F"
@@ -1331,6 +1341,23 @@
                         Creado por <span class="text-adventist-gold font-bold">Mauricio Galaz Estay</span>
                     </p>
                 </div>
+                <!-- Botón de Acceso a Tesorería -->
+                <div style="text-align: center; margin: 20px 0;">
+                    <a href="tesoreria/index.html" style="
+        background-color: #0a192f;
+        color: #c5a059;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: bold;
+        border: 1px solid #c5a059;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;">
+                        <i class="fas fa-lock"></i> Acceso Tesorería
+                    </a>
+                </div>
+
             </div>
         </div>
 
@@ -1501,7 +1528,7 @@
         </button>
         
         <div class="w-full max-w-4xl bg-black rounded-[2rem] overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-white/10 animate__animated animate__zoomIn">
-            <video id="videoTestimonio" class="w-full shadow-2xl" controls autoplay src="imagenes/accion/video_gracias.mp4"></video>
+            <video id="videoTestimonio" class="w-full shadow-2xl" controls autoplay src="imagenes/accion/ecv1.mp4" type="video/mp4></video>
             <div class="bg-slate-900 p-4 text-center border-t border-white/5">
                 <p class="text-white font-black text-[10px] uppercase tracking-[0.3em] flex items-center justify-center">
                     <i class="fas fa-heart text-red-500 mr-2 animate-pulse"></i> Testimonio: Acción de Gracias
@@ -1724,9 +1751,7 @@
         // --- CONSTANTES Y VARIABLES ---
         const fotosCarousel = ["imagenes/foto1.jpg", "imagenes/foto2.jpg", "imagenes/foto3.jpg", "imagenes/foto4.jpg"];
         const imagenesAccion = [
-            "imagenes/accion/acc2.jpg", "imagenes/accion/acc3.jpg", "imagenes/accion/acc4.jpg",
-            "imagenes/accion/acc5.jpg", "imagenes/accion/acc6.jpg", "imagenes/accion/acc7.jpg",
-            "imagenes/accion/acc8.jpg"
+            "imagenes/accion/ecv1.jpeg", "imagenes/accion/ecv2.jpeg", "imagenes/accion/ecv3.jpeg",
         ];
         let idxCarousel = 0;
         let idxAccion = 0;
@@ -1844,6 +1869,8 @@
 
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
+
+        //esta es una prueba para subir cambio --
 
         // --- LÓGICA PARA CARGAR LA ÚLTIMA MÉTRICA ---
         async function cargarUltimaMetrica() {
@@ -2041,8 +2068,91 @@
         }
     </script>
 
+    <script>
+        let eventoInstalacion;
+        const btnInstalar = document.querySelector('button[onclick="abrirModalApp()"]');
 
+        // 1. Registrar el Service Worker (el archivo que me acabas de mostrar)
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('./sw.js')
+                .then(() => console.log("Service Worker listo"))
+                .catch(err => console.log("Error en SW:", err));
+        }
 
+        // 2. Capturar el evento de instalación de Android/Chrome
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            eventoInstalacion = e;
+            console.log("Listo para instalar");
+        });
+
+        // 3. Modificar tu función existente
+        function abrirModalApp() {
+            if (eventoInstalacion) {
+                // Si el navegador está listo, lanza la ventana de instalación
+                eventoInstalacion.prompt();
+                eventoInstalacion.userChoice.then((choice) => {
+                    if (choice.outcome === 'accepted') {
+                        console.log('El hermano instaló la app');
+                    }
+                    eventoInstalacion = null;
+                });
+            } else {
+                // Si es iPhone o no ha cargado el evento todavía
+                alert("Para instalar:\n\n📱 Android: Espera 5 segundos y vuelve a intentar.\n\n🍎 iPhone: Toca el botón 'Compartir' (cuadrado con flecha) y elige 'Añadir a pantalla de inicio'.");
+            }
+        }
+    </script>
+
+    <script>
+        function abrirModalDoxo() {
+            const modal = document.getElementById('modalDoxo');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.getElementById('claveDoxo').focus();
+        }
+
+        function cerrarModalDoxo() {
+            const modal = document.getElementById('modalDoxo');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.getElementById('claveDoxo').value = "";
+            document.getElementById('errorDoxo').classList.add('hidden');
+        }
+
+        function validarDoxo() {
+            const clave = document.getElementById('claveDoxo').value;
+            if (clave.toLowerCase() === "doxo") {
+                window.location.href = "https://doxologia.netlify.app/";
+            } else {
+                document.getElementById('errorDoxo').classList.remove('hidden');
+                document.getElementById('claveDoxo').value = "";
+            }
+        }
+    </script>
+
+    <div id="modalDoxo"
+        class="fixed inset-0 bg-black/80 hidden items-center justify-center z-[11000] p-6 backdrop-blur-sm">
+        <div class="glass-modal rounded-[3rem] w-full max-w-sm p-12 text-center shadow-2xl bg-white">
+            <div class="bg-blue-600 w-16 h-16 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-xl">
+                <i class="fas fa-music text-white text-2xl"></i>
+            </div>
+            <h2 class="text-xl font-black text-adventist-blue mb-6 uppercase italic tracking-tighter">Acceso Doxología
+            </h2>
+            <input id="claveDoxo" type="password"
+                class="w-full p-4 bg-gray-50 border rounded-2xl mb-4 text-center font-bold text-xl"
+                placeholder="Ingrese Clave">
+
+            <div class="flex flex-col gap-2">
+                <button onclick="validarDoxo()"
+                    class="w-full bg-blue-600 text-white py-4 rounded-2xl font-black uppercase text-xs shadow-lg">Entrar</button>
+                <button onclick="cerrarModalDoxo()"
+                    class="text-gray-400 font-bold text-[9px] uppercase mt-4 underline">Cancelar</button>
+            </div>
+            <p id="errorDoxo" class="text-red-500 text-[10px] mt-4 hidden font-bold">❌ Clave Incorrecta</p>
+        </div>
+    </div>
+    </div>
 </body>
 
 </html>
